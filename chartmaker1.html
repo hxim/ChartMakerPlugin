@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+	<style>
+        * { border-style: solid; border-width: 0; }
+        :focus { outline: none; }
+        ::-moz-focus-inner { border: 0; }
+        body { background-color: #474747; overflow: hidden; margin: 3px 8px 0 8px; text-shadow: 0 -1px 0 rgba(0,0,0,0.45); }
+        body, button, input, textarea, select, label { font-family: "Open Sans", Sans-Serif; font-size: 13px; color: #d5d5d5; vertical-align: top; }
+        a { color: #d5d5d5; }
+        label { line-height: 21px; display: inline-block; margin-top: 2px; user-select: none; }
+        input { background-color: #252525; border-radius: 3px; padding: 3px; box-sizing: border-box; width: 70px; margin: 1px 0 4px 2px; line-height: 17.5px; }
+        select, .button { background-color: #606060; margin: 0 3px; border-radius: 3px; border-top-width: 1px; border-top-color: rgba(255,255,255,0.15); border-bottom-width: 1px; border-bottom-color: rgba(0,0,0,0.6); }
+        select { padding: 2px 15px 3px 5px;  overflow: hidden;
+            background-image: linear-gradient(45deg, transparent 50%, #d5d5d5 50%), linear-gradient(135deg, #d5d5d5 50%, transparent 50%); background-position: calc(100% - 9px) calc(10px), calc(100% - 4px) calc(10px);
+            background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; -webkit-appearance: none; line-height: 1.5em; }
+        .button:not(:disabled):hover, select:hover { background-color: #6a6a6a; }
+        .button:disabled { opacity: 0.5; pointer-events: none; }
+        .button.small { width: auto; float: right; padding: 3px 5px; min-width: 18px; }
+        .bar { width: 384px; height: 26px; white-space: nowrap; font-size: 0; }
+        #data { background-color: #252525; border-radius: 3px; width: 100%; height: 100%; box-sizing: border-box; resize: none; padding: 4px; }
+        .cont { margin: 0px 4px 9px 4px; width: 376px; }
+        .cont1 { height: 100px; margin-bottom: 5px; }
+        .cont2 { height: 200px; overflow: hidden; user-select: none; margin-top: 4px; }
+        #preview > svg { position: relative; text-shadow: none; }
+        #win { position: absolute; z-index: 10; background-color: #474747; width: 360px; height: 346px; top: 40px; left: 20px; box-shadow: 0px 8px 40px rgba(0,0,0,0.2); display: none; }
+        #win > .head { font-size: 1.3em; color: #ffffff; background: linear-gradient(to bottom, #595959 0%,#626262 3%,#575757 7%,#3c3c3c 90%,#3a3a3a 97%,#2e2e2e 100%); background-size: auto 100%; height: 33px; user-select: none; }
+        #win > .head .label { display: inline-block; padding: 0.3em 0.5em; text-shadow: 0 -1px 0 rgba(0,0,0,0.45); font-weight: bold; }
+        #win > .head .cross { width: 0.8em; height: 0.8em; display: inline-block; background-size: cover; font-size: 1.3em; margin: 0.3em; position: absolute; right: 0; cursor: pointer; filter: invert(1); background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2IiB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiI+PHBhdGggZmlsbD0iIzAwMDAwMCIgZD0iTTIuMDkgMzguNUw5MSAxMjcuNUwxLjkxIDIxNi41TDM5LjUgMjUyLjg2TDEyOCAxNjQuNUwyMTcuNSAyNTQuMDFMMjU0LjA2IDIxNy41TDE2NS4xNiAxMjcuNUwyNTUuMDEgMzcuNUwyMTguNDkgMUwxMjcuODQgOTAuNUwzOC40OSAwLjg1TDIuMDkgMzguNVoiIC8+PC9zdmc+); }
+        #win > .body { padding: 6px; overflow-y: auto; scrollbar-color: #222222 rgba(0,0,0,0.2); scrollbar-width: thin; height: 268px; }
+        #win .col { display: inline-block; width: 157px; vertical-align: top; padding: 6px; }
+        #win label { width: 85px; }
+        #win input[type="button"] { width: 336px; margin: 0 12px; }
+    </style>
+    <script>
+        var fontsloaded = false;
+        function fontsloadedfunc() { fontsloaded = true; changeThemeMode(); }
+        var lastdata = null, state = null, mode, theme, themeList = {
+            Blue: { Min: 0, Max: 10, Steps: 4, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 9, FontWeight: "400", BackgroundColor: "#0cc4cc", BarColor: "#ffffff", LineColor: "#169baa", BarStroke: "", FontColor: "#352245", ChartWidth: 700, ChartHeight: 330, ChartSpacing: 0, BarWidth: 1.12, BarRadius: 3, Padding: 25 },
+            Cyan: { Min: 0, Max: 10, Steps: 5, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 13, FontWeight: "600", BackgroundColor: "#000000", BarColor: "#1edac6", LineColor: "#282828", BarStroke: "", FontColor: "#ffffff", ChartWidth: 700, ChartHeight: 370, ChartSpacing: 0, BarWidth: 1, BarRadius: 3, Padding: 20 },
+            Dark: { Min: 0, Max: 10, Steps: 4, DecimalSeparator: ".", ThousandsSeparator: ", ", FontSize: 11, FontWeight: "400", BackgroundColor: "#5a5a5a:#262626", BarColor: "#00addc:#008ac6:l;#7fd13b:#5fa735:l;#f0f016:#b4c013:l;#feb80a:#be9309:l;#a42626:#670a0a:l;#ea157a:#af106d:l", LineColor: "#ffffff33;#ffffff33;#ffffff80", BarStroke: "", FontColor: "#ffffffcc", ChartWidth: 752, ChartHeight: 400, ChartSpacing: 1, BarWidth: 1, BarRadius: 0, Padding: 20 },
+            Excel2003: { Min: 0, Max: 10, Steps: 6, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 11, FontWeight: "400", BackgroundColor: "#ffffff;#c0c0c0", BarColor: "#9999ff;#993366;#ffffcc;#ccffff;#660066;#ff8080", LineColor: "#000000;#000000;#000000", BarStroke: "#000000", FontColor: "#000000", ChartWidth: 700, ChartHeight: 350, ChartSpacing: 1, BarWidth: 1, BarRadius: 0, Padding: 15 },
+            Gray: { Min: 0, Max: 10, Steps: 5, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 11, FontWeight: "400", BackgroundColor: "#fffcf7", BarColor: "#464646:#2e2e2e:L", LineColor: "#c8c4be", BarStroke: "", FontColor: "#403e38", ChartWidth: 650, ChartHeight: 350, ChartSpacing: 1, BarWidth: 1, BarRadius: 3, Padding: 20 },
+            Red: { Min: 0, Max: 10, Steps: 4, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 11, FontWeight: "400", BackgroundColor: "#dc1b13", BarColor: "#ffffff", LineColor: "#e5544e", BarStroke: "", FontColor: "#ffffff", ChartWidth: 635, ChartHeight: 290, ChartSpacing: 0, BarWidth: 0.35, BarRadius: 3, Padding: 30 },
+            Yellow: { Min: 0, Max: 10, Steps: 3, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 9, FontWeight: "400", BackgroundColor: "#ffce1b", BarColor: "#ffffff", LineColor: "#f6b31e", BarStroke: "#f6b31e", FontColor: "#bf1d2e", ChartWidth: 470, ChartHeight: 220, ChartSpacing: 0, BarWidth: 3, BarRadius: 7, Padding: 15 },
+            Custom: null
+        }
+
+        function zoom(i) {
+            var elem = document.getElementById("preview").children[0];
+            if (elem == null) return;
+            var w, h, o = elem.getBoundingClientRect(), p = elem.parentNode.getBoundingClientRect();
+            if (i == null) {
+                elem.style.width = "";
+                elem.style.height = "";
+                w = elem.getBoundingClientRect().width;
+                h = elem.getBoundingClientRect().height;
+            } else {
+                var c = i > 0 ? 1.2 : i < 0 ? 1 / 1.2 : Math.min(p.width / o.width, p.height / o.height);
+                w = o.width * c;
+                h = o.height * c;
+                if (p.width / w > 16 || w / p.width > 16 || p.height / h > 16 || h / p.height > 16) return;
+            }
+            var ot = o.top - p.top, ol = o.left - p.left;
+            var top = h <= p.height ? (p.height - h) / 2 : Math.min(0, ot + (p.height/2 - ot) * (1 - h / o.height));
+            var left = w <= p.width ? (p.width - w) / 2 : Math.min(0, ol + (p.width/2 - ol) * (1 - w / o.width));
+            if (top + h < p.height && h > p.height) top = p.height - h;
+            if (left + w < p.width && w > p.width) left = p.width - w;
+            elem.style.width = w + "px";
+            elem.style.height = h + "px";
+            elem.style.top = top + "px";
+            elem.style.left = left + "px";
+            elem.style.cursor = w <= p.width + 0.01 && h <= p.height + 0.01 ? "default" : "grab";
+        }
+
+        function setupThemes() {
+            var themeSel = document.getElementById("theme");
+            if (themeSel.children.length > 0) return;
+            for (var key in themeList) {
+                if (themeList.hasOwnProperty(key)) {
+                    var opt = document.createElement('option');
+                    opt.appendChild(document.createTextNode(key));
+                    opt.value = key;
+                    themeSel.appendChild(opt);
+                }
+            }
+        }
+
+        function changeThemeMode() {
+            var themeSel = document.getElementById("theme"), modeSel = document.getElementById("mode");
+            theme = (themeList[themeSel.options[themeSel.selectedIndex].value] || theme) || themeList[themeSel.options[0].value];
+            mode = modeSel.options[modeSel.selectedIndex].value;
+            update(true);
+            zoom(0);
+        }
+
+        function saveState() {
+            var s = JSON.stringify({
+                data:document.getElementById("data").value,
+                themesel:document.getElementById("theme").selectedIndex,
+                mode:document.getElementById("mode").selectedIndex,
+                theme: theme
+            });
+            if (state != s) {
+                state = s;
+                sessionStorage.setItem("chart_maker_state", state);
+            }
+        }
+
+        function loadState() {
+            if (state = sessionStorage.getItem("chart_maker_state")) {
+                var s = JSON.parse(state);
+                document.getElementById("data").value = s.data;
+                document.getElementById("theme").selectedIndex = s.themesel;
+                document.getElementById("mode").selectedIndex = s.mode;
+                theme = s.theme;
+            }
+        }
+
+        function init() {
+            var drag = null, dx, dy;
+            document.getElementById("preview").onmouseup = function(e) { drag = null; }
+            document.getElementById("preview").onwheel = function(e) {
+                if (e.ctrlKey || e.deltaY == 0) return;
+                zoom(e.deltaY < 0 ? +1 : -1);
+                e.preventDefault();
+            }
+            document.getElementById("preview").onmousedown = function(e) {
+                e = e || window.event;
+                drag = this.children[0];
+                if (drag == null) return;
+                var b = drag.getBoundingClientRect(), bp = this.getBoundingClientRect();
+                if (b.width <= bp.width && b.height <= bp.height) { drag = null; return; }
+                dx = e.clientX - b.left + bp.left;
+                dy = e.clientY - b.top + bp.top;
+            };
+            document.onmousemove = function(e) {
+                e = e || window.event;
+                if (drag == null) return;
+                e.preventDefault();
+                var p = drag.parentElement.getBoundingClientRect();
+                if (e.clientX < p.left || e.clientX > p.right || e.clientY < p.top || e.clientY > p.bottom) { drag = null; return; }
+                drag.style.left = Math.max(p.width-drag.getBoundingClientRect().width,Math.min(0, e.clientX - dx)) + "px";
+                drag.style.top = Math.max(p.height-drag.getBoundingClientRect().height,Math.min(0, e.clientY - dy)) + "px";
+            };
+            setupThemes();
+            loadState();
+            changeThemeMode();
+            if (window.parent == window.self) document.getElementById("insert").disabled = true;
+            WebFont.load({ google: { families: ['Open Sans:300,400,600,700,800'] }, active: fontsloadedfunc, inactive: fontsloadedfunc });
+        }
+
+        function insertOrDownload(download) {
+            var oldelem = document.getElementById("preview").children[0];
+            var oldstyle = oldelem != null ? oldelem.getAttribute('style') : "";
+            update(true);
+            if (download) {
+                if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) { alert("not supported in IE."); return; }
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(""+document.getElementById("preview").innerHTML));
+                element.setAttribute('download', 'chart.svg');
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            } else {
+                var blob = new Blob([document.getElementById("preview").innerHTML], { type: 'image/svg+xml' });
+                var arrayBuffer;
+                var fileReader = new FileReader();
+                fileReader.onload = function(event) {
+                    arrayBuffer = event.target.result;
+                    window.parent.postMessage(arrayBuffer, "*");
+                };
+                fileReader.readAsArrayBuffer(blob);
+            }
+            document.getElementById("preview").children[0].setAttribute('style', oldstyle);
+        }
+
+        function info() {
+            alert("Insert list of data items. Each item should be on a separate line. Columns should be sepearted by semicolon. First column is label. Second column is value. For multivalue chart use more columns to add additional values.\n\nSpecial characters:\nTo add semicolon ';' - use \\;.\nTo add new line use \\n.\nTo add backslash '\' use \\\\.");
+        }
+
+        function customize(save) {
+            var visible = document.getElementById("win").style.display == "block";
+            document.getElementById("winbody").scroll(0, 0);
+            document.getElementById("win").style.display = visible ? "none" : "block";
+            if (!visible) {
+                Object.keys(theme).forEach(function(key,index) {
+                   document.getElementById("input_"+key).value = theme[key];
+                });
+            } else if (visible && save) {
+                themeList.Custom = JSON.parse(JSON.stringify(theme));
+                theme = themeList.Custom;
+                Object.keys(theme).forEach(function(key,index) {
+                    var e = document.getElementById("input_"+key);
+                    theme[key] = e.type == "number" ? parseFloat(e.value) : e.value;
+                });
+                var themeSel = document.getElementById("theme");
+                themeSel.selectedIndex = themeSel.options.length - 1;
+                changeThemeMode();
+            }
+        }
+
+        function getFontStyle(fill, cl, fw2) {
+            var fw = (fw2 != null) ? fw2 : Math.round(parseFloat(theme.FontWeight.split(";")[0])/100)*100;
+            var fname = fw >= 800 ? "OpenSans-ExtraBold" :
+                        fw >= 700 ? "OpenSans-Bold" :
+                        fw >= 600 ? "OpenSans-SemiBold" :
+                        fw >= 400 ? "OpenSans-Regular" : "OpenSans-Light";
+            return '.'+cl+' { font-size: ' + theme.FontSize + 'px;' + fill + 'font-family: "' + fname + '", "Open Sans";font-weight: ' + fw + ' }';
+        }
+
+        function getTextsBBox(list, x0, y0, fw2) {
+            var svg1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + theme.ChartWidth + ' ' + theme.ChartHeight + '" width="' + theme.ChartWidth + '" height="' + theme.ChartHeight + '">';
+            svg1 += '<style>' + getFontStyle("fill: #000000;", "txt3", fw2) + '</style><g id="group_measure"><text dominant-baseline="hanging" text-anchor="start">';
+            for (var i = 0; i < list.length; i++) {
+                svg1 += '<tspan x="' + (x0||0) + 'em" ' + (i == 0 ? 'y="' + (y0||0) + 'em"' : 'dy="1em"') + ' class="txt3">' + list[i] + '</tspan>';
+            }
+            svg1 += '</text></g></svg>';
+            document.getElementById("preview").innerHTML = svg1;
+            var t = document.querySelector('#group_measure').getBBox();
+            return {width: t.x + t.width, height: t.y + t.height};
+        }
+        function getGraphPadding(texts, data, hor, sets2) {
+            var top = 0, bottom = 0, left = 0, right = 0, tp = theme.Padding;
+            var ytexts = [], xtexts = [];
+            if (hor) { for (var i = 0; i < data.length; i++) ytexts.push(data[i].label); xtexts = texts; }
+            else { for (var i = 0; i < data.length; i++) xtexts.push(data[i].label); ytexts = texts; }
+            left = getTextsBBox(ytexts,0.5,0).width;
+            top = hor ? 0 : Math.max(getTextsBBox([ytexts[0]]).height / 2 - tp, 0);
+            if (hor) {
+                left = Math.max(left, getTextsBBox([xtexts[0]]).width / 2 - tp);
+                right = Math.max(right, getTextsBBox([xtexts[xtexts.length-1]]).width / 2 - tp);
+            }
+            if (!hor) {
+                var unit = (theme.ChartWidth - 2 * tp - (left + right) - (sets2 - 1) * data.length) / ((data.length * sets2 * theme.BarWidth) + (data.length - 1 + theme.ChartSpacing));
+                for (var i = 0; i < xtexts.length; i++) {
+                    var maxwidth = unit * (sets2 * theme.BarWidth + 1) + sets2 - 1;
+                    var b = getTextsBBox(xtexts[i].split('\n'), 0, 0.5);
+                    if (b.width > maxwidth) {
+                        var s = xtexts[i].split(' ').join('\n');
+                        b = getTextsBBox(s.split('\n'), 0, 0.5);
+                        if (b.width <= maxwidth) {
+                            for (var j = 0; j < s.length; j++) {
+                                if (s[j] == '\n') {
+                                    var s2 = s.substr(0, j) + ' ' + s.substr(j + 1);
+                                    var b2 = getTextsBBox(s2.split('\n'), 0, 0.5);
+                                    if (b2.width <= maxwidth)  { s = s2; b = b2; }
+                                }
+                            }
+                        }
+                        data[i].label = s;
+                    }
+                    bottom = Math.max(bottom, b.height);
+                }
+            }
+            else {
+                for (var i = 0; i < xtexts.length; i++) {
+                    var b = getTextsBBox([xtexts[i]], 0, 0.5);
+                    bottom = Math.max(bottom, b.height);
+                }
+            }
+            return { Top: Math.ceil(top + tp), Bottom:  Math.ceil(bottom + tp), Left: Math.ceil(left + tp), Right: Math.ceil(right + tp) };
+        }
+
+        function parseAllColors(count, hor) {
+            var svgDefs = '', gri = 0;
+            function parseColors(list, attColor, attOpacity, css) {
+                function getCO(str, a1, a2) {
+                    if (str.length == 0) return '';
+                    if (str.length == 9 && str[0] == "#") {
+                        v1 = str.substr(0, 7); v2 = (parseInt(str.substr(7, 2), 16) / 255).toFixed(2);
+                    } else {
+                        v1 = str; v2 = null;
+                    }
+                    if (css) return a1 + ': ' + v1 + ';' + (v2 == null ? '' : a2 + ': ' + v2 + ';');
+                    else return a1 + '="' + v1 + '"' + (v2 == null ? '' : ' ' + a2 + '="' + v2 + '"');
+                }
+                var result = [];
+                for (var i = 0; i < list.length; i++)
+                {
+                    if (!css && list[i].indexOf(":") >= 0) {
+                        var a = list[i].split(":");
+                        var co1 = getCO(a[0], 'stop-color','stop-opacity'), co2 = getCO(a[1], 'stop-color','stop-opacity');
+                        gri++;
+                        if (a.length > 2 && (a[2][0].toUpperCase() == "L" || a[2][0].toUpperCase() == "R")) {
+                            gl = a[2][0] == a[2][0].toUpperCase();
+                            var dir = hor ? "0001" : "0010";
+                            if (a[2].length > 1 && a[2][1] >= '1' && a[2][1] <= '8') { dir = ["0100","0110","0010","0011","0001","1001","1000","1100"][parseInt(a[2][1])-1]; }
+                            if (gl) { var d2 = []; for (var j = 0; j < 4; j++) d2.push(dir[j] == "1" ? (j % 2 == 0 ? theme.ChartWidth : theme.ChartHeight) : "0"); dir = d2; }
+                            svgDefs += '\t\t<linearGradient id="grad'+gri+'" '+(gl?'gradientUnits="userSpaceOnUse" ':'')+'x1="'+dir[0]+'" y1="'+dir[1]+'" x2="'+dir[2]+'" y2="'+dir[3]+'">\n';
+                            svgDefs += '\t\t\t<stop offset="0" '+co1+' />\n';
+                            if (a[2][0].toUpperCase() == "R") svgDefs += '\t\t\t<stop offset="0.5" '+co2+' />\n';
+                            svgDefs += '\t\t\t<stop offset="1" '+(a[2][0].toUpperCase() == "R"?co1:co2)+' />\n';
+                            svgDefs += '\t\t</linearGradient>\n';
+                        } else {
+                            svgDefs += '\t\t<radialGradient id="grad'+gri+'" gradientUnits="userSpaceOnUse" cx="'+(theme.ChartWidth/2)+'" cy="'+(theme.ChartHeight/2)+'" r="'+(Math.max(theme.ChartWidth/2,theme.ChartHeight/2))+'">\n';
+                            svgDefs += '\t\t\t<stop offset="0" '+co1+' />\n';
+                            svgDefs += '\t\t\t<stop offset="1" '+co2+' />\n';
+                            svgDefs += '\t\t</radialGradient>\n';
+                        }
+                        result.push(attColor + '="url(#grad'+gri+')"');
+                    } else {
+                        var co = getCO(list[i], attColor, attOpacity);
+                        result.push(co);
+                    }
+                }
+                return result;
+            }
+
+            function loadColors() {
+                function hexToRgb(hex) {
+                  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                  return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
+                }
+                function colDist(c1, c2) {
+                    h1 = hexToRgb(c1), h2 = hexToRgb(c2);
+                    return h1 == null || h2 == null ? null : Math.pow(h1.r-h2.r,2)+Math.pow(h1.g-h2.g,2)+Math.pow(h1.b-h2.b,2);
+                }
+
+                var cols = [];
+                var b = theme.BarColor.split(";");
+                var last = b[b.length-1].split(":")[0];
+                if (theme.BarColor.length > 0) cols.push.apply(cols, parseColors(b,"fill","opacity"));
+                if (cols.length < count) {
+                    var pal = ["#0088ce","#169f85","#007838","#7db037","#dfd420","#dc681d","#ca1d23","#da4b9b","#d0007c","#59186c","#202a5d","#005393",
+                               "#26a9e1","#00be9c","#009345","#b6df23","#fff100","#f8931f","#fe0000","#f177c4","#ea00ad","#90278e","#2a3890","#1a75bb",
+                               "#99c9ed","#6ad9d0","#a1c3a0","#dce9a4","#f8f3a2","#ffcd99","#f9b199","#edbdd7","#ebabcd","#bc8cbc","#9492c1","#7e9fd2"];
+                    var cdmin = Infinity, index = 21;
+                    for (var i = 0; i < pal.length; i++) {
+                        var cd = colDist(pal[i], last);
+                        if (cd != null && cd < cdmin) { cdmin = cd; index = i; }
+                    }
+                    var step = count < 4 ? 3 : count < 6 ? 2 : 1;
+                    while (cols.length < count) {
+                        index = ((index / 12) >> 0) * 12 + ((index + step) % 12);
+                        cols.push.apply(cols, parseColors([pal[index]],"fill","opacity"));
+                    }
+                }
+                return cols;
+            }
+            var result = { baseColors: loadColors(),
+                back: parseColors(theme.BackgroundColor.split(";"), "fill", "opacity"),
+                font: parseColors(theme.FontColor.split(";"), "fill","opacity", true),
+                line: parseColors(theme.LineColor.split(";"), "stroke","opacity"),
+                barStroke: parseColors(theme.BarStroke.split(";"), "stroke", "stroke-opacity")
+            }
+            result.svgDefs = svgDefs;
+            return result;
+        }
+
+        function parseDataLine(s) {
+            var a = s.replace(/\\\\/g, "\1").replace(/\\n/g, "\n").replace(/;/g, "\0").replace(/\\\0/g, ";").replace(/\1/g, "\\").trim().split("\0");
+            for (var j = 0; j < a.length; j++) {
+                a[j] = a[j].trim();
+                if (a[j].length > 1 && a[j][0] == "\"" && a[j][a[j].length-1] == "\"") a[j] = a[j].substring(1, a[j].length - 1);
+            }
+            while (a.length > 2 && a[a.length - 1].trim().length == 0) a.pop();
+            return a;
+        }
+
+        function generateSvgGraph(str, svgStyle) {
+            var lines = str.split("\n");
+            var stacked = mode.indexOf("Stacked") >= 0, ling = mode.indexOf("Line") >= 0, hor = mode.indexOf("Bar") >= 0;
+
+            // Parse data to label + values, determine unit from data, determine number of decimal places in data
+            var data = [], dec = 0, labelunit = "";
+            for (var i = 0; i < lines.length; i++) if (lines[i].trim().length > 0) {
+                var a = parseDataLine(lines[i])
+                var values = [];
+                for (var j = 1; j < Math.max(2,a.length); j++) {
+                    var v = a.length > j?parseFloat(a[j]):0;
+                    if (v.toString().indexOf(".") >= 0) dec = Math.max(v.toString().split(".")[1].length || 0, dec);
+                    if (labelunit.length == 0 && a.length > 1) {
+                        var s = a[1].trim();
+                        for (var k = s.length-1; k>=0; k--) {
+                            if (s[k]>= '0' && s[k] <= '9') break;
+                            labelunit = s[k] + labelunit;
+                        }
+                    }
+                    if (j > 1 && stacked) v = values[values.length - 1] + v;
+                    values.push(v);
+                }
+                data.push({label:a[0],values:values});
+            }
+
+            // Determine minimum and maximum for chart, if both negative and positive numbers ensure one of lines/labels is zero if possible
+            var min = theme.Min, max = theme.Max, sets = 1, sets2 = 1;
+            for (var i = 0; i < data.length; i++) for (var j = 0; j < data[i].values.length; j++) {
+                var v = data[i].values[j];
+                if (v < min) min = theme.Min == 0 ? v : Math.ceil(v / Math.abs(theme.Min)) * Math.abs(theme.Min);
+                if (v > max) max = theme.Max == 0 ? v : Math.ceil(v / Math.abs(theme.Max)) * Math.abs(theme.Max);
+                if (j >= sets) sets = j + 1;
+                if (j >= sets2 && !(stacked || ling)) sets2 = j + 1;
+            }
+            if (min < 0 && max > 0 && theme.Steps > 1) {
+                for (var j = 1; j < theme.Steps; j++) {
+                    if ((max / (theme.Steps - j)) * j >= -min) {
+                        min = -(max / (theme.Steps - j)) * j;
+                        break;
+                    }
+                    if (j == theme.Steps - 1) {
+                        var c = theme.Max == 0 ? max : theme.Max;
+                        max = c * Math.ceil((-min / j) * (theme.Steps - j) / c);
+                        min = -(max / (theme.Steps - j)) * j;
+                    }
+                }
+            }
+
+            // Prepare and format value axis labels
+            var texts = [];
+            for (var i = 0; i <= theme.Steps; i++) {
+                var ylabel = min + i * ((max - min) / theme.Steps);
+                ylabel=ylabel.toFixed(dec).replace(".",theme.DecimalSeparator);
+                if (theme.ThousandsSeparator.length > 0) ylabel = ylabel.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, theme.ThousandsSeparator);
+                texts.push(ylabel);
+            }
+            if (dec > 0) {
+                for (var j = 0; j <= dec; j++) {
+                    var cut = true;
+                    for (var i = 0; i <= theme.Steps; i++) if (texts[i][texts[i].length-1] != '0' && texts[i][texts[i].length-1] != '.') cut = false;
+                    if (cut) for (var i = 0; i <= theme.Steps; i++) texts[i] = texts[i].substr(0, texts[i].length - 1); else break;
+                }
+            }
+            for (var i = 0; i <= theme.Steps; i++) texts[i] = texts[i] + labelunit;
+
+            // Set padding based on label size and break X-axis labels into lines (for column charts)
+            var pad = getGraphPadding(texts, data, hor, sets2);
+
+            // Colors
+            var color = parseAllColors(sets, hor);
+
+            var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+theme.ChartWidth+' '+theme.ChartHeight+'" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'"'+svgStyle+'>\n';
+
+            // Text style
+            var fontFill = color.font[0].split(";")[0]+";", fontOpacity = color.font[0].length > 0 ? color.font[0].split(";")[1] : "";
+            if (fontOpacity.length > 0) fontOpacity += ";";
+            svg += '\t<style>\n\t\t'+getFontStyle(fontFill,'txt')+'\n\t</style>\n';
+            if (color.font[0].length == 0) pad.Left = pad.Right = pad.Bottom = pad.Top = theme.Padding;
+
+            // Horizontal lines and Y-axis labels
+            var svgLines = '\t<g id="Lines">\n';
+            var svgLabels = '\t<g id="Labels">\n';
+            var svgData = '\t<g id="Data">\n', svgData2 = '';
+            var bb = {x1:0,y1:0,x2:0,y2:0};
+            for (var i = 0; i <= theme.Steps; i++) {
+                var x1, y1, x2, y2;
+                if (hor) {
+                    y1 = pad.Top; y2 = theme.ChartHeight - pad.Bottom;
+                    x1 = x2 = Math.ceil(theme.ChartWidth - pad.Right - ((theme.ChartWidth - pad.Right - pad.Left) * (theme.Steps - i) / theme.Steps)) - 0.5;
+                } else {
+                    x1 = pad.Left; x2 = theme.ChartWidth - pad.Right;
+                    y1 = y2 = Math.ceil(theme.ChartHeight - pad.Bottom - ((theme.ChartHeight - pad.Bottom - pad.Top) * i / theme.Steps)) - 0.5;
+                }
+                var c = color.line[0];
+                if ((i == 0 || i == theme.Steps) && color.line.length > 1 && color.line[1].length > 0) c = color.line[1];
+                if (i == Math.round(-min * theme.Steps /  (max - min))  && color.line.length > 2 && color.line[2].length > 0) c = color.line[2];
+                if (c.length > 0) svgLines += '\t\t<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" '+c+' stroke-width="1" />\n'
+                if (color.font[0].length > 0) {
+                    if (hor) svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+x1+','+(Math.ceil(y2)-1)+')" dominant-baseline="hanging" text-anchor="middle"><tspan x="0" dy="0.5em" class="txt">'+texts[i]+'</tspan></text>\n';
+                    else svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+(x1-2)+','+y1+')" dominant-baseline="middle" text-anchor="end"><tspan y="0" dx="-0.5em" class="txt">'+texts[i]+'</tspan></text>\n';
+                }
+                if (i == (hor ? theme.Steps : 0))  { bb.x2 = x2+0.5; bb.y2 = y2+0.5; }
+                if (i == (hor ? 0 : theme.Steps))  { bb.x1 = x1-0.5; bb.y1 = y1-0.5; }
+            }
+
+            // Background
+            if (color.back.length > 0 && color.back[0].length > 0) {
+                var svgBackground = '\t<g id="Background">\n\t\t<rect x="0" y="0" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'" '+color.back[0]+' />\n';
+            }
+            if (color.back.length > 1 && color.back[1].length > 0) {
+                var x1 = bb.x1, x2 = bb.x2, y1 = bb.y1, y2 = bb.y2;
+                var s = color.line.length > 1 && color.line[1].length > 0 || color.line.length > 3 && color.line[3].length > 0 ? 1 : -1;
+                if (hor) { y1-=s*0.5; y2+=s*0.5; } else {x1-=s*0.5; x2+=s*0.5; }
+                svgBackground += '\t\t<rect x="'+x1+'" y="'+y1+'" width="'+(x2-x1)+'" height="'+(y2-y1)+'" '+color.back[1]+' />\n';
+            }
+            svgBackground += '\t</g>\n';
+
+            // Data points and X-axis labels, vertical lines
+            if (color.line.length > 1) {
+                var color0 = color.line[1];
+                if (color0.length == 0 && color.line.length > 3 && color.line[3].length > 0) color0 = color.line[3];
+                var color1 = color0, color2 = color0;
+                if (color.line.length > 2 && color.line[2].length > 0) {
+                    if (hor) color2 = color.line[2]; else color1 = color.line[2];
+                }
+                svgLines += '\t\t<line x1="'+bb.x1+'" y1="'+bb.y1+'" x2="'+(hor?bb.x2:bb.x1)+'" y2="'+(hor?bb.y1:bb.y2)+'" '+color1+' stroke-width="1" />\n'
+                svgLines += '\t\t<line x1="'+(hor?bb.x1:bb.x2)+'" y1="'+(hor?bb.y2:bb.y1)+'" x2="'+(hor?bb.x2:bb.x2)+'" y2="'+bb.y2+'" '+color2+' stroke-width="1" />\n'
+            }
+            var unit = ((hor ? theme.ChartHeight : theme.ChartWidth)
+                      - (hor ? pad.Top + pad.Bottom : pad.Left + pad.Right)
+                      - (sets2 - 1) * data.length) / ((data.length * sets2 * theme.BarWidth) + (data.length - 1 + theme.ChartSpacing));
+            var radius0 = Math.min(unit * theme.BarWidth / 2, theme.BarRadius || 0);
+            function getPos(value) {
+                if (value == null) return null;
+                if (hor)
+                return Math.ceil(pad.Left
+                       + ((theme.ChartWidth - pad.Right - pad.Left) * (value - min) / (max - min)))
+                       - (value >= 0 ? 1 : 0);
+                else
+                return Math.ceil(theme.ChartHeight - pad.Bottom
+                       - ((theme.ChartHeight - pad.Bottom - pad.Top) * (value - min) / (max - min)))
+                       - (value >= 0 ? 1 : 0);
+            }
+            function genSvgPath(fill, hor, x1, y1, x2, y2, radius, s) {
+                var len = hor ? x2-x1-radius*s : y1-y2+radius*s;
+                var hei = hor ? y2-y1-radius*2 : x2-x1-radius*2;
+                var stroke = color.barStroke.length > 0 && color.barStroke[0].length > 0 ? ' ' + color.barStroke[0] : '';
+                if (stroke.length > 0) { x1+=hor?-s*0.5:-0.5; y1+=hor?-0.5:0.5; y2-=-s*0.5; hei += 1;len += hor?s:0; }
+                return '\t\t<path '+fill+stroke+' d="M'+x1+' '+(hor?y1:y2)
+                        +(hor?'h':'v')+(len)
+                        +'a'+radius+','+radius+' 0 0 '+(s==1 ? 1 : 0)+' '+(hor?radius*s:radius)+','+(hor?radius:-radius*s)
+                        +(hor?'v':'h')+(hei)
+                        +'a'+radius+','+radius+' 0 0 '+(s==1 ? 1 : 0)+' '+(hor?-radius*s:radius)+','+(hor?radius:radius*s)
+                        +(hor?'h':'v')+(-len)
+                        +'z"/>\n';
+            }
+
+            var lastmid = 0, ly = null;
+            for (var i = 0; i < data.length; i++) {
+                var xy0 = (hor ? pad.Top : pad.Left) + theme.ChartSpacing * unit / 2 + i * (unit * (sets2 * theme.BarWidth + 1) + sets2 - 1);
+                var mid = xy0 + (sets2 * unit * theme.BarWidth + sets2 - 1) / 2;
+                for (var j = sets - 1; j >= 0; j--) {
+                    var v = data[i].values[j] || 0;
+                    var x1, y1, x2, y2;
+                    if (hor) {
+                        y1 = xy0 + j * (unit * theme.BarWidth + 1) * (stacked || ling ? 0 : 1); y2 = y1 + unit * theme.BarWidth;
+                        x2 = getPos(v); x1 = getPos(0) + (v > 0 ? 1 : 0);
+                    } else if (ling) {
+                        x1 = lastmid; y1 = i > 0 ? getPos(data[i - 1].values[j]) : null;
+                        x2 = mid; y2 = getPos(data[i].values[j]);
+                        var stroke = color.barStroke.length > 0 && color.barStroke[0].length > 0 ? ' ' + color.barStroke[0] : '';
+                        var linestroke = color.baseColors[j].replace('fill','stroke') + ' stroke-width="' + (theme.BarWidth * 2) + '"';
+                        svgData += (y1 == null || y2 == null ? '' : '\t\t<line '+linestroke+' x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+(y1==y2?y2+0.0001:y2)+'"/>\n');
+                        if (theme.BarRadius < 1) {
+                            var w = theme.BarRadius == 0 ? 4 : 1 / theme.BarRadius;
+                            svgData2 += (y2 == null ? '' : '\t\t<rect '+color.baseColors[j]+stroke+' x="'+(x2-w)+'" y="'+(y2-w)+'" width="'+(w*2)+'" height="'+(w*2)+'"/>\n');
+                        }
+                        else
+                        svgData2 += (y2 == null ? '' : '\t\t<circle '+color.baseColors[j]+stroke+' cx="'+x2+'" cy="'+y2+'" r="'+(theme.BarRadius)+'"/>\n');
+                        continue;
+                    } else {
+                        x1 = xy0 + j * (unit * theme.BarWidth + 1) * (stacked || ling ? 0 : 1); x2 = x1 + unit * theme.BarWidth;
+                        y1 = getPos(v); y2 = getPos(0) + (v < 0 ? 1 : 0);
+                    }
+                    if (y1 == y2 || x1 == x2) continue;
+                    var s = (hor ? x1 < x2 : y1 < y2) ? 1 : -1;
+                    var radius = Math.min(radius0,Math.abs(hor?x2-x1:y2-y1));
+                    svgData += genSvgPath(color.baseColors[j], hor, x1, y1, x2, y2, radius, s);
+                }
+                if (color.font[0].length > 0) {
+                    if (hor) {
+                        var tspan = '<tspan y="0" dx="-0.5em" class="txt">'+data[i].label+'</tspan>';
+                        svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+(pad.Left - 2)+','+(mid)+')" dominant-baseline="middle" text-anchor="end">'+tspan+'</text>\n';
+                    } else {
+                        var labellines = data[i].label.split('\n');
+                        var tspan = '<tspan x="0" dy="0.5em" class="txt">'+labellines[0]+'</tspan>';
+                        for (var j = 1; j < labellines.length; j++) tspan += '<tspan x="0" dy="1em" class="txt">'+labellines[j]+'</tspan>';
+                        svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+mid+','+(Math.ceil(theme.ChartHeight - pad.Bottom)-1)+')" dominant-baseline="hanging" text-anchor="middle">'+tspan+'</text>\n';
+                    }
+                }
+                if (color.line.length > 3 && color.line[3].length > 0 && i > 0) {
+                    var p = (mid+lastmid)/2;
+                    svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+color.line[3]+' stroke-width="1" />\n'
+                }
+                if (color.line.length > 4 && color.line[4].length > 0) {
+                    var p = mid;
+                    svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+color.line[4]+' stroke-width="1" />\n'
+                }
+                lastmid = mid;
+            }
+            svgData += svgData2 + '\t</g>\n'; svgLabels += '\t</g>\n'; svgLines += '\t</g>\n';
+            if (color.svgDefs.length >= 0) svg += '\t<defs>\n'+color.svgDefs+'\t</defs>\n';
+            svg += svgBackground + svgLines + svgLabels + svgData + '</svg>';
+            return svg;
+        }
+
+        function generateSvgChart(str, svgStyle) {
+            var lines = str.split("\n");
+            var donut = mode.indexOf("Donut") >= 0;
+
+            // Parse data to label + values
+            var data = [], percent = false, sum = 0, dec = 0;
+            for (var i = 0; i < lines.length; i++) if (lines[i].trim().length > 0) {
+                var a = parseDataLine(lines[i]);
+                if (a.length < 2) continue;
+                var v = parseFloat(a[1]);
+                if (v == null || isNaN(v) || v <= 0) continue;
+                if (a[1].trim()[a[1].trim().length-1] == "%") percent = true;
+                if (v.toString().indexOf(".") >= 0) dec = Math.max(v.toString().split(".")[1].length || 0, dec);
+                sum += v;
+                data.push({label:a[0], value:v});
+            }
+            if (!percent || sum > 100) {
+                for (var i = 0; i < data.length; i++) data[i].value = data[i].value * 100 / sum;
+            } else if (sum < 100) {
+                data.push({label:"Other", value:100-sum});
+            }
+            for (var i = 0; i < data.length; i++) data[i].label2 = data[i].value.toFixed(dec).replace(".",theme.DecimalSeparator) + '%';
+            sum = 0;
+            for (var i = 0; i < data.length; i++) {
+                data[i].mid = (sum + (sum + data[i].value)) / 2;
+                sum += data[i].value;
+            }
+
+            // Colors, Compute label sizes
+            var color = parseAllColors(data.length, false);
+            var fw2 = theme.FontWeight.split(";").length <= 1 ? 600 : Math.round(parseFloat(theme.FontWeight.split(";")[1])/100)*100;
+            var lineHeight = getTextsBBox(["%"], 0, 0, fw2).height;
+            for (var i = 0; i < data.length; i++) {
+                data[i].bb = getTextsBBox([data[i].label+"-"], 0, 0, fw2);
+                data[i].bb2 = getTextsBBox([data[i].label2]);
+            }
+
+            var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+theme.ChartWidth+' '+theme.ChartHeight+'" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'"'+svgStyle+'>\n';
+
+            // Text style
+            var fontFill = color.font[0].split(";")[0]+";", fontOpacity = color.font[0].length > 0 ? color.font[0].split(";")[1] : "";
+            if (fontOpacity.length > 0) fontOpacity += ";";
+            svg += '\t<style>\n\t\t'+getFontStyle(fontFill, 'txt')+'\n\t\t'+getFontStyle(fontFill,'txt2',fw2)+'\n\t</style>\n';
+
+            // Background
+            if (color.back.length > 0 && color.back[0].length > 0) {
+                var svgBackground = '\t<g id="Background">\n\t\t<rect x="0" y="0" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'" '+color.back[0]+' />\n';
+            }
+
+            var svgLines = '\t<g id="Lines">\n';
+            var svgLabels = '\t<g id="Labels">\n';
+            var svgData = '\t<g id="Data">\n'
+            var stroke = color.barStroke.length > 0 && color.barStroke[0].length > 0 ? ' ' + color.barStroke[0] : '';
+            var cx = theme.ChartWidth / 2, cy = theme.ChartHeight / 2;
+            function xpos(r, p) { return cx + Math.sin(2 * Math.PI * p / 100) * r; }
+            function ypos(r, p) { return cy - Math.cos(2 * Math.PI * p / 100) * r; }
+            function getLabelPos(item, r1, dir, lasty) {
+                var section = Math.floor(item.mid / 25);
+                if (dir == section % 2) return null;
+                var re = r1 + lineHeight, p = item.mid;
+                var ih = ((section % 3 != 0) ? 1 : -1) * (item.bb.height / 2);
+                var lp = ypos(re, p) - ih;
+                if (ih > 0 && lp < lasty[section] || ih < 0 && lp > lasty[section]) {
+                    re = (lasty[section] + ih - cy) / (-Math.cos(2 * Math.PI * p / 100))
+                }
+                var x1 = xpos(Math.min(re, (r1 + lineHeight) * 1.25), p), y1 = ypos(re, p);
+                var x2 = xpos(r1 + lineHeight / 2, p), y2 = ypos(r1 + lineHeight / 2, p);
+                lasty[section] = y1 + ih;
+                if (section == 1) lasty[0] = Math.min(lasty[0], y1 - ih);
+                if (section == 3) lasty[2] = Math.max(lasty[2], y1 - ih);
+                return {
+                    label_x: (x1+lineHeight*(section<2?1:-1)-(section<2?0:item.bb.width+item.bb2.width)),
+                    label_y: y1,
+                    label_width: lineHeight+item.bb.width+item.bb2.width,
+                    line_x1: x1, line_y1: y1,
+                    line_x2: x2, line_y2: y2,
+                    line_x3: x1+lineHeight/2*(section<2?1:-1), line_y3: y1
+                };
+            }
+            function setupLabelsPos(r1) {
+                var lasty = [theme.ChartHeight, 0, 0, theme.ChartHeight];
+                for (var dir = 0; dir < 2; dir++) for (var i = 0; i < data.length; i++) {
+                    var item = dir == 0 ? data[i] : data[data.length - 1 - i];
+                    var pos = getLabelPos(item, r1, dir, lasty);
+                    if (pos != null) item.pos = pos;
+                }
+                var itemlast = null;
+                for (var dir = 0; dir < 2; dir++) for (var i = 0; i < data.length; i++) {
+                    var item = dir == 0 ? data[i] : data[data.length - 1 - i];
+                    var section = Math.floor(item.mid / 25);
+                    if (i > 0 && dir == section % 2 && Math.floor(itemlast.mid / 25) == section) {
+                        var diff = itemlast.pos.line_x1 - item.pos.line_x1;
+                        if ((section < 2 ? 1 : -1) * diff > 0) {
+                            item.pos.label_x += diff;
+                            item.pos.line_x1 += diff;
+                            item.pos.line_x3 += diff;
+                        }
+                    }
+                    itemlast = item;
+                }
+                for (var i = 0; i < data.length; i++) if (data[i].pos.label_x < 0 || data[i].pos.label_x+data[i].pos.label_width > theme.ChartWidth) return false;
+                return Math.min(lasty[0],lasty[3]) >= 0 && Math.max(lasty[1],lasty[2]) <= theme.ChartHeight;
+            }
+            var r = Math.min(theme.ChartWidth, theme.ChartHeight) / 3;
+            if (color.font[0].length > 0) for (var i = 0; i < 10; i++) if (!setupLabelsPos(r)) r = r * 0.9; else break;
+            var p = 0, dr = 0.5;
+            for (var i = 0; i < data.length; i++) {
+                var x1 = xpos(r,p), y1 = ypos(r,p);
+                p += data[i].value;
+                var x2 = xpos(r,p), y2 = ypos(r,p);
+                svgData += '\t\t<path '+color.baseColors[i]+stroke+' d="M'+x1+' '+y1
+                    +'A'+r+' '+r+' 0 '+(data[i].value > 50 ? 1 : 0)+' 1 '+x2+' '+y2
+                    +(donut?('L'+(cx+(x2-cx)*dr)+' '+(cy+(y2-cy)*dr)+'A'+(r*dr)+' '+(r*dr)+' 1 '+(data[i].value > 50 ? 1 : 0)+' 0 '+(cx+(x1-cx)*dr)+' '+(cy+(y1-cy)*dr)):('L'+cx+' '+cy))
+                    +'Z"/>\n';
+            }
+            if (stroke.length == 0) {
+                p = 0.01; r -= 1; dr = ((r+1)/2+1)/r;
+                for (var i = 0; i < data.length; i++) {
+                    var x1 = xpos(r,p), y1 = ypos(r,p), x2 = cx, y2 = cy - r;
+                    svgBackground += '\t\t<path '+color.baseColors[i]+' d="M'+x1+' '+y1
+                        +'A'+r+' '+r+' 0 '+(p < 50 ? 1 : 0)+' 1 '+x2+' '+y2
+                        +(donut?('L'+(cx+(x2-cx)*dr)+' '+(cy+(y2-cy)*dr)+'A'+(r*dr)+' '+(r*dr)+' 1 '+(p < 50 ? 1 : 0)+' 0 '+(cx+(x1-cx)*dr)+' '+(cy+(y1-cy)*dr)):('L'+cx+' '+cy))
+                        +'Z"/>\n';
+                    p += data[i].value - (i==0?0.01:0);
+                }
+            }
+            if (color.font[0].length > 0) for (var i = 0; i < data.length; i++) {
+                var item = data[i], pos = item.pos;
+                svgLines += '\t\t<path '+color.line[0]+' fill="none" d="M'+pos.line_x2+' '+pos.line_y2
+                    +'L'+pos.line_x1+' '+pos.line_y1+'L'+pos.line_x3+' '+pos.line_y3+'"/>\n';
+                var tspan = '<tspan x="0" y="0" class="txt2">'+item.label+'</tspan>'
+                    +'<tspan x="'+item.bb.width+'" dy="0" class="txt">'+item.label2+'</tspan>';
+                svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+pos.label_x+','+pos.label_y+')" dominant-baseline="middle" text-anchor="start">'+tspan+'</text>\n';
+            }
+
+            svgBackground += '\t</g>\n'; svgData += '\t</g>\n'; svgLabels += '\t</g>\n'; svgLines += '\t</g>\n';
+            if (color.svgDefs.length >= 0) svg += '\t<defs>\n'+color.svgDefs+'\t</defs>\n';
+            svg += svgBackground + svgLines + svgLabels + svgData + '</svg>';
+            return svg;
+        }
+
+        function update(reset) {
+            if (!fontsloaded) return;
+            if (!reset) {
+                setupThemes();
+                var themeSel = document.getElementById("theme"), modeSel = document.getElementById("mode");
+                var tsel = themeList[themeSel.options[themeSel.selectedIndex].value];
+                var msel = modeSel.options[modeSel.selectedIndex].value;
+                if (tsel != null && theme != tsel || msel != mode) { changeThemeMode(); return; }
+            }
+
+            var data = document.getElementById("data").value;
+            if (!reset && lastdata == data) return; else lastdata = data;
+
+            var svgStyle = "", elem = document.getElementById("preview").children[0];
+            if (!reset && elem != null) svgStyle = ' style="'+elem.getAttribute('style')+'"';
+
+            function checkNum(s, dec, val) { theme[s] = dec ? parseFloat(theme[s]||val) : parseInt(theme[s]||val); if (isNaN(theme[s])) theme[s] = val; }
+            checkNum("Min", true, 0);
+            checkNum("Max", true, 0);
+            checkNum("Steps", false, 0);
+            checkNum("BarRadius", true, 0);
+            checkNum("ChartWidth", false, 752);
+            checkNum("ChartHeight", false, 400);
+            checkNum("FontSize", false, 10);
+            checkNum("ChartSpacing", true, 0);
+            checkNum("BarWidth", true, 0);
+            checkNum("Padding", false, 0);
+
+            document.getElementById("preview").innerHTML =
+                stacked = mode.indexOf("Pie") >= 0 || mode.indexOf("Donut") >= 0
+                    ? generateSvgChart(data, svgStyle)
+                    : generateSvgGraph(data, svgStyle);
+
+            saveState();
+        }
+
+        window.setInterval(update, 2000);
+
+    </script>
+</head>
+<body onload="init();">
+    <div class="bar">
+        <select id="mode" onchange="changeThemeMode()" style="width: 180px;">
+            <option>Column Chart</option>
+            <option>Stacked Column Chart</option>
+            <option>Bar Chart</option>
+            <option>Stacked Bar Chart</option>
+            <option>Line Chart</option>
+            <option>Pie Chart</option>
+            <option>Donut Chart</option>
+        </select>
+        <select id="theme" onchange="changeThemeMode()" style="width: 86px;"></select>
+        <input type="button" value="Customize..." onclick="customize(false);" class="button" style="width: 100px;"></input>
+    </div>
+    <div class="bar" style="margin-top:5px;">
+        <label>Input data: <a href="javascript:info();">?</a></label>
+    </div>
+    <div class="cont cont1"><textarea id="data" onchange="update()" spellcheck="false">
+India;18.36%
+United States;13.72%
+Brazil;6.97%
+Indonesia;4.26%
+United Kingdom;3.14%
+Mexico;2.89%
+Philippines;2.74%
+Vietnam;2.12%
+Spain;1.94%
+Canada;1.89%</textarea></div>
+    <div class="bar">
+        <label>Preview:</label>
+        <input type="button" value="Fit" onclick="zoom(0);" class="button small"></input>
+        <input type="button" value="1:1" onclick="zoom(null);" class="button small"></input>
+        <input type="button" value="-" onclick="zoom(-1);" class="button small"></input>
+        <input type="button" value="+" onclick="zoom(+1);" class="button small"></input>
+    </div>
+    <div class="cont cont2" id="preview"></div>
+    <div class="bar">
+        <input type="button" id="insert" value="Insert to Photopea" onclick="insertOrDownload(false);" class="button" style="width: 255px;"></input><input type="button" value="Download SVG" onclick="insertOrDownload(true);" class="button" style="width: 117px;"></input>
+    </div>
+    <div id="win">
+        <div class="head"><span class="label">Customize</span><span class="cross" onclick="customize(false);"></span></div>
+        <div class="body" id="winbody">
+            <div class="col">
+            <label>Min:</label><input type="number" step="0.01" id="input_Min"></input>
+            <label>Max:</label><input type="number" step="0.01" id="input_Max"></input><br/>
+            <label>Steps:</label><input type="number" step="1" id="input_Steps"></input><br/>
+            <label>Font Color:</label><input type="text" id="input_FontColor"></input><br/>
+            <label title="Background Color">Back. Color:</label><input type="text" id="input_BackgroundColor"></input><br/>
+            <label>Line Color:</label><input type="text" id="input_LineColor"></input><br/>
+            <label>Bar Color:</label><input type="text" id="input_BarColor"></input><br/>
+            <label>Bar Stroke:</label><input type="text" id="input_BarStroke"></input><br/>
+            <label>Bar Radius:</label><input type="number" step="0.01" id="input_BarRadius"></input><br/>
+            </div><div class="col">
+            <label>Chart Width:</label><input type="number" step="1" id="input_ChartWidth"></input><br/>
+            <label>Chart Height:</label><input type="number" step="1" id="input_ChartHeight"></input><br/>
+            <label>Font Size:</label><input type="number" step="1" id="input_FontSize"></input><br/>
+            <label>Font Weight:</label><input type="text" id="input_FontWeight"></input><br/>
+            <label title="Decimal Separator">Decimal Sep.:</label><input type="text" id="input_DecimalSeparator"></input><br/>
+            <label title="Thousands Separator">Thous. Sep.:</label><input type="text" id="input_ThousandsSeparator"></input><br/>
+            <label title="Chart Spacing">Spacing:</label><input type="number" step="0.01" id="input_ChartSpacing"></input><br/>
+            <label>Bar Width:</label><input type="number" step="0.01" id="input_BarWidth"></input><br/>
+            <label>Padding:</label><input type="number" step="1" id="input_Padding"></input>
+            </div>
+        </div>
+        <input type="button" value="OK" onclick="customize(true);" class="button"</input>
+    </div>
+</body>
+</html>

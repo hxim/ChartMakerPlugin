@@ -106,18 +106,22 @@
             });
             if (state != s) {
                 state = s;
-                localStorage.setItem("chart_maker_state", state);
+                if (typeof window.localStorage !== 'undefined') {
+                    try { window.localStorage.setItem("chart_maker_state", state); } catch {}
+                }
             }
         }
 
         function loadState() {
-            if (state = localStorage.getItem("chart_maker_state")) {
-                var s = JSON.parse(state);
-                document.getElementById("data").value = s.data;
-                document.getElementById("theme").selectedIndex = s.themesel;
-                document.getElementById("mode").selectedIndex = s.mode;
-                theme = s.theme;
-            }
+            if (typeof window.localStorage !== 'undefined') { try {
+                if (state = localStorage.getItem("chart_maker_state")) {
+                    var s = JSON.parse(state);
+                    document.getElementById("data").value = s.data;
+                    document.getElementById("theme").selectedIndex = s.themesel;
+                    document.getElementById("mode").selectedIndex = s.mode;
+                    theme = s.theme;
+                }
+            } catch {} }
         }
 
         function init() {

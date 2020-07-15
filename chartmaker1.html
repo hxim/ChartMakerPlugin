@@ -106,12 +106,12 @@
             });
             if (state != s) {
                 state = s;
-                sessionStorage.setItem("chart_maker_state", state);
+                localStorage.setItem("chart_maker_state", state);
             }
         }
 
         function loadState() {
-            if (state = sessionStorage.getItem("chart_maker_state")) {
+            if (state = localStorage.getItem("chart_maker_state")) {
                 var s = JSON.parse(state);
                 document.getElementById("data").value = s.data;
                 document.getElementById("theme").selectedIndex = s.themesel;

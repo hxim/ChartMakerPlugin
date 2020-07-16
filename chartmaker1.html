@@ -161,24 +161,18 @@
             var oldelem = document.getElementById("preview").children[0];
             var oldstyle = oldelem != null ? oldelem.getAttribute('style') : "";
             update(true);
+            var dataURI =  'data:image/svg+xml,' + encodeURIComponent(document.getElementById("preview").innerHTML);
             if (download) {
                 if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) { alert("not supported in IE."); return; }
                 var element = document.createElement('a');
-                element.setAttribute('href', 'data:image/svg+xml,' + encodeURIComponent(""+document.getElementById("preview").innerHTML));
+                element.setAttribute('href', dataURI);
                 element.setAttribute('download', 'chart.svg');
                 element.style.display = 'none';
                 document.body.appendChild(element);
                 element.click();
                 document.body.removeChild(element);
             } else {
-                var blob = new Blob([document.getElementById("preview").innerHTML], { type: 'image/svg+xml' });
-                var arrayBuffer;
-                var fileReader = new FileReader();
-                fileReader.onload = function(event) {
-                    arrayBuffer = event.target.result;
-                    window.parent.postMessage(arrayBuffer, "*");
-                };
-                fileReader.readAsArrayBuffer(blob);
+                window.parent.postMessage('app.open("' + dataURI + '", null, true)', '*');
             }
             document.getElementById("preview").children[0].setAttribute('style', oldstyle);
         }

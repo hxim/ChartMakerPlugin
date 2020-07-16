@@ -98,23 +98,23 @@
         }
 
         function saveState() {
-            var s = JSON.stringify({
-                data:document.getElementById("data").value,
-                themesel:document.getElementById("theme").selectedIndex,
-                mode:document.getElementById("mode").selectedIndex,
-                theme: theme
-            });
-            if (state != s) {
-                state = s;
-                try { if (typeof window.localStorage !== 'undefined') {
-                    window.localStorage.setItem("chart_maker_state", state); }
-                } catch {}
-            }
+	    try { if (typeof window.sessionStorage !== 'undefined') {
+	    	var s = JSON.stringify({
+		    data:document.getElementById("data").value,
+		    themesel:document.getElementById("theme").selectedIndex,
+		    mode:document.getElementById("mode").selectedIndex,
+		    theme: theme
+	    	});
+	        if (state != s) {
+		    state = s;
+		    window.sessionStorage.setItem("chart_maker_state", state); }
+	        }
+	    } } catch {}
         }
 
         function loadState() {
-            try { if (typeof window.localStorage !== 'undefined') {
-                if (state = localStorage.getItem("chart_maker_state")) {
+            try { if (typeof window.sessionStorage !== 'undefined') {
+                if (state = sessionStorage.getItem("chart_maker_state")) {
                     var s = JSON.parse(state);
                     document.getElementById("data").value = s.data;
                     document.getElementById("theme").selectedIndex = s.themesel;

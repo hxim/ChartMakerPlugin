@@ -3,7 +3,16 @@
 <head>
     <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172920861-1"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'UA-172920861-1');
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 	<style>
         * { border-style: solid; border-width: 0; }
         :focus { outline: none; }
@@ -123,20 +132,36 @@
                 }
             } } catch {}
         }
+        function setupTouchEvents(elem, funcStart, funcMove, funcEnd) {
+            var onTouch = function(e) {
+                if (e.cancelable) e.preventDefault();
+                if (e.touches.length > 1 || e.type == "touchend" && e.touches.length > 0) return;
+                switch (e.type) {
+                    case "touchstart": funcStart(e.changedTouches[0]); break;
+                    case "touchmove": funcMove(e.changedTouches[0]); break;
+                    case "touchend": funcEnd(e.changedTouches[0]); break;
+                }
+            }
+            elem.addEventListener("touchstart", onTouch, false);
+            elem.addEventListener("touchend", onTouch, false);
+            elem.addEventListener("touchcancel", onTouch, false);
+            elem.addEventListener("touchmove", onTouch, false);
+        }
 
         function init() {
             var drag = null, dx, dy;
-            document.getElementById("preview").onmouseup = function(e) { drag = null; }
-            document.getElementById("preview").onwheel = function(e) {
+            var previewElem = document.getElementById("preview");
+            previewElem.onmouseup = function(e) { drag = null; }
+            previewElem.onwheel = function(e) {
                 if (e.ctrlKey || e.deltaY == 0) return;
                 zoom(e.deltaY < 0 ? +1 : -1);
                 e.preventDefault();
             }
-            document.getElementById("preview").onmousedown = function(e) {
+            previewElem.onmousedown = function(e) {
                 e = e || window.event;
-                drag = this.children[0];
+                drag = previewElem.children[0];
                 if (drag == null) return;
-                var b = drag.getBoundingClientRect(), bp = this.getBoundingClientRect();
+                var b = drag.getBoundingClientRect(), bp = previewElem.getBoundingClientRect();
                 if (b.width <= bp.width && b.height <= bp.height) { drag = null; return; }
                 dx = e.clientX - b.left + bp.left;
                 dy = e.clientY - b.top + bp.top;
@@ -144,12 +169,13 @@
             document.onmousemove = function(e) {
                 e = e || window.event;
                 if (drag == null) return;
-                e.preventDefault();
+                if (e.preventDefault) e.preventDefault();
                 var p = drag.parentElement.getBoundingClientRect();
                 if (e.clientX < p.left || e.clientX > p.right || e.clientY < p.top || e.clientY > p.bottom) { drag = null; return; }
                 drag.style.left = Math.max(p.width-drag.getBoundingClientRect().width,Math.min(0, e.clientX - dx)) + "px";
                 drag.style.top = Math.max(p.height-drag.getBoundingClientRect().height,Math.min(0, e.clientY - dy)) + "px";
             };
+            setupTouchEvents(previewElem, previewElem.onmousedown, document.onmousemove, previewElem.onmouseup);
             setupThemes();
             loadState();
             changeThemeMode();

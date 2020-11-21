@@ -203,6 +203,7 @@
                     }
                 }
                 window.parent.postMessage('app.open("' + dataURI + '", null, false);', '*');
+                window.addEventListener("message", onMessage);
             }
             document.getElementById('preview').children[0].setAttribute('style', oldstyle);
         }

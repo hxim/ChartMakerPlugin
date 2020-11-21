@@ -199,11 +199,10 @@
                 function onMessage(e) {
                     if (e.data == "done") {  
                         window.removeEventListener("message", onMessage);
-                        window.parent.postMessage('if (app.activeDocument.activeLayer.kind == 1) { executeAction(stringIDToTypeID("placedLayerEditContents")); app.activeDocument.save(); app.activeDocument.close(); }', '*');
+                        window.parent.postMessage('app.activeDocument.name = "chart";', '*');
                     }
                 }
-                window.parent.postMessage('app.open("' + dataURI + '", null, true)', '*');
-                window.addEventListener("message", onMessage);
+                window.parent.postMessage('app.open("' + dataURI + '", null, false);', '*');
             }
             document.getElementById('preview').children[0].setAttribute('style', oldstyle);
         }
@@ -649,7 +648,7 @@
             }
             svgData += svgData2 + '\t</g>\n'; svgLabels += '\t</g>\n'; svgLines += '\t</g>\n';
             if (color.svgDefs.length >= 0) svg += '\t<defs>\n'+color.svgDefs+'\t</defs>\n';
-            svg += svgBackground + svgLines + svgLabels + svgData;
+            svg += '\t<g id="Chart">\n' + svgBackground + svgLines + svgLabels + svgData + '\t</g>\n';
             return svg;
         }
 
@@ -788,7 +787,7 @@
 
             svgBackground += '\t</g>\n'; svgData += '\t</g>\n'; svgLabels += '\t</g>\n'; svgLines += '\t</g>\n';
             if (color.svgDefs.length >= 0) svg += '\t<defs>\n'+color.svgDefs+'\t</defs>\n';
-            svg += svgBackground + svgLines + svgLabels + svgData + '</svg>';
+            svg += '\t<g id="Chart">\n' + svgBackground + svgLines + svgLabels + svgData + '\t</g>\n';
             return svg;
         }
 
@@ -1016,8 +1015,7 @@
             }
             svgBackground += '\t</g>\n'; svgData += '\t</g>\n'; svgLabels += '\t</g>\n';
             if (color.svgDefs.length >= 0) svg += '\t<defs>\n'+color.svgDefs+'\t</defs>\n';
-            svg += svgBackground +  svgData + svgLabels + '</svg>';
-            svg += '</svg>';
+            svg += '\t<g id="Chart">\n' + svgBackground +  svgData + svgLabels + '\t</g>\n';            
             return svg;
         }
 

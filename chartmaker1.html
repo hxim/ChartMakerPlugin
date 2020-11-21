@@ -564,8 +564,8 @@
                 if (color.line[2] != null) {
                     if (hor) color2 = color.line[2]; else color1 = color.line[2];
                 }
-                svgLines += '\t\t<line x1="'+bb.x1+'" y1="'+bb.y1+'" x2="'+(hor?bb.x2:bb.x1)+'" y2="'+(hor?bb.y1:bb.y2)+'" '+color1+' stroke-width="1" />\n'
-                svgLines += '\t\t<line x1="'+(hor?bb.x1:bb.x2)+'" y1="'+(hor?bb.y2:bb.y1)+'" x2="'+(hor?bb.x2:bb.x2)+'" y2="'+bb.y2+'" '+color2+' stroke-width="1" />\n'
+                svgLines += '\t\t<line x1="'+bb.x1+'" y1="'+bb.y1+'" x2="'+(hor?bb.x2:bb.x1)+'" y2="'+(hor?bb.y1:bb.y2)+'" '+colorAtts(color1,'stroke')+' stroke-width="1" />\n'
+                svgLines += '\t\t<line x1="'+(hor?bb.x1:bb.x2)+'" y1="'+(hor?bb.y2:bb.y1)+'" x2="'+(hor?bb.x2:bb.x2)+'" y2="'+bb.y2+'" '+colorAtts(color2,'stroke')+' stroke-width="1" />\n'
             }
             var unit = ((hor ? theme.ChartHeight : theme.ChartWidth)
                       - (hor ? pad.Top + pad.Bottom : pad.Left + pad.Right)
@@ -639,11 +639,11 @@
                 }
                 if (color.line[3] != null && i > 0) {
                     var p = (mid+lastmid)/2;
-                    svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+color.line[3]+' stroke-width="1" />\n'
+                    svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+colorAtts(color.line[3],'stroke')+' stroke-width="1" />\n'
                 }
                 if (color.line[4] != null) {
                     var p = mid;
-                    svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+color.line[4]+' stroke-width="1" />\n'
+                    svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+colorAtts(color.line[4],'stroke')+' stroke-width="1" />\n'
                 }
                 lastmid = mid;
             }

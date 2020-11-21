@@ -9,7 +9,6 @@
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
-
 	gtag('config', 'UA-172920861-1');
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
@@ -48,23 +47,22 @@
         var fontsloaded = false;
         function fontsloadedfunc() { fontsloaded = true; changeThemeMode(); }
         var lastdata = null, state = null, mode, theme, themeList = {
-            Blue: { Min: 0, Max: 10, Steps: 4, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 9, FontWeight: "400", BackgroundColor: "#0cc4cc", BarColor: "#ffffff", LineColor: "#169baa", BarStroke: "", FontColor: "#352245", ChartWidth: 700, ChartHeight: 330, ChartSpacing: 0, BarWidth: 1.12, BarRadius: 3, Padding: 25 },
-            Cyan: { Min: 0, Max: 10, Steps: 5, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 13, FontWeight: "600", BackgroundColor: "#000000", BarColor: "#1edac6", LineColor: "#282828", BarStroke: "", FontColor: "#ffffff", ChartWidth: 700, ChartHeight: 370, ChartSpacing: 0, BarWidth: 1, BarRadius: 3, Padding: 20 },
-            Dark: { Min: 0, Max: 10, Steps: 4, DecimalSeparator: ".", ThousandsSeparator: ", ", FontSize: 11, FontWeight: "400", BackgroundColor: "#5a5a5a:#262626", BarColor: "#00addc:#008ac6:l;#7fd13b:#5fa735:l;#f0f016:#b4c013:l;#feb80a:#be9309:l;#a42626:#670a0a:l;#ea157a:#af106d:l", LineColor: "#ffffff33;#ffffff33;#ffffff80", BarStroke: "", FontColor: "#ffffffcc", ChartWidth: 752, ChartHeight: 400, ChartSpacing: 1, BarWidth: 1, BarRadius: 0, Padding: 20 },
-            Excel2003: { Min: 0, Max: 10, Steps: 6, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 11, FontWeight: "400", BackgroundColor: "#ffffff;#c0c0c0", BarColor: "#9999ff;#993366;#ffffcc;#ccffff;#660066;#ff8080", LineColor: "#000000;#000000;#000000", BarStroke: "#000000", FontColor: "#000000", ChartWidth: 700, ChartHeight: 350, ChartSpacing: 1, BarWidth: 1, BarRadius: 0, Padding: 15 },
-            Gray: { Min: 0, Max: 10, Steps: 5, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 11, FontWeight: "400", BackgroundColor: "#fffcf7", BarColor: "#464646:#2e2e2e:L", LineColor: "#c8c4be", BarStroke: "", FontColor: "#403e38", ChartWidth: 650, ChartHeight: 350, ChartSpacing: 1, BarWidth: 1, BarRadius: 3, Padding: 20 },
-            Red: { Min: 0, Max: 10, Steps: 4, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 11, FontWeight: "400", BackgroundColor: "#dc1b13", BarColor: "#ffffff", LineColor: "#e5544e", BarStroke: "", FontColor: "#ffffff", ChartWidth: 635, ChartHeight: 290, ChartSpacing: 0, BarWidth: 0.35, BarRadius: 3, Padding: 30 },
-            Yellow: { Min: 0, Max: 10, Steps: 3, DecimalSeparator: ".", ThousandsSeparator: ",", FontSize: 9, FontWeight: "400", BackgroundColor: "#ffce1b", BarColor: "#ffffff", LineColor: "#f6b31e", BarStroke: "#f6b31e", FontColor: "#bf1d2e", ChartWidth: 470, ChartHeight: 220, ChartSpacing: 0, BarWidth: 3, BarRadius: 7, Padding: 15 },
+            Blue: { Min: 0, Max: 10, Steps: 4, DecSeparator: '.', ThoSeparator: ',', FontSize: 9, FontWeight: '400', BackgroundColor: '#0cc4cc', BarColor: '#ffffff', LineColor: '#169baa', BarStroke: '', FontColor: '#352245', ChartWidth: 700, ChartHeight: 330, ChartSpacing: 0, BarWidth: 1.12, BarRadius: 3, Padding: 25 },
+            Cyan: { Min: 0, Max: 10, Steps: 5, DecSeparator: '.', ThoSeparator: ',', FontSize: 13, FontWeight: '600', BackgroundColor: '#000000', BarColor: '#1edac6', LineColor: '#282828', BarStroke: '', FontColor: '#ffffff', ChartWidth: 700, ChartHeight: 370, ChartSpacing: 0, BarWidth: 1, BarRadius: 3, Padding: 20 },
+            Dark: { Min: 0, Max: 10, Steps: 4, DecSeparator: '.', ThoSeparator: ', ', FontSize: 11, FontWeight: '400', BackgroundColor: '#5a5a5a:#262626', BarColor: '#00addc:#008ac6:l;#7fd13b:#5fa735:l;#f0f016:#b4c013:l;#feb80a:#be9309:l;#a42626:#670a0a:l;#ea157a:#af106d:l', LineColor: '#ffffff33;#ffffff33;#ffffff80', BarStroke: '', FontColor: '#ffffffcc', ChartWidth: 752, ChartHeight: 400, ChartSpacing: 1, BarWidth: 1, BarRadius: 0, Padding: 20 },
+            Excel2003: { Min: 0, Max: 10, Steps: 6, DecSeparator: '.', ThoSeparator: ',', FontSize: 11, FontWeight: '400', BackgroundColor: '#ffffff;#c0c0c0', BarColor: '#9999ff;#993366;#ffffcc;#ccffff;#660066;#ff8080', LineColor: '#000000;#000000;#000000', BarStroke: '#000000', FontColor: '#000000', ChartWidth: 700, ChartHeight: 350, ChartSpacing: 1, BarWidth: 1, BarRadius: 0, Padding: 15 },
+            Gray: { Min: 0, Max: 10, Steps: 5, DecSeparator: '.', ThoSeparator: ',', FontSize: 11, FontWeight: '400', BackgroundColor: '#fffcf7', BarColor: '#464646:#2e2e2e:L', LineColor: '#c8c4be', BarStroke: '', FontColor: '#403e38', ChartWidth: 650, ChartHeight: 350, ChartSpacing: 1, BarWidth: 1, BarRadius: 3, Padding: 20 },
+            Red: { Min: 0, Max: 10, Steps: 4, DecSeparator: '.', ThoSeparator: ',', FontSize: 11, FontWeight: '400', BackgroundColor: '#dc1b13', BarColor: '#ffffff', LineColor: '#e5544e', BarStroke: '', FontColor: '#ffffff', ChartWidth: 635, ChartHeight: 290, ChartSpacing: 0, BarWidth: 0.35, BarRadius: 3, Padding: 30 },
+            Yellow: { Min: 0, Max: 10, Steps: 3, DecSeparator: '.', ThoSeparator: ',', FontSize: 9, FontWeight: '400', BackgroundColor: '#ffce1b', BarColor: '#ffffff', LineColor: '#f6b31e', BarStroke: '#f6b31e', FontColor: '#bf1d2e', ChartWidth: 470, ChartHeight: 220, ChartSpacing: 0, BarWidth: 3, BarRadius: 7, Padding: 15 },
             Custom: null
         }
-
         function zoom(i) {
-            var elem = document.getElementById("preview").children[0];
+            var elem = document.getElementById('preview').children[0];
             if (elem == null) return;
             var w, h, o = elem.getBoundingClientRect(), p = elem.parentNode.getBoundingClientRect();
             if (i == null) {
-                elem.style.width = "";
-                elem.style.height = "";
+                elem.style.width = '';
+                elem.style.height = '';
                 w = elem.getBoundingClientRect().width;
                 h = elem.getBoundingClientRect().height;
             } else {
@@ -78,15 +76,15 @@
             var left = w <= p.width ? (p.width - w) / 2 : Math.min(0, ol + (p.width/2 - ol) * (1 - w / o.width));
             if (top + h < p.height && h > p.height) top = p.height - h;
             if (left + w < p.width && w > p.width) left = p.width - w;
-            elem.style.width = w + "px";
-            elem.style.height = h + "px";
-            elem.style.top = top + "px";
-            elem.style.left = left + "px";
-            elem.style.cursor = w <= p.width + 0.01 && h <= p.height + 0.01 ? "default" : "grab";
+            elem.style.width = w + 'px';
+            elem.style.height = h + 'px';
+            elem.style.top = top + 'px';
+            elem.style.left = left + 'px';
+            elem.style.cursor = w <= p.width + 0.01 && h <= p.height + 0.01 ? 'default' : 'grab';
         }
 
         function setupThemes() {
-            var themeSel = document.getElementById("theme");
+            var themeSel = document.getElementById('theme');
             if (themeSel.children.length > 0) return;
             for (var key in themeList) {
                 if (themeList.hasOwnProperty(key)) {
@@ -99,7 +97,7 @@
         }
 
         function changeThemeMode() {
-            var themeSel = document.getElementById("theme"), modeSel = document.getElementById("mode");
+            var themeSel = document.getElementById('theme'), modeSel = document.getElementById('mode');
             theme = (themeList[themeSel.options[themeSel.selectedIndex].value] || theme) || themeList[themeSel.options[0].value];
             mode = modeSel.options[modeSel.selectedIndex].value;
             update(true);
@@ -109,25 +107,25 @@
         function saveState() {
             try { if (typeof window.sessionStorage !== 'undefined') {
                 var s = JSON.stringify({
-                    data:document.getElementById("data").value,
-                    themesel:document.getElementById("theme").selectedIndex,
-                    mode:document.getElementById("mode").selectedIndex,
+                    data:document.getElementById('data').value,
+                    themesel:document.getElementById('theme').selectedIndex,
+                    mode:document.getElementById('mode').selectedIndex,
                     theme: theme
                 });
                 if (state != s) {
                     state = s;
-                    window.sessionStorage.setItem("chart_maker_state", state);
+                    window.sessionStorage.setItem('chart_maker_state', state);
                 }
             } } catch {}
         }
 
         function loadState() {
             try { if (typeof window.sessionStorage !== 'undefined') {
-                if (state = sessionStorage.getItem("chart_maker_state")) {
+                if (state = sessionStorage.getItem('chart_maker_state')) {
                     var s = JSON.parse(state);
-                    document.getElementById("data").value = s.data;
-                    document.getElementById("theme").selectedIndex = s.themesel;
-                    document.getElementById("mode").selectedIndex = s.mode;
+                    document.getElementById('data').value = s.data;
+                    document.getElementById('theme').selectedIndex = s.themesel;
+                    document.getElementById('mode').selectedIndex = s.mode;
                     theme = s.theme;
                 }
             } } catch {}
@@ -135,22 +133,22 @@
         function setupTouchEvents(elem, funcStart, funcMove, funcEnd) {
             var onTouch = function(e) {
                 if (e.cancelable) e.preventDefault();
-                if (e.touches.length > 1 || e.type == "touchend" && e.touches.length > 0) return;
+                if (e.touches.length > 1 || e.type == 'touchend' && e.touches.length > 0) return;
                 switch (e.type) {
-                    case "touchstart": funcStart(e.changedTouches[0]); break;
-                    case "touchmove": funcMove(e.changedTouches[0]); break;
-                    case "touchend": funcEnd(e.changedTouches[0]); break;
+                    case 'touchstart': funcStart(e.changedTouches[0]); break;
+                    case 'touchmove': funcMove(e.changedTouches[0]); break;
+                    case 'touchend': funcEnd(e.changedTouches[0]); break;
                 }
             }
-            elem.addEventListener("touchstart", onTouch, false);
-            elem.addEventListener("touchend", onTouch, false);
-            elem.addEventListener("touchcancel", onTouch, false);
-            elem.addEventListener("touchmove", onTouch, false);
+            elem.addEventListener('touchstart', onTouch, false);
+            elem.addEventListener('touchend', onTouch, false);
+            elem.addEventListener('touchcancel', onTouch, false);
+            elem.addEventListener('touchmove', onTouch, false);
         }
 
         function init() {
             var drag = null, dx, dy;
-            var previewElem = document.getElementById("preview");
+            var previewElem = document.getElementById('preview');
             previewElem.onmouseup = function(e) { drag = null; }
             previewElem.onwheel = function(e) {
                 if (e.ctrlKey || e.deltaY == 0) return;
@@ -172,24 +170,24 @@
                 if (e.preventDefault) e.preventDefault();
                 var p = drag.parentElement.getBoundingClientRect();
                 if (e.clientX < p.left || e.clientX > p.right || e.clientY < p.top || e.clientY > p.bottom) { drag = null; return; }
-                drag.style.left = Math.max(p.width-drag.getBoundingClientRect().width,Math.min(0, e.clientX - dx)) + "px";
-                drag.style.top = Math.max(p.height-drag.getBoundingClientRect().height,Math.min(0, e.clientY - dy)) + "px";
+                drag.style.left = Math.max(p.width-drag.getBoundingClientRect().width,Math.min(0, e.clientX - dx)) + 'px';
+                drag.style.top = Math.max(p.height-drag.getBoundingClientRect().height,Math.min(0, e.clientY - dy)) + 'px';
             };
             setupTouchEvents(previewElem, previewElem.onmousedown, document.onmousemove, previewElem.onmouseup);
             setupThemes();
             loadState();
             changeThemeMode();
-            if (window.parent == window.self) document.getElementById("insert").disabled = true;
+            if (window.parent == window.self) document.getElementById('insert').disabled = true;
             WebFont.load({ google: { families: ['Open Sans:300,400,600,700,800'] }, active: fontsloadedfunc, inactive: fontsloadedfunc });
         }
 
         function insertOrDownload(download) {
-            var oldelem = document.getElementById("preview").children[0];
-            var oldstyle = oldelem != null ? oldelem.getAttribute('style') : "";
+            var oldelem = document.getElementById('preview').children[0];
+            var oldstyle = oldelem != null ? oldelem.getAttribute('style') : '';
             update(true);
-            var dataURI =  'data:image/svg+xml,' + encodeURIComponent(document.getElementById("preview").innerHTML);
+            var dataURI =  'data:image/svg+xml,' + encodeURIComponent(document.getElementById('preview').innerHTML);
             if (download) {
-                if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) { alert("not supported in IE."); return; }
+                if (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0) { alert('not supported in IE.'); return; }
                 var element = document.createElement('a');
                 element.setAttribute('href', dataURI);
                 element.setAttribute('download', 'chart.svg');
@@ -198,9 +196,16 @@
                 element.click();
                 document.body.removeChild(element);
             } else {
+                function onMessage(e) {
+                    if (e.data == "done") {  
+                        window.removeEventListener("message", onMessage);
+                        window.parent.postMessage('if (app.activeDocument.activeLayer.kind == 1) { executeAction(stringIDToTypeID("placedLayerEditContents")); app.activeDocument.save(); app.activeDocument.close(); }', '*');
+                    }
+                }
                 window.parent.postMessage('app.open("' + dataURI + '", null, true)', '*');
+                window.addEventListener("message", onMessage);
             }
-            document.getElementById("preview").children[0].setAttribute('style', oldstyle);
+            document.getElementById('preview').children[0].setAttribute('style', oldstyle);
         }
 
         function info() {
@@ -208,43 +213,108 @@
         }
 
         function customize(save) {
-            var visible = document.getElementById("win").style.display == "block";
-            document.getElementById("winbody").scroll(0, 0);
-            document.getElementById("win").style.display = visible ? "none" : "block";
+            var visible = document.getElementById('win').style.display == 'block';
+            document.getElementById('winbody').scroll(0, 0);
+            document.getElementById('win').style.display = visible ? 'none' : 'block';
             if (!visible) {
                 Object.keys(theme).forEach(function(key,index) {
-                   document.getElementById("input_"+key).value = theme[key];
+                   document.getElementById('input_'+key).value = theme[key];
                 });
             } else if (visible && save) {
                 themeList.Custom = JSON.parse(JSON.stringify(theme));
                 theme = themeList.Custom;
                 Object.keys(theme).forEach(function(key,index) {
-                    var e = document.getElementById("input_"+key);
-                    theme[key] = e.type == "number" ? parseFloat(e.value) : e.value;
+                    var e = document.getElementById('input_'+key);
+                    theme[key] = e.type == 'number' ? parseFloat(e.value) : e.value;
                 });
-                var themeSel = document.getElementById("theme");
+                var themeSel = document.getElementById('theme');
                 themeSel.selectedIndex = themeSel.options.length - 1;
                 changeThemeMode();
             }
         }
 
-        function getFontStyle(fill, cl, fw2) {
-            var fw = (fw2 != null) ? fw2 : Math.round(parseFloat(theme.FontWeight.split(";")[0])/100)*100;
-            var fname = fw >= 800 ? "OpenSans-ExtraBold" :
-                        fw >= 700 ? "OpenSans-Bold" :
-                        fw >= 600 ? "OpenSans-SemiBold" :
-                        fw >= 400 ? "OpenSans-Regular" : "OpenSans-Light";
-            return '.'+cl+' { font-size: ' + theme.FontSize + 'px;' + fill + 'font-family: "' + fname + '", "Open Sans";font-weight: ' + fw + ' }';
+        function escapeXML(s) {
+            return s.replace(/[<>&'"]/g, function (c) {
+                switch (c) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '&': return '&amp;';
+                    case '\'': return '&apos;';
+                    case '"': return '&quot;';
+                }
+            });
+        }
+        function prepareNumberLabels(min, max, dec, labelunit) {
+            var texts = [];
+            for (var i = 0; i <= theme.Steps; i++) {
+                var n = min + i * ((max - min) / theme.Steps);
+                var str = n.toFixed(dec).replace('.',theme.DecSeparator);
+                if (theme.ThoSeparator.length > 0)  {
+                    var parts = str.toString().split('.');
+                    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, theme.ThoSeparator);
+                    str = parts.join('.');
+                }
+                texts.push(str);
+            }
+            if (dec > 0) {
+                for (var j = 0; j <= dec; j++) {
+                    var cut = true;
+                    for (var i = 0; i <= theme.Steps; i++) if (texts[i][texts[i].length-1] != '0' && texts[i][texts[i].length-1] != '.') cut = false;
+                    if (cut) for (var i = 0; i <= theme.Steps; i++) texts[i] = texts[i].substr(0, texts[i].length - 1); else break;
+                }
+            }
+            for (var i = 0; i <= theme.Steps; i++) texts[i] = texts[i] + labelunit;
+            return texts;
+        }
+        function determineMinMax(a) {
+            var min = theme.Min, max = theme.Max;
+            for (var i = 0; i < a.length; i++) {
+                var v = a[i];
+                if (v < min) min = theme.Min == 0 ? v : Math.ceil(v / Math.abs(theme.Min)) * Math.abs(theme.Min);
+                if (v > max) max = theme.Max == 0 ? v : Math.ceil(v / Math.abs(theme.Max)) * Math.abs(theme.Max);
+            }
+            if (min < 0 && max > 0 && theme.Steps > 1) {
+                for (var j = 1; j < theme.Steps; j++) {
+                    if ((max / (theme.Steps - j)) * j >= -min) {
+                        min = -(max / (theme.Steps - j)) * j;
+                        break;
+                    }
+                    if (j == theme.Steps - 1) {
+                        var c = theme.Max == 0 ? max : theme.Max;
+                        max = c * Math.ceil((-min / j) * (theme.Steps - j) / c);
+                        min = -(max / (theme.Steps - j)) * j;
+                    }
+                }
+            }
+            return [min, max];
+        }
+
+        function colorHexRGB(c) {
+            var s = '#';
+            for (var i = 0; i < 3; i++) {
+                var h = Math.round(c[i]).toString(16);
+                s += h.length == 1 ? '0' + h : h;
+            }
+            return s;
+        }
+        function getFontStyle(color, cl, fw2) {
+            var fw = (fw2 != null) ? fw2 : Math.round(parseFloat(theme.FontWeight.split(';')[0])/100)*100;
+            if (isNaN(fw)) fw = 400;
+            var fname = fw >= 800 ? 'OpenSans-ExtraBold' :
+                        fw >= 700 ? 'OpenSans-Bold' :
+                        fw >= 600 ? 'OpenSans-SemiBold' :
+                        fw >= 400 ? 'OpenSans-Regular' : 'OpenSans-Light';
+            return escapeXML('.'+cl+' { font-size: ' + theme.FontSize + 'px;fill: ' + colorHexRGB(color||[0,0,0,1]) + ';font-family: "' + fname + '", "Open Sans";font-weight: ' + fw + ' }');
         }
 
         function getTextsBBox(list, x0, y0, fw2) {
             var svg1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + theme.ChartWidth + ' ' + theme.ChartHeight + '" width="' + theme.ChartWidth + '" height="' + theme.ChartHeight + '">';
-            svg1 += '<style>' + getFontStyle("fill: #000000;", "txt3", fw2) + '</style><g id="group_measure"><text dominant-baseline="hanging" text-anchor="start">';
+            svg1 += '<style>' + getFontStyle([0,0,0,1], 'txt3', fw2) + '</style><g id="group_measure"><text dominant-baseline="hanging" text-anchor="start">';
             for (var i = 0; i < list.length; i++) {
-                svg1 += '<tspan x="' + (x0||0) + 'em" ' + (i == 0 ? 'y="' + (y0||0) + 'em"' : 'dy="1em"') + ' class="txt3">' + list[i] + '</tspan>';
+                svg1 += '<tspan x="' + (x0||0) + 'em" ' + (i == 0 ? 'y="' + (y0||0) + 'em"' : 'dy="1em"') + ' class="txt3">' + escapeXML(list[i]) + '</tspan>';
             }
             svg1 += '</text></g></svg>';
-            document.getElementById("preview").innerHTML = svg1;
+            document.getElementById('preview').innerHTML = svg1;
             var t = document.querySelector('#group_measure').getBBox();
             return {width: t.x + t.width, height: t.y + t.height};
         }
@@ -290,35 +360,79 @@
             return { Top: Math.ceil(top + tp), Bottom:  Math.ceil(bottom + tp), Left: Math.ceil(left + tp), Right: Math.ceil(right + tp) };
         }
 
+        function addColors(b, count) {
+            function hexToRgb(hex) {
+              var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+              return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
+            }
+            function colDist(c1, c2) {
+                h1 = hexToRgb(c1), h2 = hexToRgb(c2);
+                return h1 == null || h2 == null ? null : Math.pow(h1.r-h2.r,2)+Math.pow(h1.g-h2.g,2)+Math.pow(h1.b-h2.b,2);
+            }
+
+            var cols = [];
+            var last = b[b.length-1].split(':')[0];
+            if (b.length > 0 && b[0].length > 0) for (var i = 0; i < b.length; i++) cols.push(b[i]);
+            if (cols.length < count) {
+                var pal = ['#0088ce','#169f85','#007838','#7db037','#dfd420','#dc681d','#ca1d23','#da4b9b','#d0007c','#59186c','#202a5d','#005393',
+                           '#26a9e1','#00be9c','#009345','#b6df23','#fff100','#f8931f','#fe0000','#f177c4','#ea00ad','#90278e','#2a3890','#1a75bb',
+                           '#99c9ed','#6ad9d0','#a1c3a0','#dce9a4','#f8f3a2','#ffcd99','#f9b199','#edbdd7','#ebabcd','#bc8cbc','#9492c1','#7e9fd2'];
+                var cdmin = Infinity, index = 21;
+                for (var i = 0; i < pal.length; i++) {
+                    var cd = colDist(pal[i], last);
+                    if (cd != null && cd < cdmin) { cdmin = cd; index = i; }
+                }
+                var step = count < 4 ? 3 : count < 6 ? 2 : 1;
+                while (cols.length < count) {
+                    index = ((index / 12) >> 0) * 12 + ((index + step) % 12);
+                    cols.push(pal[index]);
+                }
+            }
+            return cols;
+        }
+
+        function stdColorRGBA(c) {
+            if (c.length > 0 && (c.length != 9 || c[0] != '#')) {
+                var ctx = document.createElement('canvas').getContext('2d');
+                ctx.fillStyle = c;
+                c = ctx.fillStyle;
+            }
+            if (c[0] == '#' && (c.length == 7 || c.length == 9)) {
+                var a = [];
+                for (var i = 0; i < 3; i++) a.push(parseInt(c.substr(1+i*2, 2), 16));
+                a.push(c.length == 7 ? 1 : parseInt(c.substr(7, 2), 16) / 255);
+                return a;
+            } else if (c.indexOf('rgba(') == 0) {
+                return c.replace('rgba(','').replace(')','').split(',').map(parseFloat);
+            } else return null;
+        }
+        function colorAtts(c, a1, a2, op) {
+            if (c == null || (c.length != 4 && c.length != 1)) return '';
+            a1 = a1 || 'fill';
+            if (c.length == 1) return a1 + '="url(#grad'+c[0]+')"';
+            var v1 = colorHexRGB(c), v2 = null;
+            if (c[3] < 1 || op) v2 = c[3].toFixed(2);
+            return a1 + '="' + v1 + '"' + (v2 == null ? '' : ' ' + (a2 || 'opacity') + '="' + v2 + '"');
+        }
         function parseAllColors(count, hor) {
             var svgDefs = '', gri = 0;
-            function parseColors(list, attColor, attOpacity, css) {
-                function getCO(str, a1, a2) {
-                    if (str.length == 0) return '';
-                    if (str.length == 9 && str[0] == "#") {
-                        v1 = str.substr(0, 7); v2 = (parseInt(str.substr(7, 2), 16) / 255).toFixed(2);
-                    } else {
-                        v1 = str; v2 = null;
-                    }
-                    if (css) return a1 + ': ' + v1 + ';' + (v2 == null ? '' : a2 + ': ' + v2 + ';');
-                    else return a1 + '="' + v1 + '"' + (v2 == null ? '' : ' ' + a2 + '="' + v2 + '"');
-                }
-                var result = [];
+            function parseColors(list, nogr) {
+                var cols = [];
                 for (var i = 0; i < list.length; i++)
                 {
-                    if (!css && list[i].indexOf(":") >= 0) {
-                        var a = list[i].split(":");
-                        var co1 = getCO(a[0], 'stop-color','stop-opacity'), co2 = getCO(a[1], 'stop-color','stop-opacity');
+                    if (!nogr && list[i].indexOf(':') >= 0) {
+                        var a = list[i].split(':');
+                        var co1 = colorAtts(stdColorRGBA(a[0]), 'stop-color', 'stop-opacity'), co2 = colorAtts(stdColorRGBA(a[1]), 'stop-color', 'stop-opacity');
                         gri++;
-                        if (a.length > 2 && (a[2][0].toUpperCase() == "L" || a[2][0].toUpperCase() == "R")) {
+                        if (a.length > 2 && (a[2][0].toUpperCase() == 'L' || a[2][0].toUpperCase() == 'R')) {
                             gl = a[2][0] == a[2][0].toUpperCase();
-                            var dir = hor ? "0001" : "0010";
-                            if (a[2].length > 1 && a[2][1] >= '1' && a[2][1] <= '8') { dir = ["0100","0110","0010","0011","0001","1001","1000","1100"][parseInt(a[2][1])-1]; }
-                            if (gl) { var d2 = []; for (var j = 0; j < 4; j++) d2.push(dir[j] == "1" ? (j % 2 == 0 ? theme.ChartWidth : theme.ChartHeight) : "0"); dir = d2; }
+                            var dir = hor ? '0001' : '0010';
+                            if (a[2].length > 1 && a[2][1] >= '1' && a[2][1] <= '8') { dir = ['0100','0110','0010','0011','0001','1001','1000','1100'][parseInt(a[2][1])-1]; }
+                            if (gl) { var d2 = []; for (var j = 0; j < 4; j++) d2.push(dir[j] == '1' ? (j % 2 == 0 ? theme.ChartWidth : theme.ChartHeight) : '0'); dir = d2; }
                             svgDefs += '\t\t<linearGradient id="grad'+gri+'" '+(gl?'gradientUnits="userSpaceOnUse" ':'')+'x1="'+dir[0]+'" y1="'+dir[1]+'" x2="'+dir[2]+'" y2="'+dir[3]+'">\n';
                             svgDefs += '\t\t\t<stop offset="0" '+co1+' />\n';
-                            if (a[2][0].toUpperCase() == "R") svgDefs += '\t\t\t<stop offset="0.5" '+co2+' />\n';
-                            svgDefs += '\t\t\t<stop offset="1" '+(a[2][0].toUpperCase() == "R"?co1:co2)+' />\n';
+                            if (a[2][0].toUpperCase() == 'R') svgDefs += '\t\t\t<stop offset="0.5" '+co2+' />\n';
+                            svgDefs += '\t\t\t<stop offset="1" '+(a[2][0].toUpperCase() == 'R'?co1:co2)+' />\n';
                             svgDefs += '\t\t</linearGradient>\n';
                         } else {
                             svgDefs += '\t\t<radialGradient id="grad'+gri+'" gradientUnits="userSpaceOnUse" cx="'+(theme.ChartWidth/2)+'" cy="'+(theme.ChartHeight/2)+'" r="'+(Math.max(theme.ChartWidth/2,theme.ChartHeight/2))+'">\n';
@@ -326,78 +440,47 @@
                             svgDefs += '\t\t\t<stop offset="1" '+co2+' />\n';
                             svgDefs += '\t\t</radialGradient>\n';
                         }
-                        result.push(attColor + '="url(#grad'+gri+')"');
+                        cols.push([gri]);
                     } else {
-                        var co = getCO(list[i], attColor, attOpacity);
-                        result.push(co);
-                    }
-                }
-                return result;
-            }
-
-            function loadColors() {
-                function hexToRgb(hex) {
-                  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-                  return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
-                }
-                function colDist(c1, c2) {
-                    h1 = hexToRgb(c1), h2 = hexToRgb(c2);
-                    return h1 == null || h2 == null ? null : Math.pow(h1.r-h2.r,2)+Math.pow(h1.g-h2.g,2)+Math.pow(h1.b-h2.b,2);
-                }
-
-                var cols = [];
-                var b = theme.BarColor.split(";");
-                var last = b[b.length-1].split(":")[0];
-                if (theme.BarColor.length > 0) cols.push.apply(cols, parseColors(b,"fill","opacity"));
-                if (cols.length < count) {
-                    var pal = ["#0088ce","#169f85","#007838","#7db037","#dfd420","#dc681d","#ca1d23","#da4b9b","#d0007c","#59186c","#202a5d","#005393",
-                               "#26a9e1","#00be9c","#009345","#b6df23","#fff100","#f8931f","#fe0000","#f177c4","#ea00ad","#90278e","#2a3890","#1a75bb",
-                               "#99c9ed","#6ad9d0","#a1c3a0","#dce9a4","#f8f3a2","#ffcd99","#f9b199","#edbdd7","#ebabcd","#bc8cbc","#9492c1","#7e9fd2"];
-                    var cdmin = Infinity, index = 21;
-                    for (var i = 0; i < pal.length; i++) {
-                        var cd = colDist(pal[i], last);
-                        if (cd != null && cd < cdmin) { cdmin = cd; index = i; }
-                    }
-                    var step = count < 4 ? 3 : count < 6 ? 2 : 1;
-                    while (cols.length < count) {
-                        index = ((index / 12) >> 0) * 12 + ((index + step) % 12);
-                        cols.push.apply(cols, parseColors([pal[index]],"fill","opacity"));
+                        cols.push(stdColorRGBA(list[i]));
                     }
                 }
                 return cols;
             }
-            var result = { baseColors: loadColors(),
-                back: parseColors(theme.BackgroundColor.split(";"), "fill", "opacity"),
-                font: parseColors(theme.FontColor.split(";"), "fill","opacity", true),
-                line: parseColors(theme.LineColor.split(";"), "stroke","opacity"),
-                barStroke: parseColors(theme.BarStroke.split(";"), "stroke", "stroke-opacity")
+            var result = { baseColors: parseColors(addColors(theme.BarColor.split(';'), count)),
+                back: parseColors(theme.BackgroundColor.split(';')),
+                font: parseColors(theme.FontColor.split(';'), true),
+                line: parseColors(theme.LineColor.split(';')),
+                barStroke: parseColors(theme.BarStroke.split(';'))
             }
+            result.fontOpacity = result.font[0] == null || result.font[0][3] >= 1 ? '' : 'opacity:' + result.font[0][3].toFixed(2) + ';';
+            result.stroke = result.barStroke[0] != null ? ' ' + colorAtts(result.barStroke[0], 'stroke', 'stroke-opacity') : '';
             result.svgDefs = svgDefs;
             return result;
         }
 
         function parseDataLine(s) {
-            var a = s.replace(/\\\\/g, "\1").replace(/\\n/g, "\n").replace(/;/g, "\0").replace(/\\\0/g, ";").replace(/\1/g, "\\").trim().split("\0");
+            var a = s.replace(/\\\\/g, '\1').replace(/\\n/g, '\n').replace(/;/g, '\0').replace(/\\\0/g, ';').replace(/\1/g, '\\').trim().split('\0');
             for (var j = 0; j < a.length; j++) {
                 a[j] = a[j].trim();
-                if (a[j].length > 1 && a[j][0] == "\"" && a[j][a[j].length-1] == "\"") a[j] = a[j].substring(1, a[j].length - 1);
+                if (a[j].length > 1 && a[j][0] == '"' && a[j][a[j].length-1] == '"') a[j] = a[j].substring(1, a[j].length - 1);
             }
             while (a.length > 2 && a[a.length - 1].trim().length == 0) a.pop();
             return a;
         }
 
-        function generateSvgGraph(str, svgStyle) {
-            var lines = str.split("\n");
-            var stacked = mode.indexOf("Stacked") >= 0, ling = mode.indexOf("Line") >= 0, hor = mode.indexOf("Bar") >= 0;
+        function generateSvgGraph(str) {
+            var lines = str.split('\n');
+            var stacked = mode.indexOf('Stacked') >= 0, ling = mode.indexOf('Line') >= 0, hor = mode.indexOf('Bar') >= 0;
 
             // Parse data to label + values, determine unit from data, determine number of decimal places in data
-            var data = [], dec = 0, labelunit = "";
+            var data = [], dec = 0, labelunit = '';
             for (var i = 0; i < lines.length; i++) if (lines[i].trim().length > 0) {
                 var a = parseDataLine(lines[i])
                 var values = [];
                 for (var j = 1; j < Math.max(2,a.length); j++) {
                     var v = a.length > j?parseFloat(a[j]):0;
-                    if (v.toString().indexOf(".") >= 0) dec = Math.max(v.toString().split(".")[1].length || 0, dec);
+                    if (v.toString().indexOf('.') >= 0) dec = Math.max(v.toString().split('.')[1].length || 0, dec);
                     if (labelunit.length == 0 && a.length > 1) {
                         var s = a[1].trim();
                         for (var k = s.length-1; k>=0; k--) {
@@ -412,44 +495,17 @@
             }
 
             // Determine minimum and maximum for chart, if both negative and positive numbers ensure one of lines/labels is zero if possible
-            var min = theme.Min, max = theme.Max, sets = 1, sets2 = 1;
+            var vals = [], sets = 1, sets2 = 1;
             for (var i = 0; i < data.length; i++) for (var j = 0; j < data[i].values.length; j++) {
                 var v = data[i].values[j];
-                if (v < min) min = theme.Min == 0 ? v : Math.ceil(v / Math.abs(theme.Min)) * Math.abs(theme.Min);
-                if (v > max) max = theme.Max == 0 ? v : Math.ceil(v / Math.abs(theme.Max)) * Math.abs(theme.Max);
+                vals.push(v);
                 if (j >= sets) sets = j + 1;
                 if (j >= sets2 && !(stacked || ling)) sets2 = j + 1;
             }
-            if (min < 0 && max > 0 && theme.Steps > 1) {
-                for (var j = 1; j < theme.Steps; j++) {
-                    if ((max / (theme.Steps - j)) * j >= -min) {
-                        min = -(max / (theme.Steps - j)) * j;
-                        break;
-                    }
-                    if (j == theme.Steps - 1) {
-                        var c = theme.Max == 0 ? max : theme.Max;
-                        max = c * Math.ceil((-min / j) * (theme.Steps - j) / c);
-                        min = -(max / (theme.Steps - j)) * j;
-                    }
-                }
-            }
+            var mm = determineMinMax(vals), min = mm[0], max = mm[1];
 
             // Prepare and format value axis labels
-            var texts = [];
-            for (var i = 0; i <= theme.Steps; i++) {
-                var ylabel = min + i * ((max - min) / theme.Steps);
-                ylabel=ylabel.toFixed(dec).replace(".",theme.DecimalSeparator);
-                if (theme.ThousandsSeparator.length > 0) ylabel = ylabel.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, theme.ThousandsSeparator);
-                texts.push(ylabel);
-            }
-            if (dec > 0) {
-                for (var j = 0; j <= dec; j++) {
-                    var cut = true;
-                    for (var i = 0; i <= theme.Steps; i++) if (texts[i][texts[i].length-1] != '0' && texts[i][texts[i].length-1] != '.') cut = false;
-                    if (cut) for (var i = 0; i <= theme.Steps; i++) texts[i] = texts[i].substr(0, texts[i].length - 1); else break;
-                }
-            }
-            for (var i = 0; i <= theme.Steps; i++) texts[i] = texts[i] + labelunit;
+            var texts = prepareNumberLabels(min, max, dec, labelunit);
 
             // Set padding based on label size and break X-axis labels into lines (for column charts)
             var pad = getGraphPadding(texts, data, hor, sets2);
@@ -457,13 +513,11 @@
             // Colors
             var color = parseAllColors(sets, hor);
 
-            var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+theme.ChartWidth+' '+theme.ChartHeight+'" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'"'+svgStyle+'>\n';
+            var svg = '';
 
             // Text style
-            var fontFill = color.font[0].split(";")[0]+";", fontOpacity = color.font[0].length > 0 ? color.font[0].split(";")[1] : "";
-            if (fontOpacity.length > 0) fontOpacity += ";";
-            svg += '\t<style>\n\t\t'+getFontStyle(fontFill,'txt')+'\n\t</style>\n';
-            if (color.font[0].length == 0) pad.Left = pad.Right = pad.Bottom = pad.Top = theme.Padding;
+            svg += '\t<style>\n\t\t'+getFontStyle(color.font[0],'txt')+'\n\t</style>\n';
+            if (color.font[0] == null) pad.Left = pad.Right = pad.Bottom = pad.Top = theme.Padding;
 
             // Horizontal lines and Y-axis labels
             var svgLines = '\t<g id="Lines">\n';
@@ -480,35 +534,34 @@
                     y1 = y2 = Math.ceil(theme.ChartHeight - pad.Bottom - ((theme.ChartHeight - pad.Bottom - pad.Top) * i / theme.Steps)) - 0.5;
                 }
                 var c = color.line[0];
-                if ((i == 0 || i == theme.Steps) && color.line.length > 1 && color.line[1].length > 0) c = color.line[1];
-                if (i == Math.round(-min * theme.Steps /  (max - min))  && color.line.length > 2 && color.line[2].length > 0) c = color.line[2];
-                if (c.length > 0) svgLines += '\t\t<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" '+c+' stroke-width="1" />\n'
-                if (color.font[0].length > 0) {
-                    if (hor) svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+x1+','+(Math.ceil(y2)-1)+')" dominant-baseline="hanging" text-anchor="middle"><tspan x="0" dy="0.5em" class="txt">'+texts[i]+'</tspan></text>\n';
-                    else svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+(x1-2)+','+y1+')" dominant-baseline="middle" text-anchor="end"><tspan y="0" dx="-0.5em" class="txt">'+texts[i]+'</tspan></text>\n';
+                if ((i == 0 || i == theme.Steps) && color.line[1] != null) c = color.line[1];
+                if (i == Math.round(-min * theme.Steps /  (max - min))  && color.line[2] != null) c = color.line[2];
+                if (c != null) svgLines += '\t\t<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" '+colorAtts(c,'stroke')+' stroke-width="1" />\n';
+                if (color.font[0] != null) {
+                    if (hor) svgLabels += '\t\t<text style="'+color.fontOpacity+'transform: matrix(1,0,0,1,'+x1+','+(Math.ceil(y2)-1)+')" dominant-baseline="hanging" text-anchor="middle"><tspan x="0" dy="0.5em" class="txt">'+escapeXML(texts[i])+'</tspan></text>\n';
+                    else svgLabels += '\t\t<text style="'+color.fontOpacity+'transform: matrix(1,0,0,1,'+(x1-2)+','+y1+')" dominant-baseline="middle" text-anchor="end"><tspan y="0" dx="-0.5em" class="txt">'+escapeXML(texts[i])+'</tspan></text>\n';
                 }
                 if (i == (hor ? theme.Steps : 0))  { bb.x2 = x2+0.5; bb.y2 = y2+0.5; }
                 if (i == (hor ? 0 : theme.Steps))  { bb.x1 = x1-0.5; bb.y1 = y1-0.5; }
             }
 
             // Background
-            if (color.back.length > 0 && color.back[0].length > 0) {
-                var svgBackground = '\t<g id="Background">\n\t\t<rect x="0" y="0" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'" '+color.back[0]+' />\n';
-            }
-            if (color.back.length > 1 && color.back[1].length > 0) {
+            var svgBackground = '\t<g id="Background">\n';
+
+            if (color.back[0] != null) svgBackground += '\t\t<rect x="0" y="0" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'" '+colorAtts(color.back[0])+' />\n';
+            if (color.back[1] != null) {
                 var x1 = bb.x1, x2 = bb.x2, y1 = bb.y1, y2 = bb.y2;
-                var s = color.line.length > 1 && color.line[1].length > 0 || color.line.length > 3 && color.line[3].length > 0 ? 1 : -1;
+                var s = color.line[1] != null || color.line[3] != null ? 1 : -1;
                 if (hor) { y1-=s*0.5; y2+=s*0.5; } else {x1-=s*0.5; x2+=s*0.5; }
-                svgBackground += '\t\t<rect x="'+x1+'" y="'+y1+'" width="'+(x2-x1)+'" height="'+(y2-y1)+'" '+color.back[1]+' />\n';
+                svgBackground += '\t\t<rect x="'+x1+'" y="'+y1+'" width="'+(x2-x1)+'" height="'+(y2-y1)+'" '+colorAtts(color.back[1])+' />\n';
             }
             svgBackground += '\t</g>\n';
 
             // Data points and X-axis labels, vertical lines
-            if (color.line.length > 1) {
-                var color0 = color.line[1];
-                if (color0.length == 0 && color.line.length > 3 && color.line[3].length > 0) color0 = color.line[3];
+            if (color.line[1] != null || color.line[3] != null) {
+                var color0 = color.line[1] || color.line[3];
                 var color1 = color0, color2 = color0;
-                if (color.line.length > 2 && color.line[2].length > 0) {
+                if (color.line[2] != null) {
                     if (hor) color2 = color.line[2]; else color1 = color.line[2];
                 }
                 svgLines += '\t\t<line x1="'+bb.x1+'" y1="'+bb.y1+'" x2="'+(hor?bb.x2:bb.x1)+'" y2="'+(hor?bb.y1:bb.y2)+'" '+color1+' stroke-width="1" />\n'
@@ -532,9 +585,8 @@
             function genSvgPath(fill, hor, x1, y1, x2, y2, radius, s) {
                 var len = hor ? x2-x1-radius*s : y1-y2+radius*s;
                 var hei = hor ? y2-y1-radius*2 : x2-x1-radius*2;
-                var stroke = color.barStroke.length > 0 && color.barStroke[0].length > 0 ? ' ' + color.barStroke[0] : '';
-                if (stroke.length > 0) { x1+=hor?-s*0.5:-0.5; y1+=hor?-0.5:0.5; y2-=-s*0.5; hei += 1;len += hor?s:0; }
-                return '\t\t<path '+fill+stroke+' d="M'+x1+' '+(hor?y1:y2)
+                if (color.stroke.length > 0) { x1+=hor?-s*0.5:-0.5; y1+=hor?-0.5:0.5; y2-=-s*0.5; hei += 1;len += hor?s:0; }
+                return '\t\t<path '+fill+color.stroke+' d="M'+x1+' '+(hor?y1:y2)
                         +(hor?'h':'v')+(len)
                         +'a'+radius+','+radius+' 0 0 '+(s==1 ? 1 : 0)+' '+(hor?radius*s:radius)+','+(hor?radius:-radius*s)
                         +(hor?'v':'h')+(hei)
@@ -556,15 +608,14 @@
                     } else if (ling) {
                         x1 = lastmid; y1 = i > 0 ? getPos(data[i - 1].values[j]) : null;
                         x2 = mid; y2 = getPos(data[i].values[j]);
-                        var stroke = color.barStroke.length > 0 && color.barStroke[0].length > 0 ? ' ' + color.barStroke[0] : '';
-                        var linestroke = color.baseColors[j].replace('fill','stroke') + ' stroke-width="' + (theme.BarWidth * 2) + '"';
+                        var linestroke = colorAtts(color.baseColors[j], 'stroke') + ' stroke-width="' + (theme.BarWidth * 2) + '"';
                         svgData += (y1 == null || y2 == null ? '' : '\t\t<line '+linestroke+' x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+(y1==y2?y2+0.0001:y2)+'"/>\n');
                         if (theme.BarRadius < 1) {
                             var w = theme.BarRadius == 0 ? 4 : 1 / theme.BarRadius;
-                            svgData2 += (y2 == null ? '' : '\t\t<rect '+color.baseColors[j]+stroke+' x="'+(x2-w)+'" y="'+(y2-w)+'" width="'+(w*2)+'" height="'+(w*2)+'"/>\n');
+                            svgData2 += (y2 == null ? '' : '\t\t<rect '+colorAtts(color.baseColors[j])+color.stroke+' x="'+(x2-w)+'" y="'+(y2-w)+'" width="'+(w*2)+'" height="'+(w*2)+'"/>\n');
                         }
                         else
-                        svgData2 += (y2 == null ? '' : '\t\t<circle '+color.baseColors[j]+stroke+' cx="'+x2+'" cy="'+y2+'" r="'+(theme.BarRadius)+'"/>\n');
+                        svgData2 += (y2 == null ? '' : '\t\t<circle '+colorAtts(color.baseColors[j])+color.stroke+' cx="'+x2+'" cy="'+y2+'" r="'+(theme.BarRadius)+'"/>\n');
                         continue;
                     } else {
                         x1 = xy0 + j * (unit * theme.BarWidth + 1) * (stacked || ling ? 0 : 1); x2 = x1 + unit * theme.BarWidth;
@@ -573,24 +624,24 @@
                     if (y1 == y2 || x1 == x2) continue;
                     var s = (hor ? x1 < x2 : y1 < y2) ? 1 : -1;
                     var radius = Math.min(radius0,Math.abs(hor?x2-x1:y2-y1));
-                    svgData += genSvgPath(color.baseColors[j], hor, x1, y1, x2, y2, radius, s);
+                    svgData += genSvgPath(colorAtts(color.baseColors[j]), hor, x1, y1, x2, y2, radius, s);
                 }
-                if (color.font[0].length > 0) {
+                if (color.font[0] != null) {
                     if (hor) {
-                        var tspan = '<tspan y="0" dx="-0.5em" class="txt">'+data[i].label+'</tspan>';
-                        svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+(pad.Left - 2)+','+(mid)+')" dominant-baseline="middle" text-anchor="end">'+tspan+'</text>\n';
+                        var tspan = '<tspan y="0" dx="-0.5em" class="txt">'+escapeXML(data[i].label)+'</tspan>';
+                        svgLabels += '\t\t<text style="'+color.fontOpacity+'transform: matrix(1,0,0,1,'+(pad.Left - 2)+','+(mid)+')" dominant-baseline="middle" text-anchor="end">'+tspan+'</text>\n';
                     } else {
                         var labellines = data[i].label.split('\n');
-                        var tspan = '<tspan x="0" dy="0.5em" class="txt">'+labellines[0]+'</tspan>';
-                        for (var j = 1; j < labellines.length; j++) tspan += '<tspan x="0" dy="1em" class="txt">'+labellines[j]+'</tspan>';
-                        svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+mid+','+(Math.ceil(theme.ChartHeight - pad.Bottom)-1)+')" dominant-baseline="hanging" text-anchor="middle">'+tspan+'</text>\n';
+                        var tspan = '<tspan x="0" dy="0.5em" class="txt">'+escapeXML(labellines[0])+'</tspan>';
+                        for (var j = 1; j < labellines.length; j++) tspan += '<tspan x="0" dy="1em" class="txt">'+escapeXML(labellines[j])+'</tspan>';
+                        svgLabels += '\t\t<text style="'+color.fontOpacity+'transform: matrix(1,0,0,1,'+mid+','+(Math.ceil(theme.ChartHeight - pad.Bottom)-1)+')" dominant-baseline="hanging" text-anchor="middle">'+tspan+'</text>\n';
                     }
                 }
-                if (color.line.length > 3 && color.line[3].length > 0 && i > 0) {
+                if (color.line[3] != null && i > 0) {
                     var p = (mid+lastmid)/2;
                     svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+color.line[3]+' stroke-width="1" />\n'
                 }
-                if (color.line.length > 4 && color.line[4].length > 0) {
+                if (color.line[4] != null) {
                     var p = mid;
                     svgLines += '\t\t<line x1="'+(hor?bb.x1+1:p)+'" y1="'+(hor?p:bb.y1+1)+'" x2="'+(hor?bb.x2-1:p)+'" y2="'+(hor?p:bb.y2-1)+'" '+color.line[4]+' stroke-width="1" />\n'
                 }
@@ -598,13 +649,13 @@
             }
             svgData += svgData2 + '\t</g>\n'; svgLabels += '\t</g>\n'; svgLines += '\t</g>\n';
             if (color.svgDefs.length >= 0) svg += '\t<defs>\n'+color.svgDefs+'\t</defs>\n';
-            svg += svgBackground + svgLines + svgLabels + svgData + '</svg>';
+            svg += svgBackground + svgLines + svgLabels + svgData;
             return svg;
         }
 
-        function generateSvgChart(str, svgStyle) {
-            var lines = str.split("\n");
-            var donut = mode.indexOf("Donut") >= 0;
+        function generateSvgChart(str) {
+            var lines = str.split('\n');
+            var donut = mode.indexOf('Donut') >= 0;
 
             // Parse data to label + values
             var data = [], percent = false, sum = 0, dec = 0;
@@ -613,17 +664,17 @@
                 if (a.length < 2) continue;
                 var v = parseFloat(a[1]);
                 if (v == null || isNaN(v) || v <= 0) continue;
-                if (a[1].trim()[a[1].trim().length-1] == "%") percent = true;
-                if (v.toString().indexOf(".") >= 0) dec = Math.max(v.toString().split(".")[1].length || 0, dec);
+                if (a[1].trim()[a[1].trim().length-1] == '%') percent = true;
+                if (v.toString().indexOf('.') >= 0) dec = Math.max(v.toString().split('.')[1].length || 0, dec);
                 sum += v;
                 data.push({label:a[0], value:v});
             }
             if (!percent || sum > 100) {
                 for (var i = 0; i < data.length; i++) data[i].value = data[i].value * 100 / sum;
             } else if (sum < 100) {
-                data.push({label:"Other", value:100-sum});
+                data.push({label:'Other', value:100-sum});
             }
-            for (var i = 0; i < data.length; i++) data[i].label2 = data[i].value.toFixed(dec).replace(".",theme.DecimalSeparator) + '%';
+            for (var i = 0; i < data.length; i++) data[i].label2 = data[i].value.toFixed(dec).replace('.',theme.DecSeparator) + '%';
             sum = 0;
             for (var i = 0; i < data.length; i++) {
                 data[i].mid = (sum + (sum + data[i].value)) / 2;
@@ -632,29 +683,27 @@
 
             // Colors, Compute label sizes
             var color = parseAllColors(data.length, false);
-            var fw2 = theme.FontWeight.split(";").length <= 1 ? 600 : Math.round(parseFloat(theme.FontWeight.split(";")[1])/100)*100;
-            var lineHeight = getTextsBBox(["%"], 0, 0, fw2).height;
+            var fw2 = theme.FontWeight.split(';').length <= 1 ? 600 : Math.round(parseFloat(theme.FontWeight.split(';')[1])/100)*100;
+            var lineHeight = getTextsBBox(['%'], 0, 0, fw2).height;
             for (var i = 0; i < data.length; i++) {
-                data[i].bb = getTextsBBox([data[i].label+"-"], 0, 0, fw2);
+                data[i].bb = getTextsBBox([data[i].label+'-'], 0, 0, fw2);
                 data[i].bb2 = getTextsBBox([data[i].label2]);
             }
 
-            var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+theme.ChartWidth+' '+theme.ChartHeight+'" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'"'+svgStyle+'>\n';
+            var svg = '';
 
             // Text style
-            var fontFill = color.font[0].split(";")[0]+";", fontOpacity = color.font[0].length > 0 ? color.font[0].split(";")[1] : "";
-            if (fontOpacity.length > 0) fontOpacity += ";";
-            svg += '\t<style>\n\t\t'+getFontStyle(fontFill, 'txt')+'\n\t\t'+getFontStyle(fontFill,'txt2',fw2)+'\n\t</style>\n';
+            svg += '\t<style>\n\t\t'+getFontStyle(color.font[0], 'txt')+'\n\t\t'+getFontStyle(color.font[0],'txt2',fw2)+'\n\t</style>\n';
 
             // Background
-            if (color.back.length > 0 && color.back[0].length > 0) {
-                var svgBackground = '\t<g id="Background">\n\t\t<rect x="0" y="0" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'" '+color.back[0]+' />\n';
+            var svgBackground = '\t<g id="Background">\n';
+            if (color.back[0] != null) {
+                svgBackground += '\t\t<rect x="0" y="0" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'" '+colorAtts(color.back[0])+' />\n';
             }
 
             var svgLines = '\t<g id="Lines">\n';
             var svgLabels = '\t<g id="Labels">\n';
             var svgData = '\t<g id="Data">\n'
-            var stroke = color.barStroke.length > 0 && color.barStroke[0].length > 0 ? ' ' + color.barStroke[0] : '';
             var cx = theme.ChartWidth / 2, cy = theme.ChartHeight / 2;
             function xpos(r, p) { return cx + Math.sin(2 * Math.PI * p / 100) * r; }
             function ypos(r, p) { return cy - Math.cos(2 * Math.PI * p / 100) * r; }
@@ -706,35 +755,35 @@
                 return Math.min(lasty[0],lasty[3]) >= 0 && Math.max(lasty[1],lasty[2]) <= theme.ChartHeight;
             }
             var r = Math.min(theme.ChartWidth, theme.ChartHeight) / 3;
-            if (color.font[0].length > 0) for (var i = 0; i < 10; i++) if (!setupLabelsPos(r)) r = r * 0.9; else break;
+            if (color.font[0] != null) for (var i = 0; i < 10; i++) if (!setupLabelsPos(r)) r = r * 0.9; else break;
             var p = 0, dr = 0.5;
             for (var i = 0; i < data.length; i++) {
                 var x1 = xpos(r,p), y1 = ypos(r,p);
                 p += data[i].value;
                 var x2 = xpos(r,p), y2 = ypos(r,p);
-                svgData += '\t\t<path '+color.baseColors[i]+stroke+' d="M'+x1+' '+y1
+                svgData += '\t\t<path '+colorAtts(color.baseColors[i])+color.stroke+' d="M'+x1+' '+y1
                     +'A'+r+' '+r+' 0 '+(data[i].value > 50 ? 1 : 0)+' 1 '+x2+' '+y2
                     +(donut?('L'+(cx+(x2-cx)*dr)+' '+(cy+(y2-cy)*dr)+'A'+(r*dr)+' '+(r*dr)+' 1 '+(data[i].value > 50 ? 1 : 0)+' 0 '+(cx+(x1-cx)*dr)+' '+(cy+(y1-cy)*dr)):('L'+cx+' '+cy))
                     +'Z"/>\n';
             }
-            if (stroke.length == 0) {
+            if (color.stroke.length == 0) {
                 p = 0.01; r -= 1; dr = ((r+1)/2+1)/r;
                 for (var i = 0; i < data.length; i++) {
                     var x1 = xpos(r,p), y1 = ypos(r,p), x2 = cx, y2 = cy - r;
-                    svgBackground += '\t\t<path '+color.baseColors[i]+' d="M'+x1+' '+y1
+                    svgBackground += '\t\t<path '+colorAtts(color.baseColors[i])+' d="M'+x1+' '+y1
                         +'A'+r+' '+r+' 0 '+(p < 50 ? 1 : 0)+' 1 '+x2+' '+y2
                         +(donut?('L'+(cx+(x2-cx)*dr)+' '+(cy+(y2-cy)*dr)+'A'+(r*dr)+' '+(r*dr)+' 1 '+(p < 50 ? 1 : 0)+' 0 '+(cx+(x1-cx)*dr)+' '+(cy+(y1-cy)*dr)):('L'+cx+' '+cy))
                         +'Z"/>\n';
                     p += data[i].value - (i==0?0.01:0);
                 }
             }
-            if (color.font[0].length > 0) for (var i = 0; i < data.length; i++) {
+            if (color.font[0] != null) for (var i = 0; i < data.length; i++) {
                 var item = data[i], pos = item.pos;
-                svgLines += '\t\t<path '+color.line[0]+' fill="none" d="M'+pos.line_x2+' '+pos.line_y2
+                svgLines += '\t\t<path '+colorAtts(color.line[0],'stroke')+' fill="none" d="M'+pos.line_x2+' '+pos.line_y2
                     +'L'+pos.line_x1+' '+pos.line_y1+'L'+pos.line_x3+' '+pos.line_y3+'"/>\n';
-                var tspan = '<tspan x="0" y="0" class="txt2">'+item.label+'</tspan>'
-                    +'<tspan x="'+item.bb.width+'" dy="0" class="txt">'+item.label2+'</tspan>';
-                svgLabels += '\t\t<text style="'+fontOpacity+'transform: matrix(1,0,0,1,'+pos.label_x+','+pos.label_y+')" dominant-baseline="middle" text-anchor="start">'+tspan+'</text>\n';
+                var tspan = '<tspan x="0" y="0" class="txt2">'+escapeXML(item.label)+'</tspan>'
+                    +'<tspan x="'+item.bb.width+'" dy="0" class="txt">'+escapeXML(item.label2)+'</tspan>';
+                svgLabels += '\t\t<text style="'+color.fontOpacity+'transform: matrix(1,0,0,1,'+pos.label_x+','+pos.label_y+')" dominant-baseline="middle" text-anchor="start">'+tspan+'</text>\n';
             }
 
             svgBackground += '\t</g>\n'; svgData += '\t</g>\n'; svgLabels += '\t</g>\n'; svgLines += '\t</g>\n';
@@ -743,38 +792,270 @@
             return svg;
         }
 
+
+
+        function generateSvgMap(str) {
+            const mapc=[["AF","AFG","Islamic Republic of Afghanistan","6abc~19ca~23Q]VW'YXUGjsNd]/IjxVR(FBXUuVJ(htn+Rjz[XJRSmhE'5P;12qWsRA-}X5t.6eSJ+`t($%SB2Z[$f~2~9eNLqJDXj%E14t9~9,Z*?ji4QPFJmku<k:N11z3a:hp^_/`pj^^%`8P'RVYARtg"], ["AO","AGO","Republic of Angola","532c~2f56~103R36IXU`GJI(%T:F6qUKQB'H=HNV.Y)`Mp+ML^eJRj12P-GD.x=U=KC*Xj170R4d'9eW#u63sjx-119~96~84~35nE__jEgYVoKnEWXSJE55mBJtFjhVKt3f=4owEEFxSO#RSqiUCsPS{SUZsVt 15dF94lITAUvgY;_;.$Iw"], ["AL","ALB","Republic of Albania","53e4~1730l(BMSZGG[CO%IH,K_MHTAxZWAOY]oYNjHYSFVo[KW_WDN`"], ["AE","ARE","United Arab Emirates","6404~1fa2_no1an;`:houRkF?nYEHC/28~ecQ4buWkB_[_-QoRJ3+<s1b"], ["AR","ARG","Argentine Republic (Argentina)","340a~47a4Hv51Q7tUtYV4a~e0<3dMO>=,_ 3d1~ff5~11a~7baT38*^g2a~1bRe~6aiy.Bb+[4M*;&u%2e~50YbL20n&;:|A)2-%9XA10K#)exre~38D^oB'QR@pQ,'O36^E;K[:rI10~20F]?gN16-D84[^LSQ2b~3i11)N([^2d~10Pq3~1dB3~3(p)X&Bmx_f$Y,P11nZ#uuV1f+B18(;lQivlIxk`3e.48h?sR3bkG}^>w51x#VSqFJg27HyMj28~2f/kJL-nryt][(G1c~9=l_9gr_44~65x=21]bz[C69~7d~12~4~2bMA20u45"], ["AM","ARM","Republic of Armenia","5ef2~191cZflF^]:]|^:UqTT]33>16@W=aQNES]D?CYZG,'Ml"], ["AU","AUS","Commonwealth of Australia","869c~40b6vVU'M6jDK&&pXO32~fs4!29EN*33~1b'zB[Nkr 3c4~d17~1a1~644Rph`H]_KI{^^i6IK_-[@BMgNZaHDXQJ;s$QG[EY=xMtw=ZnWTIq3YTrZkq>Q-nHh_[<FApImxgU+^]q<`uR@|kUkmR_@24@n;13UU_n-]-<TvGlc:G}ojNX3p[Z:^LGEngH;tOS=r>M&h}[2-ByTR31~9~5aAITIz<R?qFdLQ]PJTFuQu<GlkHy<ZAxIX%=43y42BC^CYRV)APTFA6gIW9jVA3ek29Ga?#g.=Q^JF'iAM?H14[Lj-LP^MmPQ&'W+$Al=NCn?XTE2{AC;V;AB^+PJqIl8OcpA=eoe^2cKZ%@_$!bU-@M%nF!H*37;L12~f~19~4crHY<w@4au<3x42sJ34X[;[=_&;A&RIVGI:D24~27REf~6~6WC:%9B]e`*EEn^Y-{/q@Y-7FT+z'W:bKhR_(5OQBbkq<^NiVxtqVPkr;15jeYyi+J4fkV<L|lhh}j?r?][3]<LtR5EQt]S`x2I33"], ["AT","AUT","Republic of Austria","528a~1456o^]HtlNBi:qxM4ZW>#ZZgjgLnDsZA?oqSEGGYF,NBT?I[h12V]+3aLKUNh(K^[HziJ%J^rYYJN"], ["AZ","AZE","Republic of Azerbaijan","5e40~18a0[O@:-@<V13~9EHnLWi 98~5f~75HJ@TG2)n[qXthG>=EBNjG$BqH)JDNT4~18~41X>G;m;e>Wl`v<PU`T5~c=9`gJnfhZ@Ar.INm]"], ["BI","BDI","Republic of Burundi","596a~2dceTqODvUS2ro''WT=26]sJS?nEmNNX_^V"], ["BE","BEL","Kingdom of Belgium","4de4~12f2~fD`]?N3E-A>[D/;@Ij')j19FAS9vJil"], ["BJ","BEN","Republic of Benin","4d98~269e~d}O>Z>SGmTO._XN)<NECY=GSXceBu4vl7bSGFkEP>vkNChiqIS"], ["BF","BFA","Burkina Faso","4c2e~24fe|QM^oB};BJ}>COkLggS<Q#9).UiAE/:USC=NJn?K.@s27K^76BpJK^@G#RVXNp<IRhVz37I)pvqIYHh"], ["BD","BGD","People's Republic of Bangladesh","73d8~2174~11~81I1eK6z21*k>CM1d~bAyJuZB5m?zqE28~1eD23JIF8Kn)+*N+ClKMSg;>P9gY26BN#PDP@A@m3d,#g1d"], ["BG","BGR","Republic of Bulgaria","5756~16b4vXqj3.KH35]SYPGYtS,DA.BwKOFGT[K'AW(%j=j=),hrs1eV=?d~5/rAT"], ["BA","BIH","Bosnia and Herzegovina","52b2~15f8oPOD`lP''@QL>CINE?#Ek13DNOPIQRsuY/goCHQp`oIr["], ["BY","BLR","Republic of Belarus","56a6~10da~1fgl(TR;<5JD/11Ln]*,CGVDtQ&:UD=hD`.K'K(DGWPHKgJ<#[RI^zDO$MlOl5VQAM$LT`qZqT?VnVry.M_mdPPCOi"], ["BZ","BLZ","Belize","2568~2484CnNHIhMoYGFlYOBnTU^HJZ[Ll4MsSJNHW10Y14;|"], ["BO","BOL","Plurinational State of Bolivia","32f0~3670A_hu@[R|jgpNIiGo93B,47)#]s[UPtvQjFXkqSVj1dOx1f$`[THz4d$H?zBDKoXsX4e~8a~3vJ$N'lL;IiH%c~b~c~10HT.-Ms18~c~6D20:21<1f~22~eQ4S4b~24*mEG5bZM;5~60HMF*&pN"], ["BR","BRA","Federative Republic of Brazil","3332~2b78`OpWS=iNUTOEoZmtB`^j@}FLlk_K?oiRnF;@pB21EYSNG{olQFG*Dg$H>10gmEbFC?kTvGGE3UY|M.Ub]R]'7d^24~6&^j<[jrDA8.PT/VGmf6~7~6b>EbJ5!,H]JC:|O??gS%20=HrHa]L&2g=5l9e.9@`,EIVTjchM[2cP7~20FOX(3a#(jX>-QKD:[A=]+GQT>i_$4a~72z2d$FI+MQ'_)[NB;lV,)V3e~2awZj*:XFM18MUAZG^F?X*U<V@)v?c[&fG^H|18x24~36~1b~10~20^r20~a@BC-3H(;>25P9.Q:{-65E<Z_R17`TGv6~5~6k)IKl3cZ@Ej3!Zg1d~16~1bldC@VtG53g41>DJ:'23Cf~30~1f]OJ5flCg31]<}Ikj1d~31~15ib)3d{[!8~11wl57kpUW20?5d~79;&g1c~bnjuEg8dO<^<q28Q?^PhXKlYK^=gnlX]CZZJ<EMZJt]"], ["BN","BRN","Brunei Darussalam","7e1a~2a2a,&S3;D^bP[13~1cOJ"], ["BT","BTN","Kingdom of Bhutan","72ec~1e9csjgIs`V/_6A^22>Ln(H<Ur3qQ"], ["BW","BWA","Republic of Botswana","56f4~353a[Vs?QXu.R3~4f$OZE17a~19~95<126@5b:26nIBM$jIpDVOm=PGACC'WCh^^Hl/GOmEwaq22o4bVqKK|HRoM17~3bCSTI_11"], ["CF","CAF","Central African Republic","5678~2820VTihJ]GhU_ysGXw.[=r2axWtjFIC=xFYC2dE;rSLV?bUT34QmN10IOXK+/YJ><AL[>LM-3f>U;+@R_15=Z>U((DC:W;HVfQC;H18zZ*JYQ`AO&GBSQWjj}`KqhYrl?Tvhn^"], ["CA","CAN","Canada","3332~1554Xvm%?E22AZi/o35C[Y f8~ed~43~40~bl3TFC10-6LT[ 17a9~2~ba8~1fyZEhPW7MTVuZJ;P-12VqD(D`F34@Ro 19da~bb~c89)VOtK3/i/2f~58^^cR13C<I74YKT@@3b;1c^2c~25p$w14~c_IY/23n]K_3+14~1d~29MV.qpe^9So,3e~37 1bc7~129~d80~b2UAAK[>GCA`]19~46~f~5f~6H[ 15b8~35b~ab7~174gLk?GUNB@T,x 99i26L37Lk+.O)V26y 3b~e3]52|24]?5K6el5!62~15<go8~24Q=pdZpD)udTg[OVl@:u 32a~41~12b/YOHkvTvBi+EF20g 5ab~8b~288%PQ`Vn[z(qK2eA<j;>;s 14c]11bP6amx15iJ{M2b~a`4~28YO:45~4Qu13~10~48~4b~41Im?R)15jbHgtpAGw_OsEyPj@aC57@<15},77PVga0l43gv?q^1d`Q_rH[?bP40~11~99~28&39`?s+rQ<t59.15AYif>sBWh`obQ)J19d~14a~187~174~16c~f9KAX?R-4c~1f-S}6GHCBk*Z14~22M23?{F-`q(%*9,28O27/L!4eSjB12~16lvc6Q50QqQb2Q42Q4cQ4cQ70Q60Q@Q}pGEh%CX,R)IBC.i(=rY'pAOO[KQ&ADUYJT(1eXdE<FqC+Tt@G[EOJ[R>'Q<S>K<H^CG!wTrjHzU2ayBFEXN{E<[}%RL!X'nJXOK?IM^=T&UoMQQNjUGgNZX'jIM)V,UV@GlGRQITR3c~bWH36K24Q|hEL@XBo>{4nh8'kT/{4e$X18q1eOd7~1e!,10m20~15:R70qCn35R:z4f~70~1bs^{,vJ11~2aX35[2d;5d~18~17~26Hw80~33~32~23;B<v/@14M36D#h$13~16MR[<^R27mFtM@15oJ29WJrzi2al}1fh5N`3~20~1f~1e~fQ.1buJ8~3fB^6b=2k{n^Tv.k^11_W<j5eHI5d$4cB[+kB3<1d;1fJ32?v56~11Bj^m3d<5?r+n3b=1dROovTJmpX21g|.c~1dEx3d?54~35.^42~b~4_DAPy!V4I10|ZV2e{VUA(18i4eywYkg22`Y^d^|LtQj30~b@5@:29~18mdg4f~2e~64~4f 5c7~f9~272~60~b5!=M1f*70V$Ydb;2aH26Y32U=C73MpYdFNO:4~4s=?o?56i48V2`NL'@4PSon]4aJZn35_i_10oBy{KkPsDX18uVe~31tH37#F5~6d+7cw 296T15fT11IKK&&2c~1f 7da&443|33H<KW@*>R]eY@L<P_` 2d1M1b2vcf*SBb#N*48q69:18I1aReF82LG^X_M-:WM'11S68FF@jKWB5f~aFQ?J71TzS`a~1cSa2j27]c$/A15O1a=28>40J1bwuqmw84~44LYD17j{[D5iVl!g14HH2a<T64~51lW57@Q19~dC15ub8X21}jM47[:n47*1eu9_1b_j%37L52~9~5|87~16_(&1f 39bj11c~8~10;53p=<3c(lP)V3cnH}35O54_qT51CN_ 198~2c~25}46~7~95F15M_BhCUAV'1el26~7 8f9~6e~466~2d~52p70jVL17`]U5fKK[a5C3c,4b?|;WN58A{Gc8| 8e2~10b~489~4egZ33;ZA22O$SAm 8d~4f&1a~bW1f?QZp4~66o3d(18W1eZ/zRWh[ 2c3!162{7J9=;4~29sNs3fR_;69~8~7chf2Z13d.2L3cZ70m50NjkS^17GpH*n 400z26d>S;10L28Rm?uCUA70ODS20U4eXgG12_OZX_tZ13J1dKvHhZnREZqVe_tW3bHCh 57bj22c=qU71'25;2aj#G1e^34i]I&`'u 5c6.2c7YlW37M)C3cT_S 459X23e[29R3HmD2cI42l ${47EPN19C>P38T-Z 31e)14bu3XVL{PP>MH=O2ag 10bX42h4bWpNG=4N3dH86VOC'Sgm 3de~1d~1c3N1bKoVIi4bDeI7RmEtD;G;K24X4dEPG,F2cT$X44xEM2bY 5f2~bb~353~3czS3dI!X77M^NkMp@OlsN15B7RUS5I>H(KUG6J82[GJ8fDC]5bQ#:#KdI31N]E48PX-5d{DDX&43W=?50YAL70]-?5e}21M41I!^34YM^1aTAZy`!N2dSc0RoX34T22w;J40kb1D4eZ44T1e^}T29U9P1dR"], ["CH","CHE","Swiss Confederation (Switzerland)","4fbc~14da~23k@/}XIGh]C>|,?F/oK'DQDZBkU<=XTp%<OgXksF[[>[VT"], ["CL","CHL","Republic of Chile","325e~466e}X`*>*_I3b|1buSJa6~4cBSe?AY@CHUIR<j]gwG{Pzc5 32d~e85~146~6d4)r}MMxqlM24mQ$5aL2cY6aP30H28o@(4gC$40i16]24Q22j1b$46<,sE.74K)+{t59~12~24Sa4~49~5f~1e~98}M76Z4d~4>#18~4e@^kA'=2cA}i4a~a.R]]t27~cJQU%I41Z77T.xQtn,[pj25~cK^qj^A}`25^M,InimR;k{[l2d%/9~43GrPq,L11~1dOs!_tx:{mtZ?9~85~12[su?s;v>[|V>Xl77~36<i1b`@y@^6f"], ["CN","CHN","People's Republic of China","7bb6~2320K|@[r]pEb>J><8~eX>9 94~ef1~b5~6ea_WhY2b~15lI25WkFlGH.12QJ-pMJ24>V21-1d~b~c~2aQ4-VFmaCSt4'14&uP13j13EGCS'27MP<duSOEc(NLGzGW:5K1bZz<Y;[|13F33~3YG|D57iPIk|q5Z;33zxGtVOnO2d~1d_1fOhmUsQ,Z6uge~2ctT7dz36~a8q9~57@be~74~47}',[T3d,/J2dU-#23uT@p/(QgI$1eP{,@]?B.LP6<K$56P*32vB-JZ@fq20~4c~12L22/o}2+8(Q]H,&T+;4P&RSiQ2a>49DI*:IWD?*i?f%h:$Iy>1euI3cUQYE4CTQaO*11,+18~20~15V34-hr12~18SNQ-p_$MO-Wy47!-C[)I'XBvG8!Rt'(IeNVj38.15B,%>sX39~1e.es]hF!@5~14I#19)xO13J13Gs?)g17XqzKWp8Qv3~13qsykz17T10t%ZZk32Q29qnB9p[2cubGk5Lo5#YeE_5)oAQ,e~9-&Mq?24yQl1cU[v+`Zs(a+Y1bz50Zxn26~22sjkw$B1b~47th20L22;7~39q3?Fgf~33~12HA33^n2b~2dh23M"], ["CI","CIV","Republic of Cote d'Ivoire","49a8~2742oHRMSw]<SUV=3[KZPFXOP=ABJ2riMLJIV;X`O?I;gD;MGVC.ZEWUS16Cp1cqFW14SNL<CJX]pqb,fAiq37w)YGVBgmN`lT"], ["CM","CMR","Republic of Cameroon","5288~2700OdWlklV.K?/AiSQAf~6IBPDYSV2pMJ>YGPD|H^}VCn!Pik30QBJUCQM/<TH!k*76olV<G@^[J3eOGA:JjbYQQlpWYmKXom@SYiJ|EC=2dUAn{PUmOlw*]><MX:N13~2b"], ["CD","COD","Democratic Republic of the Congo (DRC)","5798~29da~dXOGPE_V_`1d~2LmLI^#zwlQgmtZX(X;K*QA`BT:R#JI[MNDVIz<X@^12B;gWr<i.TwK^uIT.Vj^APFN>`WA@>kKKFXf0L43~14GBLOB:,mPW<CWlFu,A`Z+Kk:44]z6EMg-I<?N`38@f@L:]HHKRW=.];JP.#VEpVe!ZR/F<&ip41_14wwKOB2bIdjG;sIC3cXsHT^h]PrviRs>Uln>5fU1eR]_oDlLCS|BPX5DQT5FUBjEQJ`xMB45R2~1b~bFWp,[[SDi_n17Q'sU"], ["CG","COG","Republic of the Congo (Brazzaville)","541c~2aac|UlZ`6^aFKdxnZ17K')@>$mXBw3e~4PX)]>_H7jVtGc{WQE(%21C3e~1aR2fJNF+LVEs;D]??O/11A]SUZd-{CR/g^UR`I[XqH3I^F`Vm"], ["CO","COL","Republic of Colombia","2ce4~268eEmkW_Lk&YRz.lm@AyVg)N4KWoTx8XpIGB%hQ^`Q%,>V!g]@1ciI-Tx-`/ghQ<H<n]>?1e-jkH+6UX`=-GLN_)&QB?O<2c.qHmK=:]+&29~1a$w<"+"%I135[2cZnlWDz'DVFTszL@{90<{nJ(O+Ksn2fVG_T4phP`]SxGqFOKorKnDpWTHr2b_=27G:qWLL[HiY_ZRQnrG&zQrCRDWLo*L"], ["CR","CRI","Republic of Costa Rica","277c~26fa`D[[P]_OVFtmH@ZI;NhAMGINCQMBKqZ[A=UC?REHLHWJXMBI/I[kNXTVHRgWJl;J{pY^Sm"], ["CU","CUB","Republic of Cuba","29d2~2118~19mjGqUGG{NZG^IRAoH2U?[V^>J&x'=1bB)L30MlIaFI[Y!DQ,VMB1d,7eoRI?V=W]]djlG-gzUTJltsrNLdAJt"], ["CZ","CZE","Czech Republic (Czechia)","51b2~1320mKT[UAtKQHqK,DO@:OA>/JJ{MI';N^ECVl>ILWXTHQS^GMPZEKywoDFjvMF?pkB]}NVh"], ["DE","DEU","Federal Republic of Germany","513e~11dcpkd`N*zN:r17T:hu<m^;2GL|>LtzGFEBCg12WVo]-36ZGEXX=.N2cM2b#J/10n]`18-^^>>Xp8FE_JILEUi^z;EJq|]]SKjWW4TQY-UWWHDCZy|DR`n_V;Vlo"], ["DJ","DJI","Republic of Djibouti","5eda~26b6qieW`k`VZ.h^X(YACOQE)ZSVJCC5"], ["DK","DNK","Kingdom of Denmark","50a4~10feiv2b$cB14;R3b 7br@@K]@^Xl{(NHxUIBRII20>M-ZE_vq4tR*Nr"], ["DO","DOM","Dominican Republic (The Dominican)","2cfe~2372Q?CP>19JDU<>^Q[DH@TECFx|[]GBjwFJn[EphtJCEK)YJ]R=CYH"], ["DZ","DZA","People's Democratic Republic of Algeria","4f7a~1a08|MUi11Im-So49G11GVCZA7Rn*12/X>@16Lki?39SG>jXD10~31OF=yPxO33~a~e~1ePyRG14e~e0~5c~32~72~40~57~5+NHO^$30r16qa4~95~8c~2d~a3<vZU,XbIZyy2SgsHgY]E}YUi9h61m(@S11v@u$^V{g{BS"], ["EC","ECU","Republic of Ecuador","2aec~2c7cpgh_S<5`GnTB1d|]c]O=>p+P>`Z=20h]6?MbNc{&;MjOGA;hEGC*>bWv*y1cN,23_Xht"], ["EG","EGY","Arab Republic of Egypt","57f8~1cfe~25kqXfF?*=Ei--'N14aMa8~166~a1~86Q94Qa5_35~1b)_EG2b~37JR_i|59g`Y{>+e~72MhJKOmKsPwGR_U{5d=12qAu^o_F*]bvIsGNBtFWl"], ["ER","ERI","State of Eritrea","5d50~24bexwSdtdX48sYMBM'i48@n32Pi21+20BuS<'V).YG@GD,INCVMi|]V^nrhi35~b"], ["EE","EST","Republic of Estonia","551e~f24~25HrE#-*MRjW4!sNE%>A]Tky11~4WnJLL13Ot]"], ["ET","ETH","Federal Democratic Republic of Ethiopia","5c7e~24fag14~29|-32i$mPX'JOoLR2aJrO14ZVrZT#c_E*UG<N;32Eo`(=N*[20~22jsMRKI'OTuc^S%,[Ul*H(f~1a=a0~131~b1~78~f9~4f~44A[l]k;VjPWFpTCkUX<mG_uXgr^ST]9``EK^q;k|"], ["FI","FIN","Republic of Finland","5522~afeI3~31Su*?)tLvquGpvL*42=c/k3aFl24BoGvP4b~24FKOB!#g(16ZI;26s6gcK7N54~4bWMX^51p12i21nas47~5~2eZ63h'j"], ["FJ","FJI","Republic of Fiji","9a24~3466}=QXmE??2q=Z^o 99~78~4vg_g-E@)W;_QtpR"], ["GA","GAB","Gabonese Republic (Gabon)","51c2~2b48XTvGi^ZID4a~5b~3;NR14X;WTLF$26==6~2C3d~bp)L*Q`p+e%^XwQt[sp_2~25r.{FK{E]"], ["GB","GBR","United Kingdom of Great Britain and Northern Ireland","49ee~117c~19}`;+(gA$i<CG17 a0~173~a7~b4YWk1aQ!'Q[c-29P)p>>N1eNsV(2oAMi45W-c(D37N4B40S}VdD1d~2c~32l:u+>FxK,46o/GFy7`%SXv2fIAin29i.q3b@)13R3a~1dYn27.nI4a~3f"], ["GE","GEO","Georgia","5d76~172a~4du5LWW?D.A>S>=M(_K26h*'8qoV!:JVYZ{v,I7ZTj7QT@Mi"], ["GH","GHA","Republic of Ghana","4c06~26f0rVVDg[61K14$H)G3cvIT12'>`S1cK.tJ]44s25TZuM^C9lKP5Mlp[AS"], ["GN","GIN","Republic of Guinea","46fe~263aYMrXFG]SygXJD;VTJ?[RZUXG[Wi'*UQHN<GSHNC<C.?13YTJVGLK]4KX:LAYLGIUBB`LQHWAcgJDQFVNrFBPRRtVOIT@To15WQEZHKngE[YNYGIpFVukKT[VULXG]MXGh^T_RK[HRUOo"], ["GM","GMB","Republic of The Gambia","44ae~25e0~1aP]ZNLAgC;EWEgo[^=ZW^`XHUB23V/,"], ["GW","GNB","Republic of Guinea-Bissau","460a~2628~85T!H[VmE?IAIYOEC?U@/EfM@K[KLOZYhIMSi"], ["GQ","GNQ","Republic of Equatorial Guinea","50f8~2b4a~6fS,48=sCX48O9~4f"], ["GR","GRC","Hellenic Republic (Greece)","55cc~1aa8Y+42SyL4e]yhv?Cg5PmJ[p bc~28d~5f~10c@2~15Zhpk+j[HNSGpWVCoQ@DhPJ@l=AM,,HEO+@)$MFg9~27~10;{u2e%u11qPjm%P}oSo@K-4ChF[1dw58OTC>RVYJ{"], ["GL","GRL","Greenland","450a~5ac~1bfUELHE6bX41;16J4cD75o`M15^45+-n6bK29KzJcD1fUa5,,N86J3fHc5C57F26K4cE98OddU45C70/FQ54[22Q-Ma+23JcHUeNGHP51~4~30](`M;6.81wQJ]+Q;1aQ>iKUag25~1e^O2bHz20~24]f)22'y/BE10~20h<,M4ahK14~6rH25Bkll66p[`Sl6gaL*XQL64~3:}FI;G82i2cz2cp9b=53Q8aswn10~16KK2elb~3~bZsN18X2e+wydn4c@*Y]`17^8aI5d~9~30@k5~33U74T-J39w*{(T(i87Ce8WzWc4p69S6fPa5>XI6cv11S2b>33l47E14Z132Q2QO_183n"], ["GT","GTM","Republic of Guatemala","256e~2390~1dRrP;#pj(<GLUJKTY>41[N1e/`]HQE*@EQ;VFF^g=]PPXTBQK`ZVJV-^CguMOD`gXK=47P`"], ["GY","GUY","Cooperative Republic of Guyana","32f8~2972mojkWBGxxpkTt1a@M;EpPrL@/hM10~4FsR@`<:VN-nJSc>KUD%AG^W`CL?[L];CRU7~25GX`@g11:[YO!YX19"], ["HN","HND","Republic of Honduras","27e0~24f6_j^RVZYVQLmYOGZQVV[SPH`MiR^XMJQY_MVFPXq.`KHNKJ`G;TMFFMXM.^RHOLZ;=WR@B_R_MISwECKPIiI;R`ITA`XUMIKgOKKGJRIZIMDYRVBJ"], ["HR","HRV","Republic of Croatia","52ea~159e~7rMLw<@@gWFCmZYZPBwXAOP;@HL|,:_B/AnY1c~c.UJD$Eq]L[19kO_ZRghQXlk:[B,Pl?K&FDWJB^X@oqWWgIEjHyh"], ["HT","HTI","Republic of Haiti","2d12~229c~13[]NN?8Ol>/AxQw^uW?-'HDl=GFW:Dho_[<RQjVo"], ["HU","HUN","Hungary","5404~1452hMSDiQLXlEXTJF5OO]h^F%s_.Dj%BkI<GS';;RTgZL!hCG;^J}Kl=IlZrZLB1bn"], ["ID","IDN","Republic of Indonesia","80c4~3180Lil[k[5:78~2]o 140V37~11kLVT23&P-JOGS14j 2b1~ad~fa~64o[W#8i/Z14X11nu=Rl 1fcH137:^Wgmt:<@4cT18nxr 5f7~3b~2c4>kJxm13IX34~46ri-76Erm*Gc<<Q'R;U%-!|7dr1bI/{73[4~a~7fk b96y56d^_UX'VFH!(3d 30b~e9~134~3c~1bC4-%RNs 10a_e5W3E=%14gDV)J//b~33 16e~7b~99~2~63`A%31L30.4UU(48i}AbZb/48=nDDHBhIt48~4cLp5c~1ev-Rc~bhZc~60tki14;>12Y18bN85~39~6e]ir[rF9~2h18x47A5f 391~97~196~3e~1b~20}l3[Y`q2aEOo5cKOk@+;BlV30n*&[.kg63Tt4?r46~cKsJ@L1ax2b~36#U<v^w17~21$B27~43~4eAPpF+Xy8d#;>z43%l10C40OIBAk:27 10e~1c~85{vJExg8R6;28CRLtwu<n.-^2b 47bi22aW15~11~1et39>5LB46]`i52wwwpQBj*lljCm9Gqt36F2F,;-BZX4e~czDYO&28~3V'-WQ!24~17p2<8fZg22]u|>`2aC7b~25 4d3~3c4~274~263CwzQtBOyPrg=nm4~9~23T]3wiy<r3dUJuuu7~33>IN/%2a~22CPH!#DT*K(8-@34JM++OE2c&G,6s"], ["IN","IND","Republic of India","6e30~1d68~61~fkjR1b~28~er}shJ{47~19P6e~3i27m/#a~aDB#G33;*,f~8R%z$9~3i40~38UX$*IP4~b9s+a~64&hSyF6e~3aQv26~bm52Q18<a/5c~6,hVC30/<LQC18>28~6AV17K{aMd^(}?<m8b:Xhng25;Y>;#mOUhm1esEk$25~16U_imu44FMI_pj7jn@`5O,`,^31n$ra~18NZRa~16_:VHEy16hnP%8Bg27C>2~82O39mkCX_25~1c~14Y2d[V:3kZ3arF&yf:Iij27Ncn9q`12ytt16^+nh16AZ*13iqVYE5v.P_11n6A=B+YL11]11gZOhu29J5vk_tZ2~13/P"], ["IE","IRL","Ireland","49b8~11d0{_]I-x_hye~17&24~2~1f%66o22~7U|rh"], ["IR","IRN","Islamic Republic of Iran","5e84~190exuMZs)12~36mh8~ajr14~52ClY*tNJ4~18#14MQ'k;?oT&'?Qb*%Gl!68?>%^%6~4T@9BLI@?48~14w)F4cE7~5d~3eM13^nLM1f~1dOQqj_24~9v]}HFzmw)ZyH?bN27jgw-21~27W;duVFSBpY^2uW=G53H|kVsvMP9Q,w{(`qTZBd~10Hmt["], ["IQ","IRQ","Republic of Iraq","5e08~19e0~33ZGB[#hU-4g24~89+62~e~1em1e!b0~88>2bk35<#CO1b|Eh`@F13|r1fZ]f+k<NmsxQt3f/4oFZm"], ["IS","ISL","Republic of Iceland","4740~c1a~41U3(`ud~2p21{,T&88VfG51Nb4;6bEceKSRF`92zTn4bi#i"], ["IL","ISR","State of Israel","5af2~1be0`PNFhVIPVAT6YLG[h>J[4~6e^uC93^,n=DmEPlTC5@(TpUGJ[Wm"], ["IT","ITA","Italian Republic (Italy)","525a~1962~7LxL|Z.!52A[Z*<^11_T<9 269~fd~d6~9ag^,2S2a>mGuCBY63{S f6~239~5f~e2~9;>JtgD)kRs_G*k[N]n-[X[`H/@AqK/4=hj:/j?qHL(-LTK28,K(;?I?[M::QQ<CVJ+C<nVS*LN<gB21H/Ww9W4u#(H.X3[QfrgTt_2QmYyI7~1bPrzVKgBSWm8X;=zwGh49R"], ["JM","JAM","Jamaica","2abc~2388~4RsioWoOJPjLMD&AARNg"], ["JO","JOR","Hashemite Kingdom of Jordan","5c6a~1c6ew51~57~8ag2b.&I*YQJBk6aEb~2eKZqP_$M_jCP41~2d~c4PdK"], ["JP","JPN","Japan","83f0~1b70~11_E%smMa>F#Nn13;M<*S19nS 1ae~123~f3)(vzl3d~31X26-&1a~1egen`|20s35.bc~35~43~37-*$uFH/}Q32&<S]16(TI5l73~41J7a:=u30Pk24%Q<61~40&HtmwtZJ| 9d~2f7K146~51~21~44~56%30~49~3'10~c~2%vf~3f~9e~4e~1b~5b~32C6f~2fD30|r"], ["KZ","KAZ","Republic of Kazakhstan","65f6~1132~6b_C'6fG!Mf5C42F28(37U$Hd<96+19H3fj,=41~9~5?V/f|63wg/d~38~16D35~2dH62+nq8~32=Go/akE,W)j+l;*-[V8T8~19~5iB*6~23t(:*K<14~12WiF`AFOBs12TF/)8Ps4b~17b~e2~52~17:62~cNP8~e.|2aQ'16n6?vC1a~20o[*IgQ11~1alSGZm)K4e.1b~13+L40&pl52K$LW>>Sz5~2O81~7d~c2)qSl87~96~4e}3y17~1c.R5~1fi3+TvnPmv]J13;1f~f(1c~115~10dI(1aL75~3cOpG{37UY-m43"], ["KE","KEN","Republic of Kenya","5e60~2a76~3QUm5!GCvjJUXL]Q35~23T,QmGquJo16g@e.WG:28zFh>SLI[C:]$14e~8c~79t52~10j1fPwEVQx@>Mq&]21~7B151~18~e"], ["KG","KGZ","Kyrgyz Republic (Kyrgyzstan)","6c16~175a{Zgi31L15P,I49uA-?)71~5B>D:=X7~2~32NHs24~8~65*gtJ:1fm#c~1coe:2ek}[hX12nEN8Bnf~30Enl34nxN"], ["KH","KHM","Kingdom of Cambodia","7abe~255a~1foK24~5~11tOf?K12#1c/+HQ%X/u$I29{84v11~1fiT"], ["KR","KOR","Republic of Korea (South Korea)","7fa0~19a0~32~24~39h40~34gCAF$nGp-Ohv|29hU39~25~a~22mUpPF+lhFJ"], ["KW","KWT","State of Kuwait","603e~1d82}V_36~38pX+)id~15BHgl"], ["LA","LAO","Lao People's Democratic Republic (Laos)","7abe~255aO37m_3mkz{15~fQ1aU,V13~13~21,Q27onX#&3c~3}I`}18DM)JU*%ho3aE/16~3bY(:YYm4B+1a]!12/m,iO28GU25~a~10"], ["LB","LBN","Lebanese Republic (Lebanon)","5af2~1be0H{;Wq_jGFMleS).rV]EL"], ["LR","LBR","Republic of Liberia","4852~2898hST,[`T^GkqrT,URl*_>GO]Fe()B,('J_hS1dN?Umn`WGXh=k^iKS"], ["LY","LBY","State of Libya","5692~1cbagm13NHX]K[t35PPBk-MA:&wK_P13~5~15][OT1d~2bPZNPE21q(2eqWSFuB-CXCpP'18VO]!GNY<I:oK10%gM>:Av)$M-4eI_</9$o13e~ce~98~30~97~67~34C|b5X10bY93_34;_iX/h"], ["LK","LKA","Democratic Socialist Republic of Sri Lanka","6f9a~2954:jV29yy`^r^Oa8/6<K%7"], ["LS","LSO","Kingdom of Lesotho","57d8~3b98Fl-QUhClrT`[`:j>h+20*Ov"], ["LT","LTU","Republic of Lithuania","55ae~10fe~1buQFM]5D29X[<a~8~a`TM_DJJ;ROA4Z.nko&Trh"], ["LU","LUX","Grand Duchy of Luxembourg","4e62~13eaOs]QYHN%D^HT"], ["LV","LVA","Republic of Latvia","55d0~1020~3QqnPMrC@8{nr11jeN,C,16~9~22CLY_A<S2,Pp&jfpP[kQ"], ["MA","MAR","Kingdom of Morocco","4b1e~1aeeoRd_nFWuoCO4t16mXzAY*HDh!;1e~1fCTZv#ugS<D]{38kZS*HDg;]Zm$U.DQl;^PI;NgaeV25l=iH49~3ep]15N!F17!?UDAUKg.KjyP@IQT4d~68ZGC@^Ro20Ztz)>Gm2aOqlkR]2fKVjm"], ["MD","MDA","Republic of Moldova","5718~15d8EXRiHZ[RDPPE,STWhTJXm[Rj_OGgqVXLui^ALK;OGAG@./]HVCCB"], ["MG","MDG","Republic of Madagascar","61d0~3326]bYW]_]aJ/w-Wv?(m>5:[?Xj[ElJ^UM6iBEaIFJG_-q+DTqPQ8H:B,Z'DL#JHK${<RI3bD1f*4dEtFvViEERk]yALG16N3Nmi_O33"], ["MX","MEX","United Mexican States (Mexico)","226e~1f92|`m_ElOvo_Ok]qoTtCr1ahfSZJqWgl]ZWS^63F4-5_61Q21~fiZ12N4dCtO%24K:MAL=;SA#pJnHX`LJ-$?TUGMi,%KKZ/^)(X<:D<X<Jk;oZQinYgjD@y]_V_Q11oSJXZUKy[;MnWKQ]q}NUA{UW?]B)J[;-pEH!D:]T><B>A^[a:HDQv&AV2>R,#*A6WQWHC@[I`LFGlS?+?.aAXF10KNWTB#;2BFW+.AS@FFg%lJI*?MDa~2co21KV]U!13~24-wm[JR^hYY_$FZ|1a?.Pp[JOKG<dS=JRK@C2bOSgN:y-j]^gNtEwU|A[GIGW10^GvIhSqKmPuBJ{13UGoOlruFr[WPjC`D43HS;y|)"], ["MK","MKD","Republic of North Macedonia","552e~1786tl[FVMSQoHCJWWMQU<FA>N;`N[>IX]JM_7"], ["ML","MLI","Republic of Mali","4ddc~22e4~31K)dqHm^Mm11d~ad~6d~43I44~3a~1daEcaSb9j6~167m84Ch]mBnpPFR#`WE&G?AQWBVILDI]FYOKFB@TMhGRMVLJIDQG=>oNMDDhPGWA>HRgDD$U]kLFFXP(Hm@Vgx?Y[Y12~9`jEK>@GiTZ4m[V14hMMR@*W?TOl3aLFXkz+ohaf"], ["MM","MMR","Republic of the Union of Myanmar (Burma)","778c~21c2Wr{(Wmxj(7~9DU1d~f~4<57~10gtrZnlG_uh:/;lQ<&15v7~1a~6Cq#CMh!3~7'48_^C@tO@4oy;26~8,Fim?26~34Y;j1a~8pCRa~19NYB3eL24A#DV]20<Mp*A/?6bBr9tERZl}yMW-LK1b|`rq`y6@M35''HrAQXi!u"], ["ME","MNE","Montenegro","5416~1722MWnZYRPU]XRE[FM,TXNV:ELBNWVSVk:mW+F]O]"], ["MN","MNG","Mongolia","72d8~1368}13~15IgQ11m;50~14Mf.3d}[KntsCsjx4|6`i28~4~8F20J?4h16/Z18T6Mc%V^'22:I'k60CI`:D3a%AlP<+d~1aV4HEmVnATw]k^>t).cFO5~16Xiu@N26PHFtq3fxgOP&9mNDgvF19Ug1f+]o_Mt16{^XF19j]Lrw7`mJvE[J37w"], ["MZ","MOZ","Republic of Mozambique","5db2~31c4YuMBQQ13!5JS_U=tYKI2fnDEV2cBcQ|?=D#[2cqtW4p33BqCWZ]kTVCnyef~3c~68>OO10_NCSG<TB?i44]MO.FU^+V^]c~23~18~20~22QQk18F^M?QC6`_yiEMo+]24nEVO^T`hO@pQ15^%LlYslu>n=H)5OE26~33(N=ZFrKpJpjYJ5dVWK{"], ["MR","MRT","Islamic Republic of Mauritania","49ea~2000~14d~ed~7e~114~11b~1d~66~100~1d~4fE(A4e~16f~15~76:%AQ@`@GAO14[+_ND??}@BBh@JF?/IC4=<PzPwD@*>DnLFRh16cK7b~dhCk1d5^c7~76~c6"], ["MW","MWI","Republic of Malawi","5b0e~3364Po^XJjgy.]Z2djSECRM]i17T20%R6hZXaB+nU[16~4^A;PmD>X?`AH(&?O39AG_4dmVYNJGOIFRL&XZjuQ*Tn"], ["MY","MYS","Malaysia","784e~2954~15tB.>;]%:FQ#*@ZF34%<:Dukjo11ZGKuTSIjXtomnhLD[*tVD} 778~b4~3ad~63~eEhn19Y`XBkujXA_1at>=HQ-rnN:mf^28q)17]GLN16~5gkt(22%C@u?GCzFG8<?nL5bJ:J31~26#?GBr"], ["NA","NAM","Republic of Namibia","5612~3520~85.5bm)q153?86NswlCgF[JAc~c~2]H:28DCIQU;T2cA2eMTM4CA).I27I%S?=Y<GD]#u`16fP3d~1c~6cj17b!96~3amo!,3SD/ghNm]qNt@"], ["NE","NER","Republic of Niger","51d8~20f6~67td3~c6~39~36Pz6~bevvG?13Z1dP?>rYD)FC,,_F34Ry!=9FG&!j4dBNQoGM20R-+XE>]Eg24~8Wj>r@AQ[;H+A;fY=&40Z}TkBKTs3D?7pS$47~2ajx21@65O2tYG[kVW6dw4a]15"], ["NG","NGA","Federal Republic of Nigeria","5232~2634[Oz45J&|#m{YLRFqWh+]]23zI'hYWo11^x=AGR*^ILeQXD+iKELv'TRR(K<T5a~1c~1d>Q?aQ.<A)iQgGG16pgy=3N).|L?;,:{`gG_Ok-[UxJHPrEo4vlMLQrl"], ["NI","NIC","Republic of Nicaragua","27e0~24f6kSPGgMUUWIUXTXRJVCRYQCkEQSQL^iW/VYXOL)XgUB`ULNX^SB)/HKRF=AKJQj(<ThGHQFDSKggUN]DXYZIjKJTpSTLkJ]GZ[^KSMP"], ["NL","NLD","Kingdom of the Netherlands","4e44~12c4*QToLfgIzI11,W4eVsDY#L-gH%DPq45"], ["NO","NOR","Kingdom of Norway","54c6~a1c~41F3Y`12~9q1d.2b~28_K27~64s.11>45>@E4~9eGU24R+u24~31Z42P1d-oY19{KK31+g'+YnpY3a~41KmLY*<`w4e.5~5.BH^8#+i<BFvWs20O+)|+#p16kxF23y4cNf7x f3~229~28~f0H^33?32F{L52Lcq 1ff~49~54-sGAC11XNg5b/54,2e<>V2bG7c<Oh_3-FTu54R105p 218`15fKC@}h51@74C)[hD82P16YXm73T"], ["NP","NPL","Federal Democratic Republic of Nepal","7166~1e8e~39Ww^jllOSqkJ17|gPL.j;L10~32U)>16=2YQ+/[14EEYnpgtJW"], ["NZ","NZL","New Zealand","91b2~40c6Hr33~aV=gRd~2rHbAlIgR6d~26XA<Q28X[>2Z?jck1a~17J[4SHF`tc[14xJWQ]V_2b~2#3 1ee~1ff~b1~76~7EIsk:IeG%LR_SR4m>v)xTGD12Dr:39%18h]E30y)uA_WLJm<W/E:5)3~13<{*Zi_j2~3oJo20>6b"], ["OM","OMN","Sultanate of Oman","655a~21ea<lSYEuZLlRVimrjIpT^j^w_;DaE_uHB=gDID*'7~88~dfPc0~48VYBq/lD@Gm`h;T/IV_Up'YGEZY^3F]JP=FL11 113~1eb~60~b2YJZ.=FRo"], ["PK","PAK","Islamic Republic of Pakistan","6c2c~1ac4~73r?}xVU;[H13OpHN;(CL?sF?E_F13_26~c~11VQ)>>nR^guE?D5YT#=#43RVjG@tg|D41|56~18E:aIje;jU/53>.2a~5a~13~1cM24]Q22T;'XF1b~86<53~25rULyyU40~1d~6~2D41Rw*vu_a`3f^Usiz$Q4e)BjH19"], ["PA","PAN","Republic of Panama","2a2c~281aljX[hRjM>VxRU<qMXG`TRjNDlVC]lh^?G;ES_OLHVJRKIMQk:JOJAOR:DYR_Me;nUXFUxu>MGM@`P`>JB=TEHWnB?,DPQ7C<OmhtDG"], ["PE","PER","Republic of Peru","2d5c~2e8cuzSAe~37~31N]<U`k:sh_35[@UmtgM<A12m@1d~14}YPcIArLZ11[H]HGqAT`k7~22K.2~4xS1aE.+S,CK16~98'22:-{p'e'D5e~1a~34)1dW26/SzRq;1f~bj.Ki_.l^3PjEO2f~6fS34]^F71~d~64smOyqC*r3pZ5+?Ym%Vop@VSk2etBGhU16I"], ["PH","PHL","Republic of the Philippines","8352~283aWoVlf`'36~dnD,3NR|i2lLS12<Y%11I<Ot(ezA,(2cCl17tx$YD56N6b_WVq d1~77~48S|6e:47x/E4[SUIc#T9KvFR 223~46~118~4b<_xzh68iDo?V/5a~5b cc~c3~4d~96X?KD(yIi`^{Dil 16aXa3g11F3c~18iQzi*aFhRe;|uyLR14+11~55 169n70K}G2a~18FIW45 3f~233R110I2aA42w41.42KS,:^9A-pGH?*P#hBcZd=12#CnfmRFr4dkB-k]U15Fq)LZbvk?TZT]/ur"], ["PG","PNG","Independent State of Papua New Guinea","904c~2fceHjt__uTLN]V@D10?AFLLj 16f~5d~b4MWg_ItK<"+"!{LQFoWE|W?W(r[z]>/%H)GJZAg@YW[.M 201~b0~ba~87~28B}u61o6ir_ni5dk11r2~180[88~38~83NG(sr|2N(X12!]a@J.:#[<O_D&^]h2fj12O1dV-nzA`41xX 29c~fd~11b~2ciU]g^SXWk]R/14EE?HIQCO-B|"], ["PL","POL","Republic of Poland","5342~118c~13R?_11Uy,b?LN):kP-CM;YL/*DQ.TkC+MXm(C[@&XI)[]?]?,BpGD;]',_Xmv12}M>Y`xfFQhg!Nhjg]Ng]VjM4bMgX"], ["KP","PRK","Democratic People's Republic of Korea (North Korea)","8034~1754QQ25|*20~35H2c=2dj_kI22yES:eT?RZJQ)HV`PM-=UJPQHH]W[(=`^/LVv'EMS]`blUMBS_p>T:RU`SR?Y}3@OIZ?D]RQQQQ`]"], ["PT","PRT","Portuguese Republic (Portugal)","48f6~19f4Um;`SUn[.yth'CYsIKSf:IqnoCKHqUNwg.YEFDHETA_.NKlFL(BN@WX!^(&xDDHm"], ["PY","PRY","Republic of Paraguay","32f0~3670Tk1fopA41=,14DKh2c~a6~3a[b~18~a:OjA15~5a~52v%PFh;bjyKXQlUhkKZ@[YPoV11XGyXR<19j-57iJ"], ["PS","PSE","State of Palestine","5ae0~1c50lZN16?`kLLD.hWgXu"], ["QA","QAT","State of Qatar","61fe~202cI3ZjhRU@U)C(C]K["], ["RO","ROU","Romania","5648~1484mQPBwROKhklIhXT@kJU#h;q[16=WJ+KZ?+KRnJCjIALD<Gj(D24S`i14WF*GU]51CaBggZnT[A_hRnH_X_woSXYWXM"], ["RU","RUS","Russian Federation (Russia)","67cc~724~11~7~99mrQg=n.60W!+14P4cLC^ df3~43~6c4(31WPEPJYifJ|I8eT19D1aMC^iT*P+U f36~82~7a9~3d~a1i&GXJ:2a~112~17 32~46~107~3~56Y7dZl,<F=F4f]j,hp45F1aF71PT<i[H'30G87W27W[D50~18~10Abb~1dw?]>44+45uM11wTNB10!37@86.|&,O&Zk&aC9FBC5PCD1bj32~4bnN37gU27jQiN-zyY7bP#@Aa~11/%W8&nK20YjH22/5C11f~4d,C75X1e.38:27<1b~1bj2~1d[@>bg1evfB8d~14`Na;33V[qIl26I31r87T86~cuB1c@z;7~3iJ2f~26~5aC21W7b~b#4~eC`B5s9[F19QN4ds40D12c~12||LmzmxYef~17t?jqO%?Z37;QW=$42>37:52~c~19@2a@y@52<11Gt>33~2a~6}20+45?:hHGv*2~2tY'LS<A;aThJ?`!?`;]O6(MY^K$KQFpLwYEJ>@D*[k?OPgGG8WC!tUED!XO-ZR38AOm>%Fg32<zHg:.?^M11VOBB=6pi?43=3aF17~6jh3c(!Kc~4xxcB24L!/rS/h!?U>.OSV#!NgXi/i_D49~49&U29~3~38y*<Zw{HEs9qg:{f~eqqE)33~1a~42}37~60~d$(5a~eJNG}24F$&tz38Exw75s5cYyS14X41y4Qf8[3dU7e`o`4c-S28;13~18*o:2l40~25~21~16~64~2~ce~be~55~93~52~20<zP>.(>WC=enDcUp4Xc~19-S/%.Y;*,^22Bg1d~1f`&13~34~28CUaFM4~3aNTp2S-E2-@A<g10GNm6SA5F*:?#g12-I1b~9XH1dDDwopO#ncM!M22>@C16~1aQT./4~c~40]6#A#10u]q26Vm38[V)28Y-45~9L+32~aB14~f{'(ZgCFXVQQQQUla{(20Jh+{^kA1fH|nX@3f~29~23uoBq7l85~9I).'27ttw1dE68~c9Ff~9a~6~5e>19y3c;M4~cs1e_a5s4~57~6c)4e~58p7d~1bg34>a~5e~27KM!J10~2bp28<g:38~38~b6~70.<LR^53~21y56A5b~31~50M47[[}2a:93~61n*LiMfq]62+nu8$2~29~5e~34~4b~13*oLn/D1a~5~3a%2bmygnU43~3{X82>[s[D249~16d~44~64~93`QA97g72)4e:3dPb9~29N)2b`pIUG1fmgv5T2dO81B65~11N[28bk11e~4~86!a9w+>6foR;3fw50~3c~87~17~25v12R2bn3fZ^D33Z72~e~13ds14k99NCD-H29~3K.2fhlR4]30l[R{idW65_1bF$Dwv c39~246~546~149>m18sEq46n24Q36^dT17]11AhB6fQb,iE2cH53&46g49~6~cJbT#:42QiAacU11X 1828~1a1~d61~7a^F@G1c)8cBita6I81~3 1cc~a~19dpoQ2a=74E@Won bb~88~2~31~43^PBD?BY5cLCT c30~ac~689~79A6~aL;[ 2fb5~70e~1796~37fLZoQ5W3-.A34W2aU 2d72~16c~174f~10dgubtg]E+1c/9C52~40~e>.20YLc~10F-,;p4b~3a~32~33~35~57~9F2b~8e~38~11f~a5"], ["RW","RWA","Republic of Rwanda","595e~2cfay>NgZ<K*XgS&2^Q3;;gSAYUyqi"], ["EH","ESH","Western Sahara","4856~1eaaYQMQP%zgRChXWZ|EM14Xmk54~37+>22_gLHa7W30SS,C{15aEa1~6f>D10Epf7~11a~60~65~7bQ!QO"], ["SA","SAU","Kingdom of Saudi Arabia","5fb4~1df2~83V9f~afR>pK.>7d-98~18~15nO@|TH>gH1bl-)NGW/)i>e<*J;LYH-[S;)=VD>;2ajNH.#4Ll*4R):,CTZCBJQ>>{jhAi?&N`28PnI18NWWK:@l:33&LbeZ5c~1f~23~75~b>L#fd~3~2a~17H@[hZA[`R[U_^XR^H[Yh}^I[oS^17p)Ox7G"], ["SD","SDN","Republic of the Sudan","5bf6~2450MbCP'QKwfWWU`3fOs@<r27~155(89Q9bQ9e~b4~39~35',F194~21~bbQ18SA>UpEA?iDOF:hO,V.<Q[JJ>),hKYDJJ>IVWBYFYM1dHQ&K[:.+Q_D_(H^E1cWq_+VZ_>T2~eMqD9@^mm]O8K`_.Dj10F:.OXGT=I`UXC35>AYi<{<YL13Tp[N:59"], ["SS","SSD","Republic of South Sudan","5ace~2774Xnq`JyHpt>G?xU(@R)yA^+`gz7N'KDrNDJ23W=_}MPDV[nzLP{?L.Vc^hXP14;EC`J2/LGN.$K^H(aIjNg>G?gR%c*qm:i/:+n?HCv@o<o23~17Y=NipjkF$y<@XkW7X/Mv"], ["SN","SEN","Republic of Senegal","46b8~2526|f`qmJXZjH^C_^W:T:m+][6@H4~1asi`EJEAIWH]O/uK^Y^_Z;PXZHdV&1a-{NIKY76JpQ,BXYSW+HXWRjV`kWQtMl"], ["SL","SLE","Republic of Sierra Leone","478a~283cgNIpZVJZ_jZZ}EGEYUSDSGr=;&KQ./,IVXKnTZ.pD_"], ["SV","SLV","Republic of El Salvador","25c6~25c2Kq[KXRkFE_gVTYZOWJHL^MgDHOBI/SJFIQ/SZg"], ["RS","SRB","Republic of Serbia","5476~15fexgI]qgiFm@>YB/GKqCH]?Qk,'Gj?Z]<GPNCNFH`QCYRiJKMFKQNIMSJGNVZBSQLOAWAPVYZSGhCZ|hJ[BSgTAWkRX@ppHh"], ["SR","SUR","Republic of Suriname","33e6~296a~13L@H37i/34v^<J^-))KnS$)4Bo[g]WG]<BA[>?SzRgJ_roJq&y4dF"], ["SK","SVK","Slovak Republic (Slovakia)","54aa~1418~19oZ=X[hA_tV=JY_OOFYSMDYUMLgN`ULBQPH@:KKR']iY?MCZVH>ZR]FM14<igOnIU"], ["SI","SVN","Republic of Slovenia","527a~155a^mSGVE3USCv]?'AEjY8QZ]CBFU^i?NVn2U"], ["SE","SWE","Kingdom of Sweden","53e8~c4cknX49~35LoYL@D%55r%#}hS6oa~7~18~14lnD|^R22;1a-Zp24uKQD1c~3e:.S/cwU11~12*Y29U47~c!G2d~37Q^o4~31~3cY:lb^6m20L"], ["SZ","SWZ","Kingdom of Eswatini","5998~3942s^SFPA^BJG(/?pTpZ`Ug"], ["SY","SYR","Syrian Arab Republic (Syria)","5c2c~1bd4~92~3d~13~fhY&IIy41'OXd-`^Y^7/HnFc^TWJU>A!>nQ/xEM:IHXTMV34.38~55"], ["TD","TCD","Republic of Chad","564e~22ae~177~ab~95~31~2a~76~c~5aEyYD;EnA^9eJ>3f>E22#k^)#jo+.,W;U;'!13vQLiYP&4;HXU<C(jV1e^_gMFGD36w^_?Zl^>K12J.wC25IG<Oi[m[Gt]W`@BrE```;VmV=w@s#+{1b3"], ["TG","TGO","Togolese Republic (Togo)","4c68~26f2~19R<=-/_)J+FSk12GMD/LO6p}}Haf^2eMpkXXXAo"], ["TH","THA","Kingdom of Thailand","79cc~2552Bu^5~19tD{blj;C/tZS_f~e@4fH3~7(G|mQi/_<q]L3e`o12~1c/?H>t$[i-,%$]GTD,c~7)Z!S+MHC@P27-1a?=VB>IToc%i>%pRn5ljHhxN}kvp,E11?yB39_o1a%s1c~18r))15~6d~8_26D?@"], ["TJ","TJK","Republic of Tajikistan","68b8~1860mOSkHl39),&^B|lA)10ON4qc.q/qL/R|+A[ZVm?[/,hDAXO20<WOoCQBq-=$S11}NWxRODn33~57~4opjB<5~32)gq"], ["TM","TKM","Turkmenistan","6746~19d2Y7~49Xoj]`19uYbO=11HL`Xb~3fYK20mM$=3b`MN|1b_I|;GC%)i39~6JKe%>35Oyq+2e$nma~14Rg2aBF$zIw=<M_+E12)FZ1e~22NrT22~1cTGlgr2KLg_b~aCii+*OW"], ["TL","TLS","Democratic Republic of Timor-Leste","82b6~3114~18j#kYTwPYEwSuD@IHKTD"], ["TN","TUN","Republic of Tunisia","50ce~1bf2l[VqlCNz6`^7mEHn-ihNb(:11}G})?=B12h;rG;)aCnU%>H7eD43ZlZ^8^TX>Y^7"], ["TR","TUR","Republic of Turkey","5ada~17d8~79~f|/`As'45t%1e~45n]2e~32Q3$1eFA12~6y.#HqZo20A?%28pZy(%H_y,'?PuKYXt=(12pN<+W#qQB10^YU1eC[EDk]K}1f-Kx35~16>7[vV<o_W19kr?t(in{D19u 349~1e~1ce~5~1cKo_1b^B`7Ms/1eKq(V^JG>:)17"], ["TW","TWN","Taiwan","8004~2116E83VEuPj2aS4.A&(X55"], ["TZ","TZA","United Republic of Tanzania","5986~2cealI&'g>`[IUN.FNWD`Mg-[JL[Q,DUX:FDjF1e(k?-12_xNO<G/KBC2NhFVYM^-6]1a@ZZ]<T28=ki'NOj:F12qBpo>l`^27XXD]VT>u[MzgBp)31~73o#V147~95~80~38t+VB'IdLHhtIZETw>yTgR>QQ33R"], ["UG","UGA","Republic of Uganda","5aee~2a4cz)ohqA^mV/EYT4c.uu>_K[.RCN#]RK#Bj-nMO1eLwQTq+p;GJ[@=]RRVAp>uIr|19KLot"], ["UA","UKR","Ukraine","58a8~128a~17LHVSA_ZHP9NHDI/mmyKJhY>^`tM}`nN^LVB[Va~1ejYmSr16$NkjV>R@&LYIAm:CATIBMh+RY^AIPZ,R:;PWBB^D>PO<BO^NFPiOpUHYXGGH_BPFZT)IGgDA<1dT]4Hg+50NoJ21CAO32E{=&R16~b;Jlh23BRiMweT,HJj/Loq/T#Mljko;g[T4b[HFmui.17s(RmmuEDjDTbs"], ["UY","URY","Oriental Republic of Uruguay","35d0~3d32m})]15tu_3oE:1f~1bT'E16Q6D(`iH$!C@k#+Qk*B'9[n"], ["US","USA","United States of America","8d4~22ec=ZBZ[N[lSNUSgYKLSJOG^MOOK=YJBQMg ]71HcgW^ROIMOLNME@^ 7w]BJI'R]Y 17VDhNJgFGSMCAVVQOU 61~7~10K`JTJPO?HQ] 1fe0~d39~fef~67aV/73^a1Q5dQ37Q49Q45Q51Q,QabQ3bQ22~1ch-]Z:3d~35HB:N:h6y26kBl+z)A?n)q-)Ip$.+KV`MI5c:=lNCX8O[C;Vg?:SG%_C38m4U11@4e.46*22n[Q_r68Dy;BHC?U>Q>=O*G+2d=/H-P'OB>?[,JI$L@MNZhmJlItCW+ia](y>HFM?A'gH2;gL_LBL^gZEjYU,R)P-H4]R>L:R^28v].<16XHp.CMC!E(I_V</WM^E{TVKvh1fFGiwPwLi?o-g=]1crmR,^EI)|2QA3`9TF`J;2f}G14<h13>Wk3c.R5'>la~1fOPW^^OMuD%LUWC20~29Rlr=+h`@$U32k1bS49?66pJKHR*ZMJ-[Z^hVM*l^LxChHM'v6P(^&kyVlq4~3du.u=In19~26U-]M]VURRB67YvQEE21##^X=dIhglPWIGBOZRK29%hQWRnDmPVX`]8i_E=n,oj@QQJqOnjF{'DgI`!iTgR`v[oRO(VWg+B|t-YDg<QFI.j<pGNWZN[TKUPwIPMXNn;l@q'qv/1b~6:s(k&tCB-[BCiT14V3nID^SKPQQ`TNg19CpEQv^Meu3f!nFmLOtf/'gem/^#YuFQQ21hiAhosQZPKYDu 128b~33f~9a6~154zUrLmF15@G@?N3cw 303~e7~168~2c~7JbD!FEN(` X16b}c2=W6WjDAJ8j^Q5VP]rCM` 986~2cf~4ef~132~57%>i73.JV23;ZC33Ey]q*36NZB]A,Io.63g68u25C9b,qG26;iK1cN14`h@=k14VTK47<8Qv<bLN`29)@nxHx+19Al>'J9<"+"%SS=42px,{Fk.12i2ao1f~8~e{n8~1a}l;42o7b~cr+tRKO6d)NK7V1f)oO17>!U82nG]4[,XSC3ctLg5ci_[14Vch1cu13Y96r>j24^1b)39F19~16GJ56v*^$TTM<5~12HV(14B!j/:MP@26<_20WKN15~20);9+aXWDT]1cuKn31k2~19MYnWO[Hj3b%f/#25VWpTtJ2a4~23d~3a~7~a9~80QQ{Xo^fAF]2fRr_iDq]10X49NRE;u"], ["UZ","UZB","Republic of Uzbekistan","6862~1764qE9!?/`n_v23DJ19^/S31~3d`17+`J|2dgL3dy$?99~4~aa~15a,9d~11v12WCq32~1cl&C]eZXC&2a~18EJI8@12Fv,.l*CY49v`vI,l8@X|Sn32Lz!CMB](J'17~79[M&vw22uyB"], ["VE","VEN","Bolivarian Republic of Venezuela","31de~2840ngjGI1f}WoEMt28U6dF{M&CwFrh[qf;lU/lzpm@Nf^c@=4bF#$ASo$hkX1f!^[`j^aJ_]3>N,`OXBQ&_B2_Y,IQR?[EKPEQJ>3aiUF;1cMz*JEYMBn*XMO#D>GSVKv/$RMBG20;O*n]h!VOSUn2UoV13O@}JoqK;O!F:EVo'Sek]^iWy5$KYl%MSWriA]cr"], ["VN","VNM","Socialist Republic of Vietnam (Viet Nam)","7a7e~21b2~2dhQj@p21IUjr12x[hTVB22~eC'1csU24~17[MB56,<26B>,AU:^a>GY26~69F48C47`j:40.{.)>24~55Io8`Dmq6d~3~31mI{`|35mq'[$3~14q"], ["VU","VUT","Republic of Vanuatu","94d2~3498s|I$A=Co v6f_*N2cGWG_JGU25"], ["YE","YEM","Republic of Yemen","630c~2422mf~9~5d~bd~50*@[20XoTr_CdX@U2dK@LhlQ6DErIA@YQG:`]:.L%MUV.A<(hR[?JVjFLMgHL6RE[CmO?AV$d~38XH^rXHj$S"], ["ZA","ZAF","Republic of South Africa","596a~3778uWUFhgZL41~16^/K=XNmXN+QLyLr[Th[Pg>R/kM`>rXHrDrybP<U198~f~63U]j`XPMpiUh8~18~3ai7.20=%j?h^:#Z@JSQi=%I_E:C_:o*O&lWA;Z8ARj>AYo:K10oCh=o14~13P_PZAiQI&sT_N}Em19/I+rX_3AUA_RWDM>BiuA2djZh3d 133~430~58~1bbs1f~1cgBVFQG,KHs;RKqQLB"], ["ZM","ZMB","Republic of Zambia","597e~30ackVC[^M43D;OY2=Ij30S,?m'=UpU4c~fzP{Z[yKGvt!tkLorIYMGliHB<Z=DB_HGGa3^1a~14e~6~19@C*{DENE[SGN28L`MFU:7$xV;Tk)`-Mp7~110u9bH%1bHIjb@pMIi11lRkVkRUVIMOPLF^RXh"], ["ZW","ZWE","Republic of Zimbabwe","596a~3778~32~47g[P@Mz^QH}FlT2du<^LO_lVyI=p7<^<GGhW9~1cWBTkXX21T1a~24O`F'1e~1eXt^>A)$]D.L_BFK_=G"], ["SO","SOM","Federal Republic of Somalia","5f4a~2738rsP^^P]6RK+/GCEJ112~38~f~5~11b~136N6f^e]mN=7~32-13e'35T9Jr24~2f:Z28~7Bk#31Bs:29H{HvPxLFXnLlUOlHg;hV[KVSHRxOTGjQz@}RmESY"], ["GF","GUF","French Guiana","34f2~2b2a?15-zrN21~9^EOPm2c=@>BlHRA]C(RKpNEO@:`Im"], ["FR","FRA","French Republic (France)","4fd8~1772]1fr18KE>(@ZN23 23b~381~c2~184[FMm5:I10~8b:F1b!5c~69~1do<#6~48PR>&1a{6cnp%K5eAts16$'nqy46R34-Vbi[uKRf.KpgGVkjg:Ex$mkO/CO_R7<k5bHE[SHUV3qT?mw"], ["ES","ESP","Kingdom of Spain","4caa~1928QSVPQUPMQPPPLROPRR YgJILXTPTQZNMOPOTQPMOQIQSU 111~1e5MccRMy]9Lt]d~1c~28M`(<3ERO#/gWY-KS)vOG8YgO-l[(#r/-SiIh@CH12Q['DMBVHt:[%DaQL1b=EX{/Y{n)x<Z[T36SB{s`2b-sxG,5fz,[ 1d2~192~b9~9fPQPQSRPQORTQ^LQOiDFUPPMRQMNWPPOOOOQLPRKQKMQUNSQUOSOSORSSSPRQTNST 34SuSQPVWWPVNMPPMPRKPDJXT"], ["AW","ABW","Country of Aruba","2d8a~2638RRSVRQPNQNMOONORRS"], ["AI","AIA","Anguilla","30c4~235aPSSQXKMRHT"], ["AD","AND","Principality of Andorra","4cb2~1748PSPRQQSQWRPQQOROQOOQQOQPPPORPQORMSRO"], ["AG","ATG","Antigua and Barbuda","3144~23f2ORRQQRRQQRTRTKNQPOKQRS PzRDRPSPPRQPQPOKLQRT"], ["BS","BHS","Commonwealth of The Bahamas","2c96~21e0OWUOTITQQRVTRORLURMPQOSOPPPOBSKRPYRQ JiYJSLNOJU T27U,RKLRKROONMPUSQTSUPPPSR 37C6^MQKZVTNPXNONQOMNRQSNSRPOSQSLWMOQLT Gw^CPTTPPNPPPNOTJLQVUP 7[<RURURO[SRQSTVOHPRPKMKRQROTRPOKOKOPERY 9zABPRWVPNQLLRJJQRQR 46~7}@QOSPRHLUMX 11bX62NSMTRPPTQROKJPRQHOUSJESRYSPQPQRQRQYTQSHSWISTP b8M4bgLLV`QJPOQOLNSONQNGORTPTOPPORKRPPST 89~1b~2a/SPTSVPQPQOOQMPMR s<JhQWQPOTTRUSQNNFSPXILRQSPOVNNVWNKLLOQROSRKNOQONVLQRRKTTQPVPU 3c~13|=PMQMSOJTOOMLMQQLLNTNUNPMVSMPNNQNOQRYNUNZTMSRVXTOUV 5f~4d~4#PKPRRNUNSRUWOOHERUNQJTETHPXRRSXMWSNNTRUS 36~20tuNhKNTZVPRPPRORSQSRSVSRVPSQRQTMFRFNQCOTROSOPOTNPKSQVNIQPLPU"], ["BM","BMU","Bermuda","30f2~1c5eMWTNULTQMQPQKS"], ["BB","BRB","Barbados","3218~25e8MUVRUWQLOGPSLOQT"], ["KM","COM","Union of the Comoros","5f1c~3288UUSOOOPNFQZV 8_lIRPQOQOSRQQTQGLPNQQQTPWTV 23W)NTVTUN[SLSPPPQNS>KUPSMMRT"], ["CV","CPV","Republic of Cabo Verde","4172~2506PUSUSOULOPOONOOQNT 30gsJSWRPTOQMPRQMOPQR `IO_QMUWNPTPONQNSNPNMKOSLQPW *4dgeTLJQPQLURTSQSRRPPOUR 31p;ERROPPNMJQZPOJNQSTQRR 3eRzUPUSMSONKPSOLPV 97Y26NTURMSOPOLPQRMR iYARSQTTUOZJLROOPMORLS"], ["KY","CYM","Cayman Islands","28e2~22ccRTQNPKLTQQOSLPUSXQNORPRR 58n7ERRQPSPPQQQQPQPNQNSQPQQ IRPRSPRRQPQPQQUNLRPR"], ["DM","DMA","Commonwealth of Dominica","3162~24d4NXSWRPXRMMRMMKQJLX"], ["FK","FLK","Falkland Islands (Islas Malvinas)","35a4~463cRTTQQQONPOPPOQPS 22^tKRPQONONQUV b7]36HTQMNLNPSRTRUSNSR )koJPRROKMRQPPKONOPOTQXNPRQPLOMSRQPPOPRORPRPTOUNVSTJDONPKRUROQOPQROTRUONOPKRQQLYPTQQOQQRPSNQRSUQRRRMQSYMPRRSSQSOTLVU FTSRRQURSPLLPQLR 26XyMKL[KKOOPQQRQTPRPQNYIJSUKMQJKMPUZMNONOT]ZIL/L_WQQST@SSRQRLPLSVPOSUQTQMSLP[WPNYOOPOOPONOQPSS[TMPRTNPOOQTURSPXOTT"], ["FO","FRO","Faroe Islands","49b2~e50QTRRPQRPURORQPPOPNLOPQQRRR KlSGSRURPQROPOPQMPONRRPS pjGHUOQQNNKPQROQPRSRTR ,UlPSSXNEFLOQRSSQRUUPOPQPQOPOOPRPX HOYRSTOJQPQQPQNPOU"], ["GD","GRD","Grenada","3118~2670LSQ[ULRMRMOOSPLS"], ["HK","HKG","Hong Kong Special Administrative Region","7d18~2160QSQRURRPNOMMQT `PKVNQ[LMOPQOPKQ D^ZNRPQSQQPPTRQQTPPPRQROPRQOVNNQNPMSMNLOUTQSOP"], ["KN","KNA","Federation of Saint Kitts and Nevis","30ec~23e6QTSQSPOLOQOT WWOOQQRTTSQNQOPQQQNNNQQMPT"], ["LC","LCA","Saint Lucia","3182~258aP^RPRMSMSMPQPLKPPZ"], ["LI","LIE","Principality of Liechtenstein","4fbe~1516QSPRRQQRQQPRRQPRRQRJPOPQPRMP"], ["MV","MDV","Republic of Maldives","6c3c~2acePRQRRQQPQOPQQPOQ O2dQ+QQQQQQQQROQOPQRPPPPQPQ"], ["MT","MLT","Republic of Malta","5206~1a96SSUUSOMJMPNSQS g]JKQSTQSONPNOOS"], ["MS","MSR","Montserrat","3112~2418RVQNRMPPNQQT"], ["MU","MUS","Republic of Mauritius","64dc~3698NTPSORQVSUTTTLQMQNUPOORKQPRRPONOJQNS"], ["NC","NCL","Territory of New Caledonia and Dependencies","93f0~37a8QTUQQKPROPPQPS 10~4dp!PSPQUNUPMJRQMRQNORKSQ[VKQR uh?MQPSWSPLYSNTRXMMPKQQOWKSSMLOOKQQNOS 7u:EOSSPPSOSOPTRRQPMTKPQULKT afu26IOKQNPPNPQPRMPOKJSNNNMOONKESSNPIFRSOQJKOQQMLPLNTQQOPOLNMPSPPPNSOOIJQUPPMSPTSZUPURQTSSWXXVPNQTRPQSURQUUTOQORRRTRQTRQTQVT^iPMTLSV 169~2b~96-QWSIRIOX"], ["NR","NRU","Republic of Nauru","9552~2cacQSRPQQQOOQPPPS"], ["PN","PCN","Pitcairn, Henderson, Ducie, and Oeno Islands (Pitcairn Islands)","1522~388aQSRRRQQOOOOPQQQR"], ["PR","PRI","Commonwealth of Puerto Rico","2ea6~2370QRQPPQQRPQQPQRRPPQTQPQPPQPOPRQQPPQQQ c6T31QTQUQUPSOMPORMQ 5n?HRPzRLRMORPPMRQSPNOPPONSNRIMTKSQOOPNRORJOPRMMPSQOOQLQKSMURSNQMSTXXMSSYPLPOORRRR"], ["PF","PYF","Overseas Lands of French Polynesia","105e~36c8RTRRQNOPONRPPS 70~db~17~46TRQQRQQOOPPQNOOQPPRPPR 1a1[a0NMMMPQQSS 152R8bURNHKTU 167Z86PQRSPNOMMPOPRSS SlPGPPQTORLSTPQPSPTOQPQPQOOPPQOQSR 369[18cQSSWORNOPONLLNSKRQJQSNPRTSTYQ pXAPSPUPNOPPPQNOQT 79~b~1c;VWRPOOQJNSPR 322g171ISQPQKPOOVU VNPRRRRPHNRR 325P16eSRQTRNMQPOQQR 246k105KQRRSTTNKPPOPPNQQNNQSQR fa`57NSNPLPS d7h3aOONOOLMRQQU 21e~259~e9~106QRRQSQNIOU t|D@RPQPPLMW R`YDKONRQSJQRTUNWU 29g&MTOTNOPNNQU -v[BRQSRSQPOQOOONS vQASQQRRYRMOPMONOSMR"], ["SG","SGP","Republic of Singapore","79aa~2bc0PSSRSQTRTOQKFPLW"], ["SB","SLB","Solomon Islands","94dc~3236SSQTSORPMKPTMR 283H118WUTh]KKPOQNOPLQSPNOKPPORMNROPNS 232~39~f7'OSTPUQUOPOQORRPOPNOTPOMVPNQQLR 1a3na8GRQYWQOSPOLPPKRPOSLORRMEJPQMRPONSNNOSWSOSV]QMTNSSRPVT Q15UHPJOJPPRNQMNRPTNKSUQW 7bj12GSMPOQKPPNLOOOPPPIQDPPMLQQSNRRQRVRQTQQVURWV]MOPY[ '_jFNOMQOOROQRORNNQUVTSQPOSR 23H(WRTTOPSRPSOQOOPMRQPQQ 5fo8GSRQPUPMPKNQQQS (L^USRQUTGNROR WZNNQRSQLSTPVRPNRQQPQPQLNONQMW dL@VNTOOPUSRRNWKNQJJQSRS ba^3dNPQTRQOQNOPMOPS 2c]xKQPRQSQPOJGWQK=OPKOUSIMOFRVQSQVVYMSSPPRSWVTQNQSNUPPQS_i f5L50PPSPYWOQMUKPPUPOOPNMRPUIPRORMPLNQMPOLRWOOPUU[RP 35R%TRWRKPORNNKQV 'T`QRTQTSRRQUORLONMMMTSQ r^BNMVRPVQRUSPRLOOLMTPNRQMPT 114~6~67pSRKTphIISQTTSPSTPRVSTW^PHMMNRLLPNMQSPONMKOMMRSONCKSMLOTT 16b~6d~94~cYTOKRMLQNT 68A13YSPSSVXOPRYTP^WRUTOONPMOPHIKDLONUQQSPPOLPNVUQ"], ["ST","STP","Democratic Republic of Sao Tome and Principe","4ef0~2c5aLYSRTSSNTMQOOPPKPQNPMW 8~69kaRQRQQQROSLNQOPPT"], ["SX","SXM","Country of Sint Maarten","30b4~236eQQOOOQQRQRWP"], ["SC","SYC","Republic of Seychelles","6460~2ebeVYRJMOOPQNNQRX"], ["TC","TCA","Turks and Caicos Islands","2cec~218cRMPQOQLRSQOQRQUOUU 4IhVTRWROOPNKRQNRS ]ULOQVUNNOPPPRPONPQS"], ["TO","TON","Kingdom of Tonga","c0~3700QQSNPPMNU] gUKLNRVRSPQRPRSMNOINRQPXRPTOOPRQ -f7]52QRTQPPSLNRNOQRPT"], ["TT","TTO","Republic of Trinidad and Tobago","315a~2760PSQVORTSQUOSQUOPMW]MROYQPOUQQONQLOQPQPPNTBPXVPPN_JBVLO=RTS C39N*VRSOXNSMNQNS"], ["VC","VCT","Saint Vincent and the Grenadines","3148~261aQQQRPPQRQPQRRPPPQQQPRQPPQQQQPQ JkSIPQQPQQRRPPQPSPPQQPQQQPRQQQPQPQQQPPQQQQQQPR N[OMQVRRROSPQNQMLORT"], ["VG","VGB","British Virgin Islands","3016~2344NSTQTPRONQLQ HURSXNPOOQPQPQ IjWHUQNQPPNQOPRQQS"], ["VI","VIR","Virgin Islands","2ffc~2390XONNESOTZORT FyZ@PNPRNPNS _OMSSQSOJNOS"], ["CY","CYP","Republic of Cyprus","598c~1aeeTRTNRNSPTULFLJRSOPGOSRLQRPPMNSSRQSOQOROPLRNROTJYRLOQLQNRVTQPTUQROU.hXL[LSNRQVNkKMTUQWRURLISNVRQS"], ["RE","REU","Réunion","6406~3704OUQWUUSTSOWQTMQLQQLGQSGLQTKS"], ["YT","MYT","Mayotte","5fb4~32dcQTOTROPUTQQORTSLLMSPQNOOOQOS"], ["MQ","MTQ","Martinique","318e~2534SXQORSORQPSPSVUQQOQOPONIPSMPWNORPNHRSNQSPT"], ["GP","GLP","Guadeloupe","316e~2484OSRSSRRNRNPOPQNQ lYEOR]PNSPRRVROORNOCOSPRMT C^QL_VNRPRURQMQOOMTONOMRLR"], ["CW","CUW","Country of Curacao (Curaçao)","2e44~2660QWZRLLPPNQQORLNQOY"], ["IC","","Canary Islands","446e~1e96SSWKSSMOPPJNN_ beg3dGRPQP^RLJUPNLLMPSMPLURSQWRQPT 79F22YSQRSURPORORNMNPRPQ 12o]OWO[NWGNUYPQQROMONHLMNWQRNVN] 9a=d]UXOWRRSPQOTQROPLWGRKUQTRLQJPLX 149h86LRQRTNPSTSSVOQKIHSRPS 176s85FPRRXOOTRRMRNVQVNOPRILTPU"]];
+            function findCountryIndex(label) {
+                var txt = label.trim().toUpperCase();
+                var index = null;
+                for (var i = 0; i < mapc.length; i++) if (txt == mapc[i][0] || txt == mapc[i][1]) index = i;
+                if (index == null && txt.length > 1) for (var i = 0; i < mapc.length; i++) {
+                    var i1 = mapc[i][2].toUpperCase().indexOf(txt) - 1, i2 = i1 + txt.length + 1;
+                    if (i1 < -1 || i2 >= txt.length) continue;
+                    if (i1 < 0 || mapc[i][2][i1].toLowerCase() == mapc[i][2][i1].toUpperCase()
+                    && i2 >= mapc[i][2].length || mapc[i][2][i2].toLowerCase() == mapc[i][2][i2].toUpperCase()
+                    && (index == null || mapc[index][2].length > mapc[i][2].length)) index = i;
+                }
+                if (index == null && txt.length > 1) for (var i = 0; i < mapc.length; i++) if (mapc[i][2].toUpperCase().indexOf(txt) >= 0 && (index == null || mapc[index][2].length > mapc[i][2].length)) index = i;
+                return index;
+            }
+            function parseShape(m) {
+              var result = [];
+              var chars = "}|{zyxwvutsrqponmlkjihg`_^][ZYXWVUTSRQPONMLKJIHGFEDCBA@?>=<;:/.-,+*)('&%$#!";
+              var min = -((chars.length/2)>>0), max = min+chars.length-1;
+              var pos = 0, i = 1, n1 = 0, n2 = 0, x = 0, y = 0;
+              while (pos < m.length) {
+                if (m[pos] == ' ') { result.push(null); pos++; continue; }
+                var n = 0;
+                if (chars.indexOf(m[pos]) >= 0) {
+                  n = min + chars.indexOf(m[pos]);
+                } else {
+                  var s = m[pos];
+                  while (pos+1 < m.length && m[pos+1] != ' ' && m[pos+1] != '~' && chars.indexOf(m[pos+1]) < 0) s += m[++pos];
+                  if (m[pos+1] == '~') pos++;
+                  n = parseInt(s, 16);
+                  n = n%2==0?n/2+max:min-(n-1)/2;
+                }
+                n = i>4?n+(n2>>1):n;
+                if (i % 2 == 1) x += n; else { y += n; result.push({x:x,y:y}); }
+                n2 = n1; n1 = n; pos++; i++;
+              }
+              return result;
+            }
+            function svgGenPath(shps, bounds, width, height, padding, id, fill) {
+              var svg = '\t\t<path '+fill+' id="'+id+'" d="m';
+              var lx = 0, ly = 0, visible = false;
+              for (var i  = 0; i < shps.length; i++) {
+                if (shps[i] == null) { svg += ' z m'; continue; }
+                var x = shps[i].x, y = shps[i].y;
+                var x0 = padding + (x-bounds.x1)/(bounds.x2-bounds.x1)*(width-padding*2);
+                var y0 = padding + (y-bounds.y1)/(bounds.y2-bounds.y1)*(height-padding*2);
+                if (x0 >= 0 && y0 >= 0 && x0 <= width && y0 <= height) visible = true;
+                function numberToStr(value) { return +parseFloat(value).toFixed(1); }
+                var coords = numberToStr(x0-lx)+ ','+numberToStr(y0-ly);
+                if (coords != '0,0') svg += ' ' + coords;
+                lx = x0 + (parseFloat(coords.split(',')[0])-x0+lx);
+                ly = y0 + (parseFloat(coords.split(',')[1])-y0+ly);
+              }
+              svg += ' z"/>\n';
+              return visible ? svg : '';
+            }
+
+            var lines = str.split('\n');
+
+            // Parse data to label + value
+            var data = [], dec = 0, labelunit = '';
+            for (var i = 0; i < lines.length; i++) if (lines[i].trim().length > 0) {
+                var a = parseDataLine(lines[i]);
+                if (a.length <= 1) continue;
+                var v = parseFloat(a[1]);
+                if (v == null || isNaN(v)) continue;
+                if (v.toString().indexOf('.') >= 0) dec = Math.max(v.toString().split('.')[1].length || 0, dec);
+                if (labelunit.length == 0 && a.length > 1) {
+                    var s = a[1].trim();
+                    for (var k = s.length-1; k>=0; k--) {
+                        if (s[k]>= '0' && s[k] <= '9') break;
+                        labelunit = s[k] + labelunit;
+                    }
+                }
+                data.push({label:a[0],value:v,label2:a.length>2?a[2]:null});
+            }
+
+            // Determine minimum and maximum for chart, if both negative and positive numbers ensure one of lines/labels is zero if possible
+            var vals = [];
+            for (var i = 0; i < data.length; i++) vals.push(data[i].value);
+            var mm = determineMinMax(vals), min = mm[0], max = mm[1];
+
+            // Prepare labels
+            var texts = prepareNumberLabels(min, max, dec, labelunit);
+
+            for (var i = 0; i < data.length; i++) data[i].index = findCountryIndex(data[i].label);
+
+            // Colors
+            var color = parseAllColors(theme.Steps + 1, false);
+            var col_str = addColors(theme.BarColor.split(';'), theme.Steps + 1), col_rgb = [], discrete = true;
+            function mergeColors(c1, c2, p) {
+                var c = [];
+                for (var i = 0; i < 4; i++) c.push(c1[i] * (1-p) + c2[i] * p);
+                return c;
+            }
+            for (var i = 0; i < col_str.length; i++) col_rgb.push(stdColorRGBA(col_str[i].split(':')[0].trim())||[0,0,0,1]);
+            for (var i = 0; i < data.length; i++) {
+                var ci = (theme.Steps - (data[i].value - min) / ((max - min) / theme.Steps));
+                var c1 = Math.floor(ci), p = Math.min(1, Math.max(0, ci - c1));
+                if (p != 0 && p != 1) discrete = false;
+            }
+            var spa = 1 + (discrete ? 0 : Math.max(0,theme.ChartSpacing));
+            function colorForValue(v, stop) {
+                var ci = Math.min(theme.Steps, Math.max(0, ((v - min) / ((max - min) / theme.Steps)) / spa));
+                var col = mergeColors(col_rgb[Math.floor(ci)], col_rgb[Math.ceil(ci)], Math.min(1, Math.max(0, ci - Math.floor(ci))));
+                if (stop) return colorAtts(col, 'stop-color', 'stop-opacity', true); else return colorAtts(col, 'fill', 'opacity');
+            }
+            var count = 0, emptyColor = colorAtts(color.line[0], 'fill', 'fill-opacity') + ' ' + colorAtts(color.line[Math.min(1,color.line.length-1)], 'stroke', 'stroke-opacity');
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].index == null) continue;
+                data[i].fillColor = colorForValue(data[i].value, false) + color.stroke;
+                count++;
+            }
+
+            var svg = '';
+            var svgData = '\t<g id="Data">\n', svgLabels = '\t<g id="Labels">\n';
+
+           // Background
+            var svgBackground = '\t<g id="Background">\n';
+            if (color.back[0] != null) svgBackground += '\t\t<rect x="0" y="0" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'" '+colorAtts(color.back[0])+' />\n';
+
+            // Text style
+            svg += '\t<style>\n\t\t'+getFontStyle(color.font[0], 'txt')+'\n\t</style>\n';
+
+            // Labels
+            var mx = null, my = null;
+            if (color.font[0] != null) {
+                var textsLength = texts.length;
+                if (discrete) for (var i = 0; i < texts.length; i++) {
+                    var v = parseFloat(min + i * ((max - min) / theme.Steps).toFixed(dec));
+                    var label2 = null, found = false;
+                    for (var j = 0; j < data.length; j++) {
+                        if (data[j].value == v) {
+                            found = true;
+                            label2 = label2 || data[j].label2;
+                        }
+                    }
+                    if (!found) { texts[i] = null; textsLength--; } else if (label2 != null) texts[i] = label2;
+                }
+                var lineHeight = getTextsBBox(['%']).height;
+                var maxWidth = getTextsBBox(texts).width;
+
+                if (color.back[0] != null) {
+                    svgLabels += '\t\t<rect x="'+(theme.ChartWidth-theme.Padding-maxWidth-((3+theme.BarWidth)*lineHeight/2))+'" y="'+(theme.Padding)+'" width="'+(maxWidth+((3+theme.BarWidth)*lineHeight/2))+'" height="'+(lineHeight*(textsLength+1))+'" '+colorAtts(color.back[0])+colorAtts(color.line[Math.min(2,color.line.length-1)],'stroke', 'stroke-opacity')+' />\n';
+                }
+                if (!discrete) {
+                    color.svgDefs += '\t\t<linearGradient id="gradM" x1="0" y1="0" x2="0" y2="1">\n';
+                    color.svgDefs += '\t\t\t<stop offset="0" '+colorForValue(max, true)+' />\n';
+                }
+                var y = theme.Padding;
+                for (var i = 0; i < texts.length; i++) {
+                    if (texts[texts.length-i-1] == null) continue;
+                    var tspan = '<tspan x="0" y="0" class="txt">'+escapeXML(texts[texts.length-i-1])+'</tspan>';
+                    var x = theme.ChartWidth - theme.Padding - maxWidth - lineHeight / 2;
+                    y += lineHeight;
+                    svgLabels += '\t\t<line x1="'+(x-((1+theme.BarWidth)*lineHeight/2))+'" y1="'+y+'" x2="'+(x-lineHeight/4)+'" y2="'+y+'" '+colorAtts(color.line[0],'stroke')+' />\n';
+                    svgLabels += '\t\t<text style="'+color.fontOpacity+'transform: matrix(1,0,0,1,'+x+','+y+')" dominant-baseline="middle" text-anchor="start">'+tspan+'</text>\n';
+                    var c = colorForValue(parseFloat(min + (texts.length-i-1) * ((max - min) / theme.Steps)), true);
+                    if (!discrete) color.svgDefs += '\t\t\t<stop offset="'+((i+1)/(texts.length+1)).toFixed(2)+'" '+c+' />\n';
+                    else svgLabels += '\t\t<rect x="'+(x-((1+theme.BarWidth)*lineHeight/2))+'" y="'+(y-lineHeight/4)+'" width="'+(theme.BarWidth*lineHeight/2)+'" height="'+(lineHeight/2)+'" '+c.replace('stop-color','fill').replace('stop-opacity','opacity')+' />\n';
+                }
+                if (!discrete) {
+                    color.svgDefs += '\t\t\t<stop offset="1" '+colorForValue(min, true)+' />\n';
+                    color.svgDefs += '\t\t</linearGradient>\n';
+                    svgLabels += '\t\t<rect x="'+(theme.ChartWidth-theme.Padding-maxWidth-((2+theme.BarWidth)*lineHeight/2))+'" y="'+(theme.Padding+lineHeight/2)+'" width="'+(theme.BarWidth*lineHeight/2)+'" height="'+(lineHeight*texts.length)+'" fill="url(#gradM)"'+color.stroke+' />\n';
+                }
+                mx=theme.ChartWidth-theme.Padding-maxWidth-lineHeight*2-2;
+                my=theme.Padding+lineHeight*(textsLength+1)+2;
+            }
+
+            var shps = [];
+            for (var i = 0; i < mapc.length; i++) shps.push(parseShape(mapc[i][3]));
+
+            var bb = [{x1:105,y1:759,x2:19767,y2:9231},{x1:10694,y1:849,x2:17688,y2:6381},{x1:15881,y1:5881,x2:19767,y2:8682},{x1:977,y1:759,x2:9350,y2:5262},{x1:5197,y1:4930,x2:7820,y2:9231},{x1:8361,y1:3343,x2:12843,y2:7937},{x1:8735,y1:874,x2:11736,y2:3522}];
+            for (var i = 0; i < bb.length; i++) bb[i].ok = true;
+            for (var i = 0; i < data.length; i++) {
+                var si = data[i].index;
+                if (si == null) continue;
+                for (var j = 0; j < shps[si].length; j++) for (var k = 0; k < bb.length; k++) {
+                    if (shps[si][j] != null && (shps[si][j].x < bb[k].x1 || shps[si][j].x > bb[k].x2 || shps[si][j].y < bb[k].y1 || shps[si][j].y > bb[k].y2)) bb[k].ok = false;
+                }
+            }
+            var b = bb[0];
+            if (count > 0) for (var i = 0; i < bb.length; i++) if (bb[i].ok) b = bb[i];
+            var w = theme.ChartWidth, h = theme.ChartHeight, p = theme.Padding;
+            if ((b.x2-b.x1)*(h-p*2)>(b.y2-b.y1)*(w-p*2)) {
+                var add_y = Math.floor(((b.x2-b.x1)*(h-p*2)/(w-p*2)-(b.y2-b.y1))/2);
+                b.y1 -= add_y;
+                b.y2 += add_y;
+            } else {
+                var add_x = Math.floor(((b.y2-b.y1)*(w-p*2)/(h-p*2)-(b.x2-b.x1))/2);
+                b.x1 -= add_x;
+                b.x2 += add_x;
+            }
+            var coef = 1;
+            if (mx != null && my != null) for (var i = 0; i < data.length; i++) {
+                var si = data[i].index;
+                if (si == null) continue;
+                for (var j = 0; j < shps[si].length; j++) {
+                    if (shps[si][j] == null) continue;
+                    var x = shps[si][j].x, y = shps[si][j].y;
+                    var x0 = p + (x-b.x1)/(b.x2-b.x1)*(w-p*2);
+                    var y0 = p + (y-b.y1)/(b.y2-b.y1)*(h-p*2);
+                    if (x0 > mx && y0 < my && mx != p && h > p*2) {
+                        var xc = (w-p*2)/(mx-p)*(x-b.x1) / (b.x2-b.x1);
+                        var yc =(1/((my-p)/(h-p*2) - 1))*(y-b.y2) / (b.y2-b.y1);
+                        if (xc < 0) xc = Infinity;
+                        if (yc < 0) yc = Infinity;
+                        coef = Math.max(Math.min(xc,yc),coef);
+                    }
+                }
+            }
+            if (coef > 1) { b.x2=(b.x2-b.x1)*coef+b.x1; b.y1=b.y2-(b.y2-b.y1)*coef; }
+
+            for (var i = 0; i < mapc.length; i++) svgBackground += svgGenPath(shps[i], b, w, h, p, mapc[i][0], emptyColor);
+            for (var i = data.length-1; i >= 0; i--) {
+                if (data[i].index == null) continue;
+                svgData += svgGenPath(shps[data[i].index], b, w, h, p, mapc[data[i].index][0], data[i].fillColor);
+            }
+            svgBackground += '\t</g>\n'; svgData += '\t</g>\n'; svgLabels += '\t</g>\n';
+            if (color.svgDefs.length >= 0) svg += '\t<defs>\n'+color.svgDefs+'\t</defs>\n';
+            svg += svgBackground +  svgData + svgLabels + '</svg>';
+            svg += '</svg>';
+            return svg;
+        }
+
         function update(reset) {
             if (!fontsloaded) return;
             if (!reset) {
                 setupThemes();
-                var themeSel = document.getElementById("theme"), modeSel = document.getElementById("mode");
+                var themeSel = document.getElementById('theme'), modeSel = document.getElementById('mode');
                 var tsel = themeList[themeSel.options[themeSel.selectedIndex].value];
                 var msel = modeSel.options[modeSel.selectedIndex].value;
                 if (tsel != null && theme != tsel || msel != mode) { changeThemeMode(); return; }
             }
 
-            var data = document.getElementById("data").value;
+            var data = document.getElementById('data').value;
             if (!reset && lastdata == data) return; else lastdata = data;
 
-            var svgStyle = "", elem = document.getElementById("preview").children[0];
+            var svgStyle = '', elem = document.getElementById('preview').children[0];
             if (!reset && elem != null) svgStyle = ' style="'+elem.getAttribute('style')+'"';
+            svgHead = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+theme.ChartWidth+' '+theme.ChartHeight+'" width="'+theme.ChartWidth+'" height="'+theme.ChartHeight+'"'+svgStyle+'>\n';
 
-            function checkNum(s, dec, val) { theme[s] = dec ? parseFloat(theme[s]||val) : parseInt(theme[s]||val); if (isNaN(theme[s])) theme[s] = val; }
-            checkNum("Min", true, 0);
-            checkNum("Max", true, 0);
-            checkNum("Steps", false, 0);
-            checkNum("BarRadius", true, 0);
-            checkNum("ChartWidth", false, 752);
-            checkNum("ChartHeight", false, 400);
-            checkNum("FontSize", false, 10);
-            checkNum("ChartSpacing", true, 0);
-            checkNum("BarWidth", true, 0);
-            checkNum("Padding", false, 0);
+            function checkNum(s, dec, val, min) { theme[s] = dec ? parseFloat(theme[s]||val) : parseInt(theme[s]||val); if (isNaN(theme[s])) theme[s] = val; if (min != null && theme[s] < min) theme[s] = min; }
+            checkNum('Min', true, 0);
+            checkNum('Max', true, 0);
+            checkNum('Steps', false, 0, 1);
+            checkNum('BarRadius', true, 0, 0);
+            checkNum('ChartWidth', false, 752, 1);
+            checkNum('ChartHeight', false, 400, 1);
+            checkNum('FontSize', false, 10, 0);
+            checkNum('ChartSpacing', true, 0, 0);
+            checkNum('BarWidth', true, 0, 0);
+            checkNum('Padding', false, 0, 0);
 
-            document.getElementById("preview").innerHTML =
-                stacked = mode.indexOf("Pie") >= 0 || mode.indexOf("Donut") >= 0
-                    ? generateSvgChart(data, svgStyle)
-                    : generateSvgGraph(data, svgStyle);
+            document.getElementById('preview').innerHTML = svgHead + (
+                mode.indexOf('Map') >= 0
+                    ? generateSvgMap(data)
+                    : mode.indexOf('Pie') >= 0 || mode.indexOf('Donut') >= 0
+                        ? generateSvgChart(data)
+                        : generateSvgGraph(data)) + '</svg>';
 
             saveState();
         }
@@ -793,6 +1074,7 @@
             <option>Line Chart</option>
             <option>Pie Chart</option>
             <option>Donut Chart</option>
+            <option>Map Chart</option>
         </select>
         <select id="theme" onchange="changeThemeMode()" style="width: 86px;"></select>
         <input type="button" value="Customize..." onclick="customize(false);" class="button" style="width: 100px;"></input>
@@ -840,8 +1122,8 @@ Canada;1.89%</textarea></div>
             <label>Chart Height:</label><input type="number" step="1" id="input_ChartHeight"></input><br/>
             <label>Font Size:</label><input type="number" step="1" id="input_FontSize"></input><br/>
             <label>Font Weight:</label><input type="text" id="input_FontWeight"></input><br/>
-            <label title="Decimal Separator">Decimal Sep.:</label><input type="text" id="input_DecimalSeparator"></input><br/>
-            <label title="Thousands Separator">Thous. Sep.:</label><input type="text" id="input_ThousandsSeparator"></input><br/>
+            <label title="Decimal Separator">Decimal Sep.:</label><input type="text" id="input_DecSeparator"></input><br/>
+            <label title="Thousands Separator">Thous. Sep.:</label><input type="text" id="input_ThoSeparator"></input><br/>
             <label title="Chart Spacing">Spacing:</label><input type="number" step="0.01" id="input_ChartSpacing"></input><br/>
             <label>Bar Width:</label><input type="number" step="0.01" id="input_BarWidth"></input><br/>
             <label>Padding:</label><input type="number" step="1" id="input_Padding"></input>

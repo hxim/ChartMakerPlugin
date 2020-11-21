@@ -311,6 +311,7 @@
             var svg1 = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + theme.ChartWidth + ' ' + theme.ChartHeight + '" width="' + theme.ChartWidth + '" height="' + theme.ChartHeight + '">';
             svg1 += '<style>' + getFontStyle([0,0,0,1], 'txt3', fw2) + '</style><g id="group_measure"><text dominant-baseline="hanging" text-anchor="start">';
             for (var i = 0; i < list.length; i++) {
+                if (list[i] == null) continue;
                 svg1 += '<tspan x="' + (x0||0) + 'em" ' + (i == 0 ? 'y="' + (y0||0) + 'em"' : 'dy="1em"') + ' class="txt3">' + escapeXML(list[i]) + '</tspan>';
             }
             svg1 += '</text></g></svg>';
